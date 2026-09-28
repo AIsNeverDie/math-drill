@@ -169,16 +169,16 @@ export function nextStar(prog, id, today = null) {
   const pct = (l) => Math.round(rate(l) * 100);
   const cur = (l) => { const v = speedOf(l, grade); return Number.isFinite(v) ? Math.round((v * baseMs(grade, cells)) / 100) / 10 : null; };
   const n = s + 1;
-  if (n === 2) { const l = times.slice(-R.accN); return { n, text: `Get ${R.acc * 100}% or more right on the first try over your last ${R.accN} problems`, now: `Now: ${l.length} problems · ${pct(l)}%` }; }
-  if (n === 3) { const l = times.slice(-R.speedN); const c = cur(l); return { n, text: `Solve a problem in about ${sec(1)}s or less`, now: c == null ? `Now: ${l.length} problems` : `Now: ${c}s (${l.length}/${R.speedN} problems)` }; }
+  if (n === 2) { const l = times.slice(-R.accN); return { n, text: `さいきん ${R.accN}もんの 初回正解が ${R.acc * 100}% いじょう`, now: `いま ${l.length}もん・${pct(l)}%` }; }
+  if (n === 3) { const l = times.slice(-R.speedN); const c = cur(l); return { n, text: `1もんを だいたい ${sec(1)}びょう いないで とく`, now: c == null ? `いま ${l.length}もん` : `いま ${c}びょう（${l.length}/${R.speedN}もん）` }; }
   if (n === 4) {
     const since = r.starDay && r.starDay[3];
     const ref = today || (times.length ? times[times.length - 1].d : since);
     const wait = since && ref ? Math.max(0, R.gapDays - daysBetween(since, ref)) : R.gapDays;
-    return { n, text: `${R.gapDays} days after ☆3, get ${R.holdRun} in a row right on the first try`, now: wait ? `Wait ${wait} more ${wait === 1 ? 'day' : 'days'}` : 'You can try it today!' };
+    return { n, text: `☆3から ${R.gapDays}日 たってから、${R.holdRun}もん つづけて 初回正解`, now: wait ? `あと ${wait}日 まってね` : 'きょうから ちょうせん できるよ' };
   }
   const l = times.slice(-R.topN); const c = cur(l);
-  return { n, text: `Get ${R.top * 100}% or more right on the first try over your last ${R.topN} problems, within ${sec(R.topSpeed)}s each`, now: `Now: ${pct(l)}%${c == null ? '' : ` · ${c}s`}` };
+  return { n, text: `さいきん ${R.topN}もんの 初回正解が ${R.top * 100}% いじょうで、1もん ${sec(R.topSpeed)}びょう いない`, now: `いま ${pct(l)}%${c == null ? '' : `・${c}びょう`}` };
 }
 
 function noteTiming(r, firstTry, { day, ms, cells = 1, misses = 0, problem = null }, at) {

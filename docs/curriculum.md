@@ -1,186 +1,186 @@
-# ドパドリル — 計算範囲とスキル一覧
+# Japanese Math Drill — Calculation Scope and Skill List
 
-本書は、ドパドリルが現在出題する計算、スキルの前提関係、問題の生成条件と入力方式を説明します。数値は今後の調整で変更する場合があります。ゲーム全体の規則は `docs/SPEC.md`、スキル定義は `app/js/skills.js`、出題処理は `app/js/problems.js` を参照します。
+This document describes the calculations that Japanese Math Drill currently poses, the prerequisite relationships between skills, the conditions under which problems are generated, and how answers are entered. The numbers may change with future tuning. For the rules of the game as a whole, see `docs/SPEC.md`; for the skill definitions, `app/js/skills.js`; and for problem generation, `app/js/problems.js`.
 
-## 1. 対象と構成
+## 1. Scope and structure
 
-数字を入力して答える計算を、1〜6年生に配当した58スキルで扱います。四則計算と筆算、小数・分数、概数、約数・倍数、計算順序、百分率、等しい比、文字の値が対象です。図形、長さ・かさ・時刻などの測定、グラフ、文章題、漢数字や位取り表への入力は含みません。
+The app covers calculations that are answered by typing digits, organized into 58 skills assigned to Grades 1–6 (the grades of Japanese elementary school). It covers the four arithmetic operations and column calculation, decimals and fractions, rounding, factors and multiples, order of operations, percentages, equal ratios, and finding the value of a letter (x). It does not include geometry, measurement (length, liquid volume, time and so on), graphs, word problems, or answers entered as kanji numerals or into place-value charts.
 
-学年は本アプリの配当を示し、教科書の全単元を網羅するものではありません。スキルの名前だけで出題を推測せず、一覧の条件と生成器の説明を合わせて参照してください。
+The grades show where this app places each skill; they do not cover every unit in Japanese textbooks. Do not guess what a skill asks from its name alone; read the conditions in the list together with the descriptions of the generators.
 
-| 学年 | スキル数 | 主な内容 |
+| Grade | Number of skills | Main topics |
 | --- | --- | --- |
-| 1 | 8 | 10の分解、くり上がり・くり下がり、3つの数、簡単な2桁の加減 |
-| 2 | 13 | 2桁と簡単な3桁の加減筆算、九九、何十×1桁、もとの数の1/2・1/4 |
-| 3 | 14 | 3・4桁の加減、整数乗法の筆算、除法と余り、小数第1位の加減、同分母分数 |
-| 4 | 10 | 整数除法の筆算、計算順序、四捨五入、小数第2位の加減、小数と整数の乗除、帯分数 |
-| 5 | 8 | 小数同士の乗除、最大公約数・最小公倍数、約分、異分母分数、分数と整数、百分率 |
-| 6 | 5 | 分数同士の乗除、小数と分数の乗法、等しい比、xの値 |
+| 1 | 8 | Number bonds for 10, carrying and borrowing, calculations with 3 numbers, simple 2-digit addition and subtraction |
+| 2 | 13 | Column addition and subtraction with 2 digits and simple 3 digits, times tables, tens × 1-digit, 1/2 and 1/4 of a number |
+| 3 | 14 | 3- and 4-digit addition and subtraction, column multiplication of whole numbers, division and remainders, adding and subtracting decimals to tenths, fractions with like denominators |
+| 4 | 10 | Long division of whole numbers, order of operations, rounding (round half up), adding and subtracting decimals to hundredths, multiplying and dividing decimals by whole numbers, mixed numbers |
+| 5 | 8 | Multiplying and dividing decimals by decimals, greatest common factor and least common multiple, simplifying fractions, fractions with unlike denominators, fractions and whole numbers, percentages |
+| 6 | 5 | Multiplying and dividing fractions by fractions, multiplying decimals by fractions, equal ratios, the value of x |
 
-系統は「たし・ひき」「かけ・わり」「小数・分数」「そのほか」です。画面では各系統を2列に分けます。縦に隣り合うスキルが必ずしも前提になるわけではありません。
+The lanes are "Add & subtract", "Multiply & divide", "Decimals & fractions" and "Other". On screen, each lane is split into 2 columns. Skills that are vertically adjacent are not necessarily prerequisites of one another.
 
-## 2. スキル一覧
+## 2. Skill list
 
-以下は実装の定義順です。ID、画面の名前、系統、すべての前提、生成器とパラメータを掲載します。前提欄の「なし」は最初から解放されるスキルです。
+The skills below are listed in the order in which they are defined in the code. Each row gives the ID, the name shown on screen, the lane, all prerequisites, and the generator with its parameters. The names are the English ones; the Japanese version shows the original Japanese names, from `app/ja/js/skills.js`. "None" in the prerequisites column marks a skill that is unlocked from the start.
 
-パラメータの `[最小,最大]` は両端を含む整数範囲です。`dans`・`dens` は選択候補の配列です。`da`・`db` は被演算数の桁数、`dd`・`ds` は被除数・除数の桁数、`pa`・`pb` は小数桁数です。条件の追加選別により、範囲内のすべての組み合わせが出るわけではありません。
+In the parameters, `[min,max]` is an integer range that includes both ends. `dans` and `dens` are arrays of candidates to pick from (`dans` lists times tables, *dan* being the Japanese word for one times table; `dens` lists denominators). `da` and `db` are the numbers of digits of the operands, `dd` and `ds` the numbers of digits of the dividend and the divisor, and `pa` and `pb` the numbers of decimal places. Because candidates are further filtered by the conditions, not every combination within a range actually appears.
 
-### 1年生
+### Grade 1
 
-| ID | 名前 | 系統 | 前提（すべて必要） | 生成器・パラメータ |
+| ID | Name | Lane | Prerequisites (all required) | Generator and parameters |
 | --- | --- | --- | --- | --- |
-| `g1-compose10` | 10のまとまり | たし・ひき | なし | `compose` `{"total":10}` |
-| `g1-add-nc` | 1けたのたしざん | たし・ひき | なし | `hadd` `{"a":[1,9],"b":[1,9],"carry":"none"}` |
-| `g1-sub-nb` | 10までのひきざん | たし・ひき | `g1-add-nc` | `hsub` `{"a":[2,10],"b":[1,9],"borrow":"none"}` |
-| `g1-add-c` | くりあがりのたしざん | たし・ひき | `g1-compose10`、`g1-add-nc` | `hadd` `{"a":[2,9],"b":[2,9],"carry":"yes"}` |
-| `g1-sub-b` | くりさがりのひきざん | たし・ひき | `g1-add-c`、`g1-sub-nb` | `hsub` `{"a":[11,18],"b":[2,9],"borrow":"yes"}` |
-| `g1-add3` | 3つのかずのけいさん | たし・ひき | `g1-sub-b` | `add3` `{}` |
-| `g1-add-2d1` | 2けた＋1けた | たし・ひき | `g1-add-c` | `hadd` `{"a":[11,89],"b":[1,9],"carry":"none","tensToo":true}` |
-| `g1-sub-2d1` | 2けた−1けた | たし・ひき | `g1-sub-b`、`g1-add-2d1` | `hsub` `{"a":[11,99],"b":[1,9],"borrow":"none","tensToo":true}` |
+| `g1-compose10` | Making 10 | Add & subtract | None | `compose` `{"total":10}` |
+| `g1-add-nc` | 1-digit addition | Add & subtract | None | `hadd` `{"a":[1,9],"b":[1,9],"carry":"none"}` |
+| `g1-sub-nb` | Subtract within 10 | Add & subtract | `g1-add-nc` | `hsub` `{"a":[2,10],"b":[1,9],"borrow":"none"}` |
+| `g1-add-c` | Add with carrying | Add & subtract | `g1-compose10`, `g1-add-nc` | `hadd` `{"a":[2,9],"b":[2,9],"carry":"yes"}` |
+| `g1-sub-b` | Subtract with borrowing | Add & subtract | `g1-add-c`, `g1-sub-nb` | `hsub` `{"a":[11,18],"b":[2,9],"borrow":"yes"}` |
+| `g1-add3` | Three numbers | Add & subtract | `g1-sub-b` | `add3` `{}` |
+| `g1-add-2d1` | 2-digit + 1-digit | Add & subtract | `g1-add-c` | `hadd` `{"a":[11,89],"b":[1,9],"carry":"none","tensToo":true}` |
+| `g1-sub-2d1` | 2-digit − 1-digit | Add & subtract | `g1-sub-b`, `g1-add-2d1` | `hsub` `{"a":[11,99],"b":[1,9],"borrow":"none","tensToo":true}` |
 
-### 2年生
+### Grade 2
 
-| ID | 名前 | 系統 | 前提（すべて必要） | 生成器・パラメータ |
+| ID | Name | Lane | Prerequisites (all required) | Generator and parameters |
 | --- | --- | --- | --- | --- |
-| `g2-vadd2-nc` | 2けたのたしざん ひっさん | たし・ひき | `g1-add-2d1` | `vadd` `{"da":2,"db":2,"carry":"none","maxDigits":2}` |
-| `g2-vadd2-c` | くりあがりのひっさん | たし・ひき | `g2-vadd2-nc`、`g1-add-c` | `vadd` `{"da":2,"db":[1,2],"carry":"some","maxDigits":2}` |
-| `g2-vsub2-nb` | 2けたのひきざん ひっさん | たし・ひき | `g1-sub-2d1` | `vsub` `{"da":2,"db":2,"borrow":"none"}` |
-| `g2-vsub2-b` | くりさがりのひっさん | たし・ひき | `g2-vsub2-nb`、`g1-sub-b` | `vsub` `{"da":2,"db":[1,2],"borrow":"some"}` |
-| `g2-vadd3s` | 百をこえるたしざん | たし・ひき | `g2-vadd2-c` | `vadd` `{"da":2,"db":2,"carry":"many","maxDigits":3}` |
-| `g2-vsub3s` | 百からのひきざん | たし・ひき | `g2-vsub2-b`、`g2-vadd3s` | `vsub` `{"da":3,"db":2,"borrow":"some","aMax":199}` |
-| `g2-kuku25` | 九九 5と2のだん | かけ・わり | `g1-add-c` | `kuku` `{"dans":[5,2]}` |
-| `g2-kuku34` | 九九 3と4のだん | かけ・わり | `g2-kuku25` | `kuku` `{"dans":[3,4]}` |
-| `g2-kuku67` | 九九 6と7のだん | かけ・わり | `g2-kuku34` | `kuku` `{"dans":[6,7]}` |
-| `g2-kuku891` | 九九 8・9・1のだん | かけ・わり | `g2-kuku67` | `kuku` `{"dans":[8,9,1]}` |
-| `g2-kuku-mix` | 九九 まぜこぜ | かけ・わり | `g2-kuku891` | `kuku` `{"dans":[1,2,3,4,5,6,7,8,9]}` |
-| `g2-mul-tens` | 何十×1けた | かけ・わり | `g2-kuku-mix` | `mulTens` `{}` |
-| `g2-frac-of` | 1/2と1/4 | 小数・分数 | `g2-kuku25` | `fracOf` `{"dens":[2,4]}` |
+| `g2-vadd2-nc` | 2-digit column addition | Add & subtract | `g1-add-2d1` | `vadd` `{"da":2,"db":2,"carry":"none","maxDigits":2}` |
+| `g2-vadd2-c` | Carrying in columns | Add & subtract | `g2-vadd2-nc`, `g1-add-c` | `vadd` `{"da":2,"db":[1,2],"carry":"some","maxDigits":2}` |
+| `g2-vsub2-nb` | 2-digit column subtraction | Add & subtract | `g1-sub-2d1` | `vsub` `{"da":2,"db":2,"borrow":"none"}` |
+| `g2-vsub2-b` | Borrowing in columns | Add & subtract | `g2-vsub2-nb`, `g1-sub-b` | `vsub` `{"da":2,"db":[1,2],"borrow":"some"}` |
+| `g2-vadd3s` | Adding past 100 | Add & subtract | `g2-vadd2-c` | `vadd` `{"da":2,"db":2,"carry":"many","maxDigits":3}` |
+| `g2-vsub3s` | Subtract from 100s | Add & subtract | `g2-vsub2-b`, `g2-vadd3s` | `vsub` `{"da":3,"db":2,"borrow":"some","aMax":199}` |
+| `g2-kuku25` | 5 & 2 times tables | Multiply & divide | `g1-add-c` | `kuku` `{"dans":[5,2]}` |
+| `g2-kuku34` | 3 & 4 times tables | Multiply & divide | `g2-kuku25` | `kuku` `{"dans":[3,4]}` |
+| `g2-kuku67` | 6 & 7 times tables | Multiply & divide | `g2-kuku34` | `kuku` `{"dans":[6,7]}` |
+| `g2-kuku891` | 8, 9 & 1 times tables | Multiply & divide | `g2-kuku67` | `kuku` `{"dans":[8,9,1]}` |
+| `g2-kuku-mix` | Mixed times tables | Multiply & divide | `g2-kuku891` | `kuku` `{"dans":[1,2,3,4,5,6,7,8,9]}` |
+| `g2-mul-tens` | Tens × 1-digit | Multiply & divide | `g2-kuku-mix` | `mulTens` `{}` |
+| `g2-frac-of` | 1/2 and 1/4 | Decimals & fractions | `g2-kuku25` | `fracOf` `{"dens":[2,4]}` |
 
-### 3年生
+### Grade 3
 
-| ID | 名前 | 系統 | 前提（すべて必要） | 生成器・パラメータ |
+| ID | Name | Lane | Prerequisites (all required) | Generator and parameters |
 | --- | --- | --- | --- | --- |
-| `g3-vadd3` | 3けたのたしざん | たし・ひき | `g2-vadd3s` | `vadd` `{"da":3,"db":3,"carry":"some","maxDigits":3}` |
-| `g3-vsub3` | 3けたのひきざん | たし・ひき | `g2-vsub3s` | `vsub` `{"da":3,"db":[2,3],"borrow":"some"}` |
-| `g3-vadd4` | 4けたのたしざん | たし・ひき | `g3-vadd3` | `vadd` `{"da":4,"db":[3,4],"carry":"many","maxDigits":4}` |
-| `g3-vsub4` | 4けたのひきざん | たし・ひき | `g3-vsub3` | `vsub` `{"da":4,"db":[3,4],"borrow":"zero"}` |
-| `g3-div-basic` | わりざん | かけ・わり | `g2-kuku-mix` | `div` `{"exact":true}` |
-| `g3-div-rem` | あまりのあるわりざん | かけ・わり | `g3-div-basic` | `divRem` `{}` |
-| `g3-div-tens` | 何十÷1けた | かけ・わり | `g3-div-basic` | `divTens` `{}` |
-| `g3-vmul-2x1` | 2けた×1けた ひっさん | かけ・わり | `g2-mul-tens` | `vmul` `{"da":2,"db":1}` |
-| `g3-vmul-3x1` | 3けた×1けた | かけ・わり | `g3-vmul-2x1` | `vmul` `{"da":3,"db":1}` |
-| `g3-vmul-2x2` | 2けた×2けた | かけ・わり | `g3-vmul-2x1` | `vmul` `{"da":2,"db":2}` |
-| `g3-vmul-3x2` | 3けた×2けた | かけ・わり | `g3-vmul-2x2`、`g3-vmul-3x1` | `vmul` `{"da":3,"db":2}` |
-| `g3-dec-add1` | 小数のたしざん | 小数・分数 | `g2-vadd2-c` | `vdec` `{"op":"add","places":1}` |
-| `g3-dec-sub1` | 小数のひきざん | 小数・分数 | `g3-dec-add1`、`g2-vsub2-b` | `vdec` `{"op":"sub","places":1}` |
-| `g3-frac-same` | 分数のたしひき | 小数・分数 | `g2-frac-of` | `frac` `{"op":"addsub","same":true,"maxOne":true}` |
+| `g3-vadd3` | 3-digit addition | Add & subtract | `g2-vadd3s` | `vadd` `{"da":3,"db":3,"carry":"some","maxDigits":3}` |
+| `g3-vsub3` | 3-digit subtraction | Add & subtract | `g2-vsub3s` | `vsub` `{"da":3,"db":[2,3],"borrow":"some"}` |
+| `g3-vadd4` | 4-digit addition | Add & subtract | `g3-vadd3` | `vadd` `{"da":4,"db":[3,4],"carry":"many","maxDigits":4}` |
+| `g3-vsub4` | 4-digit subtraction | Add & subtract | `g3-vsub3` | `vsub` `{"da":4,"db":[3,4],"borrow":"zero"}` |
+| `g3-div-basic` | Division | Multiply & divide | `g2-kuku-mix` | `div` `{"exact":true}` |
+| `g3-div-rem` | Division with remainders | Multiply & divide | `g3-div-basic` | `divRem` `{}` |
+| `g3-div-tens` | Tens ÷ 1-digit | Multiply & divide | `g3-div-basic` | `divTens` `{}` |
+| `g3-vmul-2x1` | 2-digit × 1-digit | Multiply & divide | `g2-mul-tens` | `vmul` `{"da":2,"db":1}` |
+| `g3-vmul-3x1` | 3-digit × 1-digit | Multiply & divide | `g3-vmul-2x1` | `vmul` `{"da":3,"db":1}` |
+| `g3-vmul-2x2` | 2-digit × 2-digit | Multiply & divide | `g3-vmul-2x1` | `vmul` `{"da":2,"db":2}` |
+| `g3-vmul-3x2` | 3-digit × 2-digit | Multiply & divide | `g3-vmul-2x2`, `g3-vmul-3x1` | `vmul` `{"da":3,"db":2}` |
+| `g3-dec-add1` | Decimal addition | Decimals & fractions | `g2-vadd2-c` | `vdec` `{"op":"add","places":1}` |
+| `g3-dec-sub1` | Decimal subtraction | Decimals & fractions | `g3-dec-add1`, `g2-vsub2-b` | `vdec` `{"op":"sub","places":1}` |
+| `g3-frac-same` | Fractions: + and − | Decimals & fractions | `g2-frac-of` | `frac` `{"op":"addsub","same":true,"maxOne":true}` |
 
-### 4年生
+### Grade 4
 
-| ID | 名前 | 系統 | 前提（すべて必要） | 生成器・パラメータ |
+| ID | Name | Lane | Prerequisites (all required) | Generator and parameters |
 | --- | --- | --- | --- | --- |
-| `g4-vdiv-2d1` | 2けた÷1けた ひっさん | かけ・わり | `g3-div-rem`、`g3-div-tens` | `vdiv` `{"dd":2,"ds":1}` |
-| `g4-vdiv-3d1` | 3けた÷1けた | かけ・わり | `g4-vdiv-2d1` | `vdiv` `{"dd":3,"ds":1}` |
-| `g4-vdiv-2d2` | 2けた÷2けた | かけ・わり | `g4-vdiv-2d1`、`g3-vmul-2x1` | `vdiv` `{"dd":2,"ds":2}` |
-| `g4-vdiv-3d2` | 3けた÷2けた | かけ・わり | `g4-vdiv-2d2`、`g4-vdiv-3d1` | `vdiv` `{"dd":3,"ds":2}` |
-| `g4-order` | けいさんのきまり | そのほか | `g2-kuku-mix`、`g2-vsub2-b` | `order` `{}` |
-| `g4-round` | がい数（四捨五入） | そのほか | `g3-vadd4` | `round` `{}` |
-| `g4-dec-add2` | 小数第2位のたしひき | 小数・分数 | `g3-dec-sub1` | `vdec` `{"op":"addsub","places":2}` |
-| `g4-dec-mul` | 小数×整数 | 小数・分数 | `g4-dec-add2`、`g3-vmul-2x1` | `vmul` `{"da":2,"db":1,"pa":1}` |
-| `g4-dec-div` | 小数÷整数 | 小数・分数 | `g4-dec-mul`、`g4-vdiv-2d1` | `decDivInt` `{}` |
-| `g4-frac-mixed` | 帯分数のたしひき | 小数・分数 | `g3-frac-same` | `frac` `{"op":"addsub","same":true,"mixed":true}` |
+| `g4-vdiv-2d1` | 2-digit ÷ 1-digit | Multiply & divide | `g3-div-rem`, `g3-div-tens` | `vdiv` `{"dd":2,"ds":1}` |
+| `g4-vdiv-3d1` | 3-digit ÷ 1-digit | Multiply & divide | `g4-vdiv-2d1` | `vdiv` `{"dd":3,"ds":1}` |
+| `g4-vdiv-2d2` | 2-digit ÷ 2-digit | Multiply & divide | `g4-vdiv-2d1`, `g3-vmul-2x1` | `vdiv` `{"dd":2,"ds":2}` |
+| `g4-vdiv-3d2` | 3-digit ÷ 2-digit | Multiply & divide | `g4-vdiv-2d2`, `g4-vdiv-3d1` | `vdiv` `{"dd":3,"ds":2}` |
+| `g4-order` | Order of operations | Other | `g2-kuku-mix`, `g2-vsub2-b` | `order` `{}` |
+| `g4-round` | Rounding | Other | `g3-vadd4` | `round` `{}` |
+| `g4-dec-add2` | Decimals to hundredths | Decimals & fractions | `g3-dec-sub1` | `vdec` `{"op":"addsub","places":2}` |
+| `g4-dec-mul` | Decimal × whole number | Decimals & fractions | `g4-dec-add2`, `g3-vmul-2x1` | `vmul` `{"da":2,"db":1,"pa":1}` |
+| `g4-dec-div` | Decimal ÷ whole number | Decimals & fractions | `g4-dec-mul`, `g4-vdiv-2d1` | `decDivInt` `{}` |
+| `g4-frac-mixed` | Mixed numbers: + and − | Decimals & fractions | `g3-frac-same` | `frac` `{"op":"addsub","same":true,"mixed":true}` |
 
-### 5年生
+### Grade 5
 
-| ID | 名前 | 系統 | 前提（すべて必要） | 生成器・パラメータ |
+| ID | Name | Lane | Prerequisites (all required) | Generator and parameters |
 | --- | --- | --- | --- | --- |
-| `g5-dec-mul` | 小数×小数 | 小数・分数 | `g4-dec-mul` | `vmul` `{"da":2,"db":2,"pa":1,"pb":1}` |
-| `g5-dec-div` | 小数÷小数 | 小数・分数 | `g4-dec-div`、`g5-dec-mul` | `decDivDec` `{}` |
-| `g5-gcd` | 最大公約数 | そのほか | `g3-div-basic` | `gcdlcm` `{"kind":"gcd"}` |
-| `g5-lcm` | 最小公倍数 | そのほか | `g5-gcd` | `gcdlcm` `{"kind":"lcm"}` |
-| `g5-frac-reduce` | 約分 | 小数・分数 | `g5-gcd`、`g4-frac-mixed` | `frac` `{"op":"reduce"}` |
-| `g5-frac-diff` | 分母がちがう分数 | 小数・分数 | `g5-frac-reduce`、`g5-lcm` | `frac` `{"op":"addsub","same":false}` |
-| `g5-frac-int` | 分数×÷整数 | 小数・分数 | `g5-frac-reduce` | `frac` `{"op":"muldivInt"}` |
-| `g5-percent` | 百分率 | そのほか | `g4-dec-mul` | `percent` `{}` |
+| `g5-dec-mul` | Decimal × decimal | Decimals & fractions | `g4-dec-mul` | `vmul` `{"da":2,"db":2,"pa":1,"pb":1}` |
+| `g5-dec-div` | Decimal ÷ decimal | Decimals & fractions | `g4-dec-div`, `g5-dec-mul` | `decDivDec` `{}` |
+| `g5-gcd` | Greatest common factor | Other | `g3-div-basic` | `gcdlcm` `{"kind":"gcd"}` |
+| `g5-lcm` | Least common multiple | Other | `g5-gcd` | `gcdlcm` `{"kind":"lcm"}` |
+| `g5-frac-reduce` | Simplify fractions | Decimals & fractions | `g5-gcd`, `g4-frac-mixed` | `frac` `{"op":"reduce"}` |
+| `g5-frac-diff` | Unlike fractions | Decimals & fractions | `g5-frac-reduce`, `g5-lcm` | `frac` `{"op":"addsub","same":false}` |
+| `g5-frac-int` | Fractions × ÷ whole numbers | Decimals & fractions | `g5-frac-reduce` | `frac` `{"op":"muldivInt"}` |
+| `g5-percent` | Percent of a number | Other | `g4-dec-mul` | `percent` `{}` |
 
-### 6年生
+### Grade 6
 
-| ID | 名前 | 系統 | 前提（すべて必要） | 生成器・パラメータ |
+| ID | Name | Lane | Prerequisites (all required) | Generator and parameters |
 | --- | --- | --- | --- | --- |
-| `g6-frac-mul` | 分数×分数 | 小数・分数 | `g5-frac-int` | `frac` `{"op":"mul"}` |
-| `g6-frac-div` | 分数÷分数 | 小数・分数 | `g6-frac-mul` | `frac` `{"op":"div"}` |
-| `g6-frac-dec` | 小数と分数のけいさん | 小数・分数 | `g6-frac-div`、`g5-dec-div` | `frac` `{"op":"decimal"}` |
-| `g6-ratio` | 等しい比 | そのほか | `g5-lcm` | `ratio` `{}` |
-| `g6-letter` | xをもとめる | そのほか | `g4-order` | `letter` `{}` |
+| `g6-frac-mul` | Fraction × fraction | Decimals & fractions | `g5-frac-int` | `frac` `{"op":"mul"}` |
+| `g6-frac-div` | Fraction ÷ fraction | Decimals & fractions | `g6-frac-mul` | `frac` `{"op":"div"}` |
+| `g6-frac-dec` | Decimals & fractions | Decimals & fractions | `g6-frac-div`, `g5-dec-div` | `frac` `{"op":"decimal"}` |
+| `g6-ratio` | Equal ratios | Other | `g5-lcm` | `ratio` `{}` |
+| `g6-letter` | Find x | Other | `g4-order` | `letter` `{}` |
 
-## 3. 問題生成の条件
+## 3. Conditions for generating problems
 
-### 3.1 整数の横書き計算
+### 3.1 Horizontal whole-number calculations
 
-`compose` は10を1〜9と残りの数に分けます。`hadd` の `carry: none` はくり上がりなし、`yes` は少なくとも1回です。`hsub` は常に引く数が引かれる数より小さく、`borrow: none` はくり下がりなし、`yes` は少なくとも1回です。
+`compose` splits 10 into a number from 1 to 9 and the rest (shown as "10 is 3 and [7]"; square brackets mark the cells the player fills in). In `hadd`, `carry: none` means no carrying and `yes` means at least 1 carry. In `hsub`, the number being subtracted is always smaller than the number it is subtracted from; `borrow: none` means no borrowing and `yes` means at least 1 borrow.
 
-`tensToo: true` は、通常の2桁と1桁の計算に加え、乱数が0.3未満の場合に何十同士の加減を生成します。加法は10〜80の10の倍数と、和が90以下となる正の10の倍数、減法は20〜90の10の倍数から、それより小さい正の10の倍数を引きます。そのため「2けた＋1けた」「2けた−1けた」という名前のスキルにも、両方が2桁の問題があります。
+With `tensToo: true`, in addition to the usual 2-digit and 1-digit calculations, the generator produces addition or subtraction of two multiples of ten when a random draw is below 0.3. For addition, it pairs a multiple of 10 from 10 to 80 with a positive multiple of 10 that keeps the sum at 90 or less; for subtraction, it takes a multiple of 10 from 20 to 90 and subtracts a smaller positive multiple of 10. As a result, the skills named "2-digit + 1-digit" and "2-digit − 1-digit" also contain problems in which both numbers have 2 digits.
 
-`add3` は1〜9の3つの整数を使い、各演算を確率0.6で加法、それ以外は減法にします。最初の計算結果は0以上、最終結果は0〜20です。`kuku` は指定された段と1〜9を掛けます。`mulTens` は10〜90の10の倍数と2〜9の積です。
+`add3` uses 3 whole numbers from 1 to 9 and makes each operation an addition with probability 0.6 and a subtraction otherwise. The result of the first operation is 0 or more, and the final result is from 0 to 20. `kuku` (from the Japanese *kuku*, the times tables) multiplies a number from the specified times tables by a number from 1 to 9. `mulTens` is the product of a multiple of 10 from 10 to 90 and a number from 2 to 9.
 
-`fracOf` は分母2または4、答え1〜9から元の整数を作ります。`div` は除数2〜9、商1〜9の割り切れる問題です。`divRem` は同じ範囲の商・除数に、1から除数未満の余りを加えます。
+`fracOf` builds the original whole number from a denominator of 2 or 4 and an answer from 1 to 9 (shown as "1/4 of 12 = [3]"). `div` gives exact divisions with a divisor from 2 to 9 and a quotient from 1 to 9. `divRem` takes a quotient and a divisor from the same ranges and adds a remainder from 1 up to one less than the divisor (the answer is written with "R", as in 17 ÷ 5 = 3 R 2).
 
-`divTens` は2種類です。何十を1桁で割って商が何十になる問題と、十の位・一の位をそれぞれ割り切れる2桁の問題を生成します。名前が「何十÷1けた」でも、被除数の一の位が0でない場合があります。
+`divTens` has 2 kinds of problems. It generates a multiple of ten divided by a 1-digit number with a quotient that is also a multiple of ten, and 2-digit problems whose tens digit and ones digit are each divisible by the divisor. So even though the skill is named "Tens ÷ 1-digit", the ones digit of the dividend is sometimes not 0.
 
-### 3.2 整数の筆算
+### 3.2 Whole-number column calculations
 
-加法の `carry: some` はくり上がり1回以上、`many` は2回以上です。結果の桁数を `maxDigits` 以下に制限します。「百をこえるたしざん」は2桁同士で2回以上くり上がる条件です。
+For addition, `carry: some` means at least 1 carry and `many` at least 2. The number of digits of the result is limited to `maxDigits` or fewer. "Adding past 100" is set up as two 2-digit numbers with 2 or more carries.
 
-減法は引く数が引かれる数より小さく、`borrow: some` はくり下がり1回以上です。「百からのひきざん」は100〜199から2桁を引きます。`borrow: zero` はくり下がり2回以上に加え、0をまたぐ場合、またはその追加抽選が0.3未満の場合を採用します。4桁のひき算すべてが0をまたぐとは限りません。
+For subtraction, the number being subtracted is smaller than the number it is subtracted from, and `borrow: some` means at least 1 borrow. "Subtract from 100s" subtracts a 2-digit number from a number from 100 to 199. `borrow: zero` accepts a problem that has at least 2 borrows and, in addition, either borrows across a 0 or, failing that, passes an extra random draw below 0.3. So not every 4-digit subtraction borrows across a 0.
 
-乗法は各数の桁数を指定します。1桁の乗数は2〜9、被乗数の一の位は0以外、2桁の乗数も一の位を0以外にします。小数乗法の場合は積の末尾が0になるものと、積が1未満になるものを除きます。
+For multiplication, the number of digits of each number is specified. A 1-digit multiplier is from 2 to 9, the ones digit of the multiplicand is never 0, and the ones digit of a 2-digit multiplier is also never 0. In decimal multiplication, products whose last digit is 0 and products less than 1 are excluded.
 
-除法の除数は1桁なら2〜9、2桁なら11〜49です。被除数は指定桁数で、除数の2倍以上とします。2桁÷2桁では商は1桁です。余りのある問題と割り切れる問題の両方が出ます。
+In division, a 1-digit divisor is from 2 to 9 and a 2-digit divisor is from 11 to 49. The dividend has the specified number of digits and is at least 2 times the divisor. In 2-digit ÷ 2-digit, the quotient has 1 digit. Both problems with a remainder and problems that divide exactly appear.
 
-### 3.3 小数
+### 3.3 Decimals
 
-`vdec` は整数化した数値を使って加減の筆算を作ります。`places: 1` では小数第1位、`places: 2` では小数第2位を扱い、後者は確率0.4で第2項だけ小数第1位にします。小数の末尾が0になる被演算数・結果を除き、減法の結果を正にします。
+`vdec` builds column addition and subtraction using the numbers scaled up to whole numbers. `places: 1` works to the tenths place and `places: 2` to the hundredths place; with the latter, only the second term is given to the tenths place, with probability 0.4. Operands and results whose decimal part ends in 0 are excluded, and subtraction results are positive.
 
-`decDivInt` は除数2〜9、商1.1〜9.9のうち末尾0を除く小数第1位の問題です。`decDivDec` は除数0.2〜0.9または1.1〜2.9と、整数の商2〜9から問題を作ります。現在の「小数÷小数」の答えは整数です。どちらも横書きで答えを入力し、除法筆算の途中入力は行いません。
+`decDivInt` gives problems with a divisor from 2 to 9 and a quotient to the tenths place from 1.1 to 9.9, excluding quotients that end in 0. `decDivDec` builds problems from a divisor from 0.2 to 0.9 or from 1.1 to 2.9 and a whole-number quotient from 2 to 9. At present, the answers to "Decimal ÷ decimal" are whole numbers. Both are answered horizontally; no intermediate long-division steps are entered.
 
-小数と分数の混合は、0.2・0.4・0.5・0.6・0.8のいずれかと、既約の真分数の乗法だけです。混合した加法・減法・除法は生成しません。
+Problems that mix decimals and fractions are only multiplications of one of 0.2, 0.4, 0.5, 0.6 and 0.8 by a proper fraction in simplest form. Mixed addition, subtraction and division are not generated.
 
-### 3.4 分数
+### 3.4 Fractions
 
-同分母の分母は3〜12です。3年生の加減は、正で1未満になる結果だけを採用します。`maxOne: true` という名前ですが1ちょうどは除外します。元の分母を保ち、約分できる結果でもそのままの分子・分母を答えにします。
+With like denominators, the denominator is from 3 to 12. Grade 3 addition and subtraction accept only results that are positive and less than 1; despite the name `maxOne: true`, exactly 1 is excluded. The original denominator is kept, and even when the result could be simplified, the answer is that numerator and denominator as they are, without simplifying.
 
-帯分数では第1項の整数部分を1〜4、第2項を0〜3、分子を1から分母未満とします。正の結果で、整数にならず、残った分数部分が既約となる組み合わせを採用します。結果が1以上なら整数部分を含む帯分数で入力します。
+For mixed numbers, the whole-number part of the first term is from 1 to 4, that of the second term from 0 to 3, and the numerators are from 1 to one less than the denominator. A combination is accepted when the result is positive, is not a whole number, and has a fractional part in simplest form. If the result is 1 or more, it is entered as a mixed number, including its whole-number part (written "2 1/3" in text).
 
-約分は既約の真分数（分母2〜9）の分子・分母へ2〜6の同じ整数を掛けて出題します。異分母の加減は分母2〜9の異なる既約真分数を使い、最小公倍数を36以下、結果を正で1未満に制限して約分します。
+Simplifying problems are made by multiplying the numerator and denominator of a proper fraction in simplest form (denominator 2 to 9) by the same whole number from 2 to 6. Addition and subtraction with unlike denominators use two proper fractions in simplest form with different denominators from 2 to 9, limit the least common multiple to 36 or less and the result to a positive value less than 1, and simplify the result.
 
-分数と整数の乗除は、分母2〜9の既約真分数と2〜9の整数を使います。分数同士の乗除は分母2〜9、分子1〜9の既約分数を使い、整数になる結果を除き、約分後の分子・分母を99以下にします。1を超える結果は帯分数にします。
+Multiplying and dividing a fraction by a whole number uses a proper fraction in simplest form with a denominator from 2 to 9 and a whole number from 2 to 9. Multiplying and dividing a fraction by a fraction uses fractions in simplest form with denominators from 2 to 9 and numerators from 1 to 9, excludes results that are whole numbers, and keeps the numerator and denominator after simplifying at 99 or less. Results greater than 1 are given as mixed numbers.
 
-### 3.5 その他の計算
+### 3.5 Other calculations
 
-`order` は `a＋b×c`、`a×(b＋c)`、`(a−b)×c`、`x−b×c` の4形式です。a・b・cは2〜9、最後の形式のxは積より1〜30大きい整数です。結果は正で999以下です。現在この生成器に除法は含まれません。
+`order` has 4 forms: `a＋b×c`, `a×(b＋c)`, `(a−b)×c` and `x−b×c`. a, b and c are from 2 to 9, and x in the last form is a whole number 1 to 30 greater than the product. The result is positive and at most 999. At present this generator includes no division.
 
-`round` は1001〜99999を、十・百・千のうち元の桁数に応じた位まで四捨五入します。結果の桁数が増える問題は除きます。`gcdlcm` は2〜9の共通因子に1〜6を掛けた2数を使い、両方4以上で異なる数、答え2〜99という条件で最大公約数・最小公倍数を出します。
+`round` rounds a number from 1001 to 99999 (round half up) to the nearest 10, 100 or 1000, choosing a place that suits the number of digits of the original number (shown on three lines as "Round 34567" / "to the nearest 100" / "→ [34600]"). Problems in which the result would have more digits than the original number are excluded. `gcdlcm` uses 2 numbers made by multiplying a common factor from 2 to 9 by 1 to 6, both 4 or more and different from each other, and asks for their greatest common factor (GCF) or least common multiple (LCM), with an answer from 2 to 99 (shown on two lines, as in "GCF of 12 and 18" / "= [6]").
 
-`percent` の元の数は20・40・50・60・80・100・200・300・400・500、割合は5・10・20・25・30・40・50・60・75%です。結果が正の整数になる組み合わせだけを使います。
+In `percent`, the base number is one of 20, 40, 50, 60, 80, 100, 200, 300, 400 and 500, and the percentage is one of 5, 10, 20, 25, 30, 40, 50, 60 and 75%. Only combinations whose result is a positive whole number are used (shown as "25 % of 200 = [50]").
 
-`ratio` は異なる1〜9の比を簡単にし、両側を2〜9倍した等しい比の片方を空欄にします。比の値を別に求める形式はありません。`letter` は `x×a=b`、`x＋a=b`、`x−a=b` の形式で、xの数値を答えます。
+`ratio` simplifies a ratio of two different numbers from 1 to 9, multiplies both of its terms by 2 to 9 to make an equal ratio, and leaves one term of that ratio blank. There is no separate format that asks for the value of a ratio (a ÷ b). `letter` uses the forms `x×a=b`, `x＋a=b` and `x−a=b`, and the answer is the value of x.
 
-### 3.6 重複の回避
+### 3.6 Avoiding repeats
 
-問題のタイトルと式を署名にし、スキルごとの直近24問と、そのプレイ中の署名を避けます。最大40回生成し、重複を避けられなければ最後の候補を使います。候補数が少ないスキルでも、一定問数の非重複を保証するものではありません。ふくしゅうとタイムカプセルは保存した問題をそのまま再利用します。
+A problem's title and expression form its signature, and generation avoids the signatures of each skill's last 24 problems and those already used in the current play. It generates up to 40 times and, if it cannot avoid a repeat, uses the last candidate. This does not guarantee a set number of problems without repeats, even in skills with few possible problems. Review and time capsules reuse saved problems exactly as they were.
 
-## 4. 習熟・解放・モードの関係
+## 4. Mastery, unlocking and modes
 
-通常のマスター条件は、6問以上解き、直近6問のうち5問以上を途中入力も含めて誤答なく完了することです。前提スキルをすべてマスターすると解放されます。一度の誤答でマスターを失うことはありません。マスター後の星・さび・記録削除の条件はゲーム全体の仕様書に記載しています。
+The usual mastery condition is to solve at least 6 problems and to complete at least 5 of the last 6 without a wrong answer, including in the intermediate entries. A skill is unlocked when all of its prerequisite skills are mastered. A single wrong answer never takes mastery away. The conditions for stars, rust and erasing a skill's records after mastery are described in the specification for the game as a whole.
 
-初回のじぶんレベルは、学年と前提の深さで並べたスキルを飛びながら調べます。初回正解した出題対象とその前提を一括でマスターにするため、各スキルで6問解く通常条件とは異なります。
+The first My Level play (the skill check) tests the skills, sorted by grade and by depth of prerequisites, skipping ahead as it goes. Because a tested skill answered right on the first try is mastered at once together with its prerequisites, this differs from the usual condition of solving 6 problems in each skill.
 
-学年別は解放状態を問わず選択学年から出題し、エクストラ7問目から次の学年へ切り替えます。6年生では同じ学年を続けます。れんしゅうは選んだスキルを基本問題に使います。条件を満たしたタイムカプセルは、学年別・れんしゅうの範囲外のスキルでも1問を置き換える場合があります。
+By-grade play ("Grade 1" to "Grade 6") draws problems from the selected grade regardless of what is unlocked, and switches to the next grade from the 7th Extra problem on. In Grade 6 it stays in the same grade. Practice uses the chosen skill for the basic problems. A time capsule whose conditions are met may replace 1 problem, even when its skill is outside the range of by-grade play or Practice.
 
-## 5. 入力と手がかり
+## 5. Input and hints
 
-横書きの答えは左から1桁ずつ入力します。加減・乗法の筆算は最も下の位から、除法の筆算は商の上の位から進みます。商・途中の引き算の残り・次の商という順で、積と下ろす数字は自動で表示します。横書きの余り付き除法では商、余りの順です。
+Horizontal answers are entered 1 digit at a time from the left. Column addition, subtraction and multiplication proceed from the lowest place (in addition and subtraction the steps are labeled "Ones place", "Tens place" and so on), and long division proceeds from the highest place of the quotient. Long division goes in the order quotient digit ("Quotient: tens place" and so on), remainder of the intermediate subtraction ("Subtract"), next quotient digit; the products and the digits brought down are shown automatically. In horizontal division with a remainder, the quotient is entered first, then the remainder (written with "R", as in 3 R 2).
 
-分数は分母、分子の順で、帯分数はその前に整数部分を入力します。小数点とくり上がり・くり下がりの補助数字は自動表示します。回答は生成時に用意した数字列と一致するかをマスごとに判定し、等価な任意の式や分数表現は受け付けません。
+Fractions are entered denominator first, then numerator (the steps are labeled "Denominator" and "Numerator"); for a mixed number, the whole-number part ("Whole number") is entered before them. Decimal points and the small helper digits for carrying and borrowing are shown automatically. Answers are checked cell by cell against the digit string prepared when the problem was generated; equivalent expressions or other forms of the same fraction are not accepted.
 
-同じマスで誤答を繰り返すと、参照する数字の強調と手がかりを出します。手がかりは途中式、数の分解、九九、通分の分母などで、計算結果の値を含む場合があります。
+When wrong answers are repeated in the same cell, the digits to look at are highlighted and a hint is shown. Hints are intermediate expressions, ways of breaking numbers apart, times tables, the common denominator and the like (for example "Make 10: 8 + 2", "7s: 7 14 21 …" or "Common denominator: 12"), and may include the value of a calculation result.

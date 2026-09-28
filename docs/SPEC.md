@@ -1,153 +1,157 @@
-# ドパドリル — 公開版仕様書
+# Japanese Math Drill — Specification (public release)
 
-ドパドリルは、計算を解くたびにマスコットの動き、画面の演出、音楽が増幅するブラウザゲームです。本書は、遊ぶ人と保護者、開発・改変に関心のある人に向けて、現在の実装の動作を説明します。数値は今後の調整で変更する場合があります。
+Japanese Math Drill is a browser game in which the mascot's movements, the on-screen effects and the music build up with every calculation you solve. It is an unofficial US English localization of Dopa Drill (ドパドリル) by gear_machine. This document describes how the current implementation behaves, for players and their parents or guardians, and for anyone interested in developing or modifying the game. Numbers may change in future tuning.
 
-## 1. 概要と設計の考え方
+## 1. Overview and design philosophy
 
-毎日少しずつ計算を続け、過去の自分からの成長を確認できる体験を目指します。基本問題は時間を超えても続けられ、全問を解けば100点になります。ゲームオーバーはありません。
+The aim is an experience in which you keep practicing calculation a little every day and can see how you have grown compared with your past self. The basic problems can be continued even after the time runs over, and solving all of them gives 100 points. There is no game over.
 
-誤答は「おしい」と表示し、答え直せます。獲得した星・トロフィー・演出は、失敗や欠席で取り上げません。連続記録には休んだ日を補う仕組みがあり、成長の比較では改善した項目だけを表示します。報酬は条件達成で解放し、抽選や課金による入手はありません。
+A wrong answer is shown as "Oops" and can be answered again. Stars, trophies and effects you have earned are never taken away because of mistakes or missed days. Streaks have a mechanism that makes up for days you took off, and growth comparisons show only the items that improved. Rewards are unlocked by meeting conditions; nothing is obtained through random draws or payments.
 
-日本語の画面で、小学生の計算練習と大人の利用に対応します。スマートフォン縦画面を中心に、PCのマウス・キーボードでも操作できます。アカウント登録は不要です。ブラウザごとに記録するため、別の端末との自動同期はありません。
+The interface is in US English by default; Japanese, the game's original language, can be chosen with the language menu in Settings. It supports both calculation practice for elementary school students and use by adults. It is designed mainly for smartphones in portrait orientation, and can also be played on a PC with a mouse and keyboard. No account registration is required. Records are kept per browser, so there is no automatic sync with other devices.
 
-## 2. 画面と流れ
+The Japanese version is the original Dopa Drill itself, kept unchanged in `app/ja/` apart from the language menu and the back button on the play screen. Its text, the ドパドリル logo, Dopa written with the four-digit units 万 and 億, remainders written with あまり and mixed numbers such as 2と1/3 are all the original's. This document describes the English version.
 
-### 2.1 画面一覧
+## 2. Screens and flow
 
-| 画面 | 内容と主な操作 |
+### 2.1 List of screens
+
+| Screen | Contents and main actions |
 | --- | --- |
-| タイトル | ロゴ、ドパキチ、じぶんレベル、その直下のふくしゅう、1〜6ねんせい、スキルツリー、トロフィー、コレクション、クエスト、カレンダー、設定、？ |
-| プレイ | 問題、入力するマス、専用テンキー、正解数、おしいの回数、時計、ドパ、コンボ、進行表示、ミュート |
-| 基本結果 | 100点、時間、初回正解率、ドパ、成長・スキル・クエストの結果。条件達成時のエクストラ、やりなおし、再プレイ、タイトルへの操作 |
-| 最終結果 | エクストラを含む得点とドパ、正解数、おしいの回数、クエスト、やりなおし・タイトルへの操作 |
-| スキルツリー | 前提関係、解放・練習・マスターの状態、星、さび、スキルの説明と練習、記録の部分削除 |
-| トロフィー | 分類・シリーズ別の実績、獲得日、条件と報酬、絞り込み、もうすぐ獲得できる実績 |
-| コレクション | 解放された演出の試し見・試聴、カテゴリごとの固定またはおまかせ |
-| 設定 | 問題数、音、音量、動きの強さ、デモプレイ、全データのリセット |
+| Title | Logo (a small "JAPANESE" tag, big bouncing "MATH" letters and a "DRILL" ribbon), Dopakichi, My Level, Review directly below it, Grade 1 to Grade 6, Skill Tree, Trophies, Collection, Today's Quests, Calendar, Settings, ? |
+| Play | Round back button at the top left (back to the title, after a confirmation), problem, answer cells to fill in, dedicated number pad, number correct, Oops count, clock, Dopa, combo, progress indicator, mute |
+| Basic results | 100 points, time, first-try rate, Dopa, and the growth, skill and quest results. Buttons for Extra (when its condition is met), redoing missed problems, playing again and going back to the title |
+| Final results | Score and Dopa including Extra, number correct, Oops count, quests, and buttons for redoing missed problems and going back to the title |
+| Skill Tree | Prerequisite links, unlocked / learning / mastered status, stars, rust, skill details and practice, partial erasing of records |
+| Trophies | Achievements by category and series, dates earned, conditions and rewards, filters, achievements that are almost earned |
+| Collection | Previewing and test-listening to unlocked effects, and choosing a fixed item or Shuffle for each category |
+| Settings | Language (English / Japanese), number of problems, sound, volume, motion, demo play, resetting all data |
 
-通常は「タイトル → 基本問題 → 基本結果 → 任意のエクストラ → 最終結果」と進みます。ふくしゅうは基本結果までです。結果画面の操作ボタンは下端に固定し、成長の記録が増えても次の操作に進めるようにします。
+The usual flow is "title → basic problems → basic results → optional Extra → final results". Review ends at the basic results. The action buttons on the results screens are pinned to the bottom edge, so that you can move on to the next action even when the growth records get long.
 
-### 2.2 初回ガイドと「？」ヘルプ
+### 2.2 First-run guide and "?" help
 
-初回は5ページのガイドを表示します。導入、じぶんレベル、学年別、スキルツリー、じぶんレベルを勧める案内の順です。設定ボタンの下の「？」では、トロフィーとコレクションを加えた7ページの説明を再表示できます。
+On first launch, a 5-page guide is shown, in this order: introduction, My Level, by grade, Skill Tree, and a page recommending My Level. The "?" below the Settings button shows the explanation again as 7 pages, with Trophies and Collection added.
 
-説明対象をスポットライトで照らし、必要に応じてスクロールします。説明文は独立したカードに表示し、ドパキチは移動・指さし・表情で案内します。ドパキチの台詞としては表示しません。最後は「じぶんレベル」と「？」を示し、同時に画面内へ収まらなければカード内に同じ疑問符アイコンを表示します。
+The element being explained is lit by a spotlight, scrolling as needed. The explanatory text is shown in a separate card, and Dopakichi guides by moving, pointing and making faces. The text is not presented as Dopakichi's lines. The last page points to "My Level" and "?"; if both cannot fit on the screen at the same time, the same question-mark icon is shown inside the card.
 
-「つぎへ」「もどる」「とばす」、最後の「はじめる！」で操作します。Enter・右矢印は次へ、左矢印は前へ、Escapeはスキップ、Tabはガイド内のフォーカス移動です。暗幕を押しても閉じず、ガイド中は背景のボタンを操作できません。
+The guide is operated with "Next", "Back", "Skip" and, on the last page, "Let's go!". Enter and the right arrow go to the next page, the left arrow goes to the previous page, Escape skips, and Tab moves the focus within the guide. Pressing the dimmed backdrop does not close it, and the buttons in the background cannot be operated while the guide is open.
 
-最後まで見た場合もスキップした場合も表示済みとして保存します。初回ガイドの後は、ノーカンハンマー、ログインボーナス、トロフィー通知の順に処理します。全リセット後には再び初回ガイドを表示します。デモ中と確認用の一部URLでは自動表示しません。
+Whether the guide is viewed to the end or skipped, it is saved as shown. After the first-run guide, the Streak Hammer, the login bonus and trophy notifications are processed, in that order. After a full reset, the first-run guide is shown again. It is not shown automatically during the demo or with some of the testing URLs.
 
-## 3. モード
+## 3. Modes
 
-### 3.1 じぶんレベル
+### 3.1 My Level
 
-初回は「じつりょくチェック」です。学年、前提関係の深さの順に並べたスキルを進み、初回正解なら出題対象とその前提スキルをまとめてマスター・☆1にします。移動幅は最初6、正解後に現在の幅の1.3倍を切り上げて最大12、誤答後に半分を切り捨てて最小1です。誤答後は最後に初回正解した位置より先の範囲へ戻ります。基本問題を終えるとチェック済みになります。
+The first time is a "skill check". It moves through the skills ordered by grade and then by prerequisite depth; a right answer on the first try marks the skill asked, together with its prerequisite skills, as mastered at ☆1. The step size starts at 6; after a correct answer it becomes 1.3 times the current step, rounded up, with a maximum of 12; after a wrong answer it is halved, rounded down, with a minimum of 1. After a wrong answer, the check moves back, but stays within the range after the position of the last first-try correct answer. Finishing the basic problems marks the check as done.
 
-以後の出題は、前提関係の深さ、学年、スキル定義順を基に選びます。マスター済みの末尾6スキルから復習を選び、復習枠は `min(候補数, max(1, round(問題数 × 0.3)))` 問です。さびたスキルを優先し、残りは候補からランダムに選びます。マスター済みがなければ復習枠は0です。
+After that, problems are chosen based on prerequisite depth, grade and skill definition order. Problems for review are chosen from the last 6 mastered skills, and the review slots are `min(candidate count, max(1, round(problem count × 0.3)))` problems. Rusty skills take priority, and the rest are chosen at random from the candidates. If no skill is mastered yet, there are 0 review slots.
 
-残りは解放済み・未マスターの先頭4スキルを順番に繰り返します。すべてマスター済みならマスター済み全体から選びます。エクストラは未マスター候補の末尾3スキル、なければマスター済みの末尾3スキルを繰り返します。チェック直後のエクストラは、解放済み・未マスターの先頭から選びます。
+The remaining problems cycle in order through the first 4 skills that are unlocked but not yet mastered. If every skill is mastered, they are chosen from all mastered skills. Extra cycles through the last 3 unmastered candidates or, if there are none, the last 3 mastered skills. The Extra right after the check takes the first skill that is unlocked but not yet mastered.
 
-### 3.2 学年別
+### 3.2 By grade
 
-解放状態を問わず、選んだ学年のスキルから基本問題を出題します。前提関係の浅いものから深いものへ進む並びに乱数の揺らぎを加えます。解答結果は通常の習熟にも反映します。
+Basic problems are drawn from the skills of the chosen grade, whether or not they are unlocked. The order goes from shallow to deep prerequisite depth, with some random jitter added. The answers also count toward normal mastery.
 
-エクストラの最初の6問は、その学年のスキル列の `floor(スキル数 × 0.55)` 番目以降を繰り返します。7問目からは次の学年の先頭最大4スキルへ切り替わります。6年生では同じ学年の後半を続けます。
+The first 6 Extra problems cycle through the grade's skill list from position `floor(skill count × 0.55)` onward. From the 7th problem, it switches to the first 4 skills (at most) of the next grade. In Grade 6, it continues with the latter part of the same grade.
 
-### 3.3 れんしゅう
+### 3.3 Practice
 
-スキルツリーから、解放済みのスキルを選んで練習します。マスター済みなら説明画面から練習を開始できます。基本問題はそのスキル、エクストラはそのスキルを直接の前提とする解放済みのスキルから選びます。対象がなければ同じスキルを続けます。
+You choose an unlocked skill from the Skill Tree and practice it. For a mastered skill, practice can be started from its details screen. Basic problems come from that skill, and Extra problems come from unlocked skills that have that skill as a direct prerequisite. If there are none, the same skill continues.
 
-学年別とれんしゅうでは、条件を満たしたタイムカプセルが基本問題の1問を置き換える場合があります。この1問は、指定した学年・スキルの範囲外になることがあります。
+In by-grade play and Practice, a time capsule that meets its conditions may replace 1 of the basic problems. That 1 problem may fall outside the chosen grade or skill.
 
-### 3.4 ふくしゅう
+### 3.4 Review
 
-誤答を含む問題を最後まで解いた時点で、問題そのものを最大40問保存します。問題のタイトルと式を識別子にして重複を除きます。途中で中断した未完了問題は追加しません。
+When a problem that included a wrong answer is solved to the end, the problem itself is saved, up to 40 problems. Duplicates are removed using the problem's title and expression as its identifier. Unfinished problems abandoned partway are not added.
 
-タイトルと結果のやりなおしボタンから開始できます。保存済み一覧の末尾から、設定した問題数と10の小さい方を上限に選びます。結果のボタンから始めても、その回の誤答だけに限定せず、以前から残っている一覧を使います。
+Review can be started from the Review button on the title screen or from the "Redo missed problems" button on the results screens. Problems are taken from the end of the saved list, up to the smaller of the configured number of problems and 10. Even when it is started from the results button, it is not limited to that play's wrong answers; it uses the list, including problems left over from before.
 
-初回正解で解き直した問題は一覧から削除し、再度誤答した問題は残します。全問を解けば100点になり、エクストラはありません。通常の成長記録・習熟・クエストにも反映します。
+Problems redone right on the first try are removed from the list, and problems answered wrong again stay in it. Solving all of them gives 100 points, and there is no Extra. Review also counts toward the normal growth records, mastery and quests.
 
-### 3.5 デモプレイ
+### 3.5 Demo play
 
-設定の「自動でプレイを見る」で自動操作を開始します。全スキルから選んだ問題を易しい順に並べ、エクストラは4年生以上のスキルから選びます。通常の入力・判定・演出を使い、誤答も入れます。基本で誤答する問題数の上限は `floor(問題数 × 0.2)` です。
+The "Watch it play itself" button in Settings starts automatic play. Problems chosen from all skills are ordered from easy to hard, and Extra problems are chosen from Grade 4 and higher skills. It uses the normal input, judging and effects, and also makes wrong answers. The maximum number of basic problems with a wrong answer is `floor(problem count × 0.2)`.
 
-基本、エクストラ、最終結果を1周したらタイトルへ戻り、デモを解除します。タップ・キー操作でも終了できます。開始直後のタップには600msの無視時間があります。デモのプレイ結果を履歴・習熟・ふくしゅう・成長統計に加算せず、クエストやトロフィーの獲得も進めません。タイトルに戻った後の通常のログイン処理は行います。
+After 1 round of the basic problems, Extra and the final results, it returns to the title screen and the demo ends. It can also be stopped with a tap or a key press. Taps right after it starts are ignored for 600ms. Demo play results are not added to the history, mastery, Review or growth statistics, and they do not advance quests or trophies. The normal login processing does run after it returns to the title screen.
 
-固定した演出はデモでも使用し、おまかせのカテゴリだけを解放済みから選びます。URLの `?demo` はこの自動操作とは別の機能です。
+Fixed effect choices are used in the demo too; only the categories set to Shuffle pick from the unlocked items. The `?demo` URL parameter is a separate feature from this automatic play.
 
-## 4. 1回のプレイと入力
+## 4. A single play and input
 
-### 4.1 基本問題とエクストラ
+### 4.1 Basic problems and Extra
 
-問題数は6・10・14問、初期値は10問です。基本の目標時間は `ceil(問題数 × 18 ÷ 10) × 10` 秒で、6問は110秒、10問は180秒、14問は260秒です。超過しても続行でき、減点しません。基本の経過時間はプレイ開始から完走までで、問題の切り替えも含みます。
+The number of problems is 6, 10 or 14, with a default of 10. The basic goal time is `ceil(problem count × 18 ÷ 10) × 10` seconds: 110 seconds for 6 problems, 180 seconds for 10 and 260 seconds for 14. You can keep going after exceeding it, and no points are deducted. The basic elapsed time runs from the start of play until the set is finished, including the transitions between problems.
 
-「正解」は最終解まで完了した問題数、「おしい」は受理した数字が現在のマスに対して誤りだった回数です。「初回正解」は途中入力も含めて一度も誤答せずに完了した問題です。基本の初回正解数を問題数で割った割合が0.8以上なら、エクストラを選べます。
+"Correct" is the number of problems completed through the final answer, and "Oops" is the number of times an accepted digit was wrong for the current cell. "Right on the first try" (first-try correct) means a problem completed without a single wrong answer, including intermediate inputs. If the number of basic problems right on the first try divided by the number of problems is 0.8 or higher, you can choose Extra.
 
-エクストラは既定90秒です。開始処理の時刻に90,000msと導入用900msを加えて期限を設定します。最初の入力可能時刻から90秒を保証する方式ではなく、問題の切り替え中も時計が進みます。確認ダイアログの間は停止します。時間切れで得点を確定し、最終結果へ進みます。未完了問題に得点は付きませんが、受理済みの正解マスで増えたドパは残ります。
+Extra lasts 90 seconds by default. Its deadline is set by adding 90,000ms plus 900ms for the intro to the time at which its start processing runs. It does not guarantee 90 seconds from the moment input first becomes possible; the clock keeps running during transitions between problems. It stops while a confirmation dialog is open. When time runs out, the score is finalized and the game moves on to the final results. An unfinished problem earns no points, but the Dopa gained from correct cells already accepted is kept.
 
-### 4.2 数字の入力
+### 4.2 Entering digits
 
-専用テンキーとPCの数字キーで1桁ずつ入力し、その場で判定します。回答確定ボタンはありません。正しい桁は保持され、誤った数字は次の入力で置き換えます。Backspaceは現在の誤った数字を消す操作で、正解済みの桁は取り消しません。
+Answers are entered 1 digit at a time with the dedicated number pad or the PC's number keys, and each digit is judged immediately. There is no button to submit an answer. Correct digits stay in place, and a wrong digit is replaced by the next input. Backspace erases the current wrong digit; it does not undo digits already answered correctly.
 
-スマートフォンではブラウザの操作バーを含めた表示領域に合わせ、問題の余白とテンキーの高さを調整します。0と削除を含む最下段を下端の安全領域より上に配置し、画面サイズが変わったときは問題の文字サイズも再計算します。
+On smartphones, the problem's margins and the number pad's height are adjusted to the visible area, taking the browser's toolbars into account. The bottom row, which contains 0 and delete, is placed above the bottom safe area, and the problem's font size is also recalculated when the screen size changes.
 
-| 問題の形式 | 入力順と自動表示 |
+| Problem format | Input order and automatic display |
 | --- | --- |
-| 横書きの式 | 答えの左の桁から入力 |
-| 横書きの余り付き除法 | 商、余りの順 |
-| 加減の筆算 | 一番下の位から。くり上がり・くり下がりの補助数字を自動表示 |
-| 乗法の筆算 | 部分積を右から入力し、複数の部分積がある場合は合計も右から入力 |
-| 除法の筆算 | 商の上の位、引いた残り、次の商の順。積・下ろす数字・最後の余り0は自動表示 |
-| 小数 | 小数点を自動表示し、数字だけ入力 |
-| 分数 | 分母、分子の順。帯分数は整数部分、分母、分子の順 |
-| 比・文字式・概数・百分率 | 指定された空欄の左の桁から入力 |
+| Horizontal expression | Answer digits entered starting from the left |
+| Horizontal division with a remainder | Quotient, then remainder (written with "R": 17 ÷ 5 = 3 R 2) |
+| Column addition and subtraction | Starting from the lowest place. The helper digits for carrying and borrowing are shown automatically |
+| Column multiplication | Partial products entered from the right; when there are several partial products, their sum is also entered from the right |
+| Long division | Quotient digit starting from the highest place, the difference after subtracting, then the next quotient digit. The product, the digit brought down and a final remainder of 0 are shown automatically |
+| Decimals | The decimal point is shown automatically; only digits are entered |
+| Fractions | Denominator, then numerator. Mixed numbers (written "2 1/3"): whole-number part, denominator, then numerator |
+| Ratios, find x, rounding, percentages | Entered starting from the left digit of the designated blank |
 
-分数は用意された回答形式で判定します。3年生の同分母分数は元の分母を保ち、約分しない答えを受け付けます。その他の分数計算は生成された既約分数・帯分数の形式を使います。等価な別表現を自由入力して判定する方式ではありません。
+Horizontal expressions follow English word order, for example "10 is 3 and [7]", "1/4 of 12 = [3]", "25 % of 200 = [50]", "GCF of 12 and 18" / "= [6]" (two lines) and "Round 34567" / "to the nearest 100" / "→ [34600]" (three lines). A word takes about one digit cell per three letters. The answer line shown after a problem is solved reads "problem = answer", except for number bonds ("10 is 3 and 7"), equal ratios ("2:3 = 6:9") and find x ("x = 4").
 
-### 4.3 誤答と手がかり
+Fractions are judged against the prepared answer format. For Grade 3 fractions with like denominators, the original denominator is kept and the unsimplified answer is accepted. Other fraction calculations use the generated form in lowest terms or as a mixed number. Freely entering an equivalent alternative form and having it judged is not supported.
 
-誤った数字には紫の点線の枠を使います。同じマスで2回誤答すると、参照すべき数字が定義されている場合は強調・指さしを行います。3回目以降は計算の途中式や九九の列などの手がかりを表示します。手がかりには答えに相当する値が含まれる場合があります。
+### 4.3 Wrong answers and clues
 
-誤答でコンボは0になりますが、得点・ドパを減らさず、演出段階とBGMを維持します。誤答音のためにBGMを一時的に絞り、弾む効果音とドパキチの復帰する演技を使います。
+A wrong digit gets a purple dotted border. After 2 wrong answers in the same cell, the digits to refer to are highlighted and pointed at, if they are defined. From the 3rd wrong answer on, a clue such as an intermediate step of the calculation or a row of the times table is shown. A clue may contain a value equivalent to the answer.
 
-## 5. 得点・ドパ・コンボ
+A wrong answer resets the combo to 0, but it does not reduce the score or Dopa, and the effect level and background music are kept. The background music is briefly turned down for the wrong-answer sound, and a bouncy sound effect and Dopakichi's recovery act are used.
 
-### 5.1 得点
+## 5. Score, Dopa and combo
 
-基本完走で100点です。エクストラの完了問題を0始まりで `k` とすると、その問題の加点は `10 + 5 × k` 点です。エクストラを `n` 問完了した合計得点は次式です。
+### 5.1 Score
+
+Finishing the basic set gives 100 points. If the completed Extra problems are numbered `k` starting from 0, that problem adds `10 + 5 × k` points. The total score after completing `n` Extra problems is:
 
 ```text
 100 + 10 × n + 5 × n × (n − 1) ÷ 2
 ```
 
-5問で200点、10問で425点、15問で775点、23問で1595点、30問で2575点です。得点の固定上限はありません。コンボ・解答速度・おしいの回数による得点倍率や減点はありません。
+That is 200 points for 5 problems, 425 for 10, 775 for 15, 1595 for 23 and 2575 for 30. There is no fixed upper limit on the score. There are no score multipliers or deductions based on combo, answer speed or the Oops count.
 
-### 5.2 ドパの計算
+### 5.2 Calculating Dopa
 
-ドパは演出の数値で、得点とは別です。内部値 `L` を常用対数として持ち、表示値の元は `10^L` です。プレイ開始時は `L = 0` です。
+Dopa is a number for the show, separate from the score. It is stored internally as a common (base-10) logarithm `L`, and the displayed value is based on `10^L`. At the start of play, `L = 0`.
 
-基本の基準曲線を `B(f) = 2.3 × clamp(f, 0, 1)^1.15`、エクストラの基準曲線を `X(n) = 2.3 + 3.0 × (1 − exp(−n / 10))` とします。
+The base curve for the basic set is `B(f) = 2.3 × clamp(f, 0, 1)^1.15`, and the base curve for Extra is `X(n) = 2.3 + 3.0 × (1 − exp(−n / 10))`.
 
-基本の総問題数を `N`、完了済み問題数を0始まりの `q`、現在の問題の回答マス数を `m`、今回正解したマスを1始まりの `s` とすると、その入力の基準増分は `B((q + s/m)/N) − B((q + (s−1)/m)/N)` です。エクストラの完了済み問題数を `k` とすると、1マスの基準増分は `(X(k+1) − X(k))/m` です。
+Let `N` be the total number of basic problems, `q` the number of completed problems (counting from 0), `m` the number of answer cells in the current problem, and `s` the cell just answered correctly (counting from 1). The base increment for that input is `B((q + s/m)/N) − B((q + (s−1)/m)/N)`. With `k` the number of completed Extra problems, the base increment for 1 cell is `(X(k+1) − X(k))/m`.
 
-正解時は先にコンボ数 `c` を1増やし、その入力を次式で反映します。
+On a correct answer, the combo count `c` is first increased by 1, and then the input is applied as follows:
 
 ```text
-倍率 M(c) = 1 + (2 − 1) × min(1, max(0, c) / 20)
-新しい L = min(9.08, L + max(0.003, 基準増分) × M(c))
+multiplier M(c) = 1 + (2 − 1) × min(1, max(0, c) / 20)
+new L = min(9.08, L + max(0.003, base increment) × M(c))
 ```
 
-10コンボで1.5倍、20コンボ以上で2倍です。上限は対数値9.08、元の表示値では正確に `10^9.08` です。増分に最低値0.003があるため、基準曲線の終点だけから実際の到達値は決まりません。最初の正解も1コンボ・1.05倍で、エクストラ開始時はコンボを0へ戻してドパを引き継ぎます。
+A 10 combo gives ×1.5, and a combo of 20 or more gives ×2. The cap is 9.08 as a logarithm, which is exactly `10^9.08` (about 1.2 billion) as the underlying display value. Because the increment has a minimum of 0.003, the value actually reached cannot be determined from the end points of the base curves alone. Even the first correct answer counts as a 1 combo (×1.05), and when Extra starts, the combo is reset to 0 while Dopa carries over.
 
-表示は1万未満を整数に丸め、以降は「万」「億」などを付けます。単位内の値が10未満なら小数第1位まで、10以上なら切り捨てた整数を表示します。100、1000、1万、10万、100万、1000万、1億への到達には節目の演出があります。通常プレイの上限では兆以上には到達しません。
+Below one million, the display is rounded to a whole number with commas ("123,456"); from one million up, short-scale names are used ("1.2 million", "345 million", "1.2 billion", then trillion, quadrillion and so on up to vigintillion, with "∞" from `10^66`). When the value within a unit is below 10, it is shown to 1 decimal place; at 10 or more, the truncated whole number is shown. Reaching every power of ten from 100 to 100 million (100, 1,000, 10,000, 100,000, 1 million, 10 million, 100 million), and then 1 billion, 1 trillion and so on (one per short-scale name), triggers a milestone effect; the 100 milestone is shown small. With the cap in normal play, Dopa never reaches a trillion or more.
 
-### 5.3 コンボの時間と表示
+### 5.3 Combo timing and display
 
-正しい回答マスごとに1コンボを加算し、問題をまたいで持ち越します。2コンボ以上で表示し、20コンボ以上は「ドパ×2 MAX」と表示します。誤答または時間切れで0に戻ります。ただし、現在の実装では1コンボの状態は時間切れ判定の対象外です。
+Each correct answer cell adds 1 combo, and the combo carries over across problems. It is displayed from a combo of 2, and from 20 combo it shows "Dopa ×2 MAX". It returns to 0 on a wrong answer or when its time runs out. However, in the current implementation, a combo of 1 is exempt from the time-out check.
 
-学年 `g` の通常マスの時間は `3000 + 600 × (g − 1)` ms、問題の最初のマスには2500msを加えます。学年は1〜6に収め、不明な場合は3として扱います。
+For grade `g`, the time for a regular cell is `3000 + 600 × (g − 1)` ms, and 2500ms is added for the first cell of a problem. The grade is clamped to 1–6 and treated as 3 when unknown.
 
-| 学年 | 通常マス | 問題の最初のマス |
+| Grade | Regular cell | First cell of a problem |
 | --- | --- | --- |
 | 1 | 3000ms | 5500ms |
 | 2 | 3600ms | 6100ms |
@@ -156,287 +160,290 @@
 | 5 | 5400ms | 7900ms |
 | 6 | 6000ms | 8500ms |
 
-入力を受け付ける時点で期限を設定し、問題切り替えと確認ダイアログでは消費しません。残り時間のバーは30%未満で強調します。10・20・30・50・75コンボ、100以上は50コンボごとに大きく祝います。5コンボ以上が途切れた場合は終了した数を短く表示します。
+The deadline is set at the moment input is accepted, and no time is used up during problem transitions or confirmation dialogs. The remaining-time bar is highlighted below 30%. There is a big celebration at 10, 20, 30, 50 and 75 combo, and every 50 combo from 100 on. When a combo of 5 or more breaks, the count it reached is shown briefly.
 
-## 6. 出題範囲とスキルツリー
+## 6. Problem range and Skill Tree
 
-### 6.1 範囲と生成
+### 6.1 Range and generation
 
-計算を58スキルに分けています。学年別では1年8、2年13、3年14、4年10、5年8、6年5です。系統は「たし・ひき」「かけ・わり」「小数・分数」「そのほか」の4つです。全スキルの名前・識別子・前提・生成条件は `docs/curriculum.md` にまとめています。
+Calculation is divided into 58 skills. By grade, there are 8 in Grade 1, 13 in Grade 2, 14 in Grade 3, 10 in Grade 4, 8 in Grade 5 and 5 in Grade 6. Grades are shown as "Grade 1" to "Grade 6" but follow Japan's curriculum (for example, the times tables are in Grade 2). There are 4 branches: "Add & subtract", "Multiply & divide", "Decimals & fractions" and "Other". The names, identifiers, prerequisites and generation conditions of all skills are listed in `docs/curriculum.md`.
 
-四則計算、途中入力を伴う筆算、小数、分数、概数、約数・倍数、計算順序、百分率、等しい比、文字の値を対象にします。図形、測定、グラフ、文章題、漢数字入力は出題しません。
+The range covers the four arithmetic operations, column calculations with intermediate inputs, decimals, fractions, rounding, factors and multiples, order of operations, percentages, equal ratios and finding the value of x. Geometry, measurement, graphs, word problems and input in kanji numerals are not included.
 
-スキルの条件から毎回乱数で生成します。直近24問の署名と、そのプレイ内の出題済み署名を使って重複を避けます。候補生成には再試行上限があるため、候補の少ないスキルなどで重複する場合があります。タイムカプセルとふくしゅうは同じ問題を再現するための例外です。
+Problems are generated at random each time from the skill's conditions. Repeats are avoided using the signatures of the last 24 problems and the signatures already asked in the current play. Because candidate generation has a retry limit, repeats can occur, for example in skills with few possible candidates. The time capsule and Review are exceptions, since they reproduce the same problem.
 
-### 6.2 表示と解放
+### 6.2 Display and unlocking
 
-各系統を2列に分けた8列で表示し、狭い画面では縦横にスクロールします。学年順を優先して並べ、5・6年生は1〜4年生より下に置きます。前提関係の線は他のノードを避けて迂回し、同じ列に並ぶだけでは依存関係を意味しません。
+The tree is shown in 8 columns, with each branch split into 2 columns, and scrolls vertically and horizontally on narrow screens. Skills are arranged in grade order first, with Grades 5 and 6 placed below Grades 1 to 4. Prerequisite lines detour around other nodes, and sitting in the same column does not by itself mean a dependency.
 
-前提がないスキルは最初から解放し、前提が複数あればすべてのマスターが必要です。状態はロック、NEW、練習中、マスターを区別します。通常のマスター条件は、少なくとも6問の履歴があり、直近6問中5問以上を初回正解することです。一度マスターしたスキルは誤答しても戻りません。実力チェックの一括付与はこの回数条件の例外です。
+Skills without prerequisites are unlocked from the start; if a skill has several prerequisites, all of them must be mastered. The states are locked, NEW, learning and mastered. The normal mastery condition is a history of at least 6 problems, with 5 or more of the last 6 right on the first try. Once mastered, a skill does not go back, even after wrong answers. The bulk grant from the skill check is an exception to this count condition.
 
-### 6.3 スキルの星
+### 6.3 Skill stars
 
-マスター後は☆1〜☆5を順に獲得します。1段階ずつ条件を満たす必要があり、満たしていれば同じ判定で複数段階上がります。合計の最大は290です。
+After mastery, ☆1 to ☆5 are earned in order. The condition for each level must be met 1 step at a time, but if several are met, a single check can raise several levels. The maximum total is 290.
 
-速さの判定には、問題ごとの回答時間を基準時間で割った比率を使います。基準時間は `最初のマスのコンボ時間 + max(0, 回答マス数 − 1) × 通常マスのコンボ時間` です。対象の初回正解問題だけから比率の中央値を求めます。
+Speed is judged by the ratio of each problem's answer time to a base time. The base time is `first-cell combo time + max(0, answer cells − 1) × regular-cell combo time`. The median ratio is computed only from the first-try correct problems among those considered.
 
-| 星 | 条件 |
+| Star | Condition |
 | --- | --- |
-| ☆1 | マスター済み |
-| ☆2 | 直近20問がそろい、初回正解率0.9以上 |
-| ☆3 | 直近10問がそろい、そのうち5問以上が初回正解で、時間比率の中央値が1以下 |
-| ☆4 | 直近3問がすべて初回正解で、各問題の日付が☆3獲得日から7日以上後 |
-| ☆5 | 直近20問がそろい、初回正解率0.95以上、時間比率の中央値が0.6以下 |
+| ☆1 | Mastered |
+| ☆2 | A full set of the last 20 problems, with a first-try rate of 0.9 or higher |
+| ☆3 | A full set of the last 10 problems, at least 5 of them right on the first try, with a median time ratio of 1 or less |
+| ☆4 | The last 3 problems all right on the first try, each dated 7 or more days after the day ☆3 was earned |
+| ☆5 | A full set of the last 20 problems, a first-try rate of 0.95 or higher and a median time ratio of 0.6 or less |
 
-☆4の3問は同じ日に限りません。星は通常のプレイや休みでは減らず、スキルの記録削除と全リセットでは消えます。説明画面には次の星の条件、現在の値、解いた問題数、最短の解答時間を表示します。
+The 3 problems for ☆4 do not have to be on the same day. Stars never decrease through normal play or breaks; they are removed by erasing the skill's records or by a full reset. The details screen shows the condition for the next star, the current values, the number of problems solved and the fastest answer time.
 
-### 6.4 さびつき
+### 6.4 Rust
 
-マスター済みで最後の初回正解から `21 × 86400000` ms以上経過したスキルを候補にし、古い順に最大3つへ「さび」を表示します。初回正解日時がなければ、実力チェックの付与日時、マスター日時の順に参照します。
+Mastered skills for which `21 × 86400000` ms or more have passed since the last first-try correct answer are candidates, and "rust" is shown on up to 3 of them, oldest first. If there is no time of a first-try correct answer, the time of the skill-check grant and then the time of mastery are used instead.
 
-さびたスキルを1問初回正解すると磨かれ、星を保持したまま印が消えます。磨いたことで、別の古いスキルが表示対象になる場合があります。じぶんレベルの復習と、磨くクエストに利用します。
+Answering 1 problem of a rusty skill right on the first try polishes it: the mark disappears and the stars are kept. Polishing one skill may bring another old skill into the displayed set. Rust is used for My Level's review slots and for the polish quest.
 
-### 6.5 スキルの記録削除
+### 6.5 Erasing skill records
 
-記録のあるスキルを600ms長押しするか、フォーカスしてDeleteを押すと確認を開きます。押した位置から10pxを超えて動いた場合は長押し操作を中止します。
+Long-pressing a skill that has records for 600ms, or focusing it and pressing Delete, opens a confirmation. If the pointer moves more than 10px from where it was pressed, the long press is canceled.
 
-確定すると、そのスキルと、それに直接・間接に依存するスキルの記録・星を削除します。選んだスキルは前提が残っていればNEW、前提がそろわなければロックへ戻ります。履歴、ふくしゅう、累計統計、トロフィー、コレクション、実力チェック済みの状態は保持します。
+On confirmation, the records and stars of that skill and of every skill that depends on it, directly or indirectly, are erased. The chosen skill goes back to NEW if its prerequisites are still in place, or to locked if they are not all mastered. The history, Review, lifetime statistics, trophies, collection and the skill-check-done state are kept.
 
-## 7. 続ける仕組み
+## 7. Mechanisms for continued play
 
-### 7.1 履歴・カレンダー・ログインボーナス
+### 7.1 History, Calendar and login bonus
 
-基本結果で履歴を保存し、エクストラ終了後に同じ履歴の得点・追加正解数・おしい・ドパを更新します。最大3000件を保持します。カレンダーは各日の最高得点とプレイ回数を表示し、日付から詳細を開けます。過去の月へ移動でき、未来の月には進みません。
+A history entry is saved at the basic results, and after Extra ends, the same entry's score, additional correct count, Oops and Dopa are updated. Up to 3000 entries are kept. The Calendar shows each day's best score and number of plays, and tapping a date opens that day's details. The weekday header runs from "Sun" to "Sat", month titles read like "September 2026", and dates are shown like "Sep 3". You can move back to past months but not ahead to future months.
 
-連続日数は今日、まだ遊んでいなければ昨日を起点に数えます。最長記録とログインシールの枚数も表示します。プレイ日とログイン日は別で、タイトルを開いただけではプレイした日にはなりません。
+The streak is counted from today or, if you have not played yet today, from yesterday. The longest streak and the number of login stickers are also shown. Days played and login days are separate: just opening the title screen does not make it a day played.
 
-ログインボーナスは端末の日付ごとに1回です。星、ハート、花、音符、クローバー、はなまる、王冠の7日周期でシールを受け取ります。ノーカンにしていない欠席日を挟むと周期を最初から数え直します。シールは表示を開く時点で取得済みとなり、閉じたり再読み込みしたりしても同日に重複して受け取りません。
+There is 1 login bonus per device date. Stickers come in a 7-day cycle: star, heart, flower, music note, clover, flower circle and crown. A missed day that has not been saved with the Streak Hammer restarts the cycle from the beginning. The sticker counts as received when the bonus is displayed, so closing it or reloading does not give a second one on the same day.
 
-### 7.2 ノーカンハンマー
+### 7.2 Streak Hammer
 
-1本で遊ばなかった1日をノーカンにし、プレイ・ログインの連続をつなぎます。その日をプレイ日数へ加えたり、休んだ日のシールを追加したりはしません。初期所持は1本、所持上限は3本です。
+1 hammer saves 1 day you did not play, joining up the play and login streaks. It does not add that day to the days played or add a sticker for the missed day. You start with 1 hammer and can hold up to 3.
 
-最後に遊んだ日が直近7日以内にあり、昨日までの空いた日を所持数ですべて埋められ、2日以上の連続を守れるとき、タイトルで1日1回使用を提案します。拒否した日は再提案しません。使うとカレンダーへノーカンの判を押します。使用履歴は最大50件です。
+When your last day played is within the last 7 days, all the empty days up to yesterday can be filled with the hammers you hold, and a streak of 2 or more days can be saved, the title screen offers to use it (1 time per day). On a day you decline, it is not offered again. Using it puts a "SAVED" stamp on the Calendar. Up to 50 uses are kept in the log.
 
-### 7.3 デイリークエスト
+### 7.3 Daily quests
 
-端末の日付と、その日に選ぶ時点の記録から、簡単なもの2つと手間のかかるもの1つを決めて保存します。同じ日は設定を変えても選び直しません。日付が変わった後の更新処理で新しい一覧に切り替えます。候補は固定11種と、さびつきに応じる1種です。
+From the device date and the records at the time the day's quests are chosen, 2 easy quests and 1 that takes more effort are decided and saved. On the same day they are not chosen again, even if the settings change. After the date changes, the next refresh switches to a new list. The candidates are 11 fixed quests plus 1 that depends on rust.
 
-| 枠 | 候補と達成条件 |
+| Slot | Candidates and completion conditions |
 | --- | --- |
-| 簡単 | 1回完走、5コンボ、初回正解5問、ふくしゅう1問、NEWのスキル1問 |
-| 手間のかかる | エクストラへ進む、エクストラ5問、20コンボ、2回完走、学年別で1回完走、NEWまたは練習中のスキル10問、指定スキルの初回正解3問 |
+| Easy | Play once, Get a 5 combo, Get 5 right on the first try, Review 1 problem, Solve 1 from a NEW skill |
+| More effort | Reach Extra, Solve 5 in Extra, Get a 20 combo, Play twice, Play a grade once, Solve 10 from skills you are learning (NEW or learning skills), Polish "[skill]" (3 problems): 3 first-try correct answers in the specified skill |
 
-ふくしゅう・NEWの対象がない場合は該当候補を除きます。エクストラ関連は直近5履歴にエクストラの記録があること、20コンボは `問題数 × 平均回答マス数 >= 26`、練習中10問は実力チェック済みで未マスター候補があることが条件です。同じ指標のクエストを同日に重ねません。
+When there is nothing to review or no NEW skill, the corresponding candidates are excluded. The Extra quests require an Extra record in the last 5 history entries, the 20 combo requires `problem count × average answer cells >= 26`, and the 10 learning problems require that the skill check is done and that there is an unmastered candidate. Two quests with the same metric are never given on the same day.
 
-所要時間の選別モデルは、1回を `(問題数 × 18 + エクストラを見込む場合90 + 30) / 60` 分とします。初回正解5問には `ceil(5 / (問題数 × 0.7))` 回、練習中10問には `ceil(10 / (問題数 × 0.6))` 回、20コンボには2回を見込みます。ふくしゅうは最大10問として計算し、モード間で共通に達成できる項目を重ねて、合計15分以内の組み合わせを選びます。これは見積もりであり、実際の所要時間を制限するものではありません。
+The time model used for the selection counts 1 play as `(problem count × 18 + 90 if Extra is expected + 30) / 60` minutes. It allows `ceil(5 / (problem count × 0.7))` plays for 5 first-try correct answers, `ceil(10 / (problem count × 0.6))` plays for the 10 learning problems and 2 plays for the 20 combo. Review is counted as at most 10 problems, quests that can be completed together across modes are overlapped, and a combination totaling 15 minutes or less is chosen. This is an estimate and does not limit the actual time taken.
 
-磨く候補は、さびがある日に日付由来の乱数が0.5未満で、直近7日に提示した回数が2未満なら選択対象になります。タイトルから対象スキルの練習を開始でき、達成には同じスキルで3問の初回正解が必要です。さび自体が消える1問とは条件が異なります。
+The polish candidate is eligible on a day when there is rust, if a random number derived from the date is below 0.5 and it has been offered fewer than 2 times in the last 7 days. Practice of the target skill can be started from the title screen, and completing the quest requires 3 first-try correct answers in that skill. This condition differs from the 1 problem that removes the rust itself.
 
-進捗はプレイ中に加算し、達成を画面上端で知らせます。ふくしゅうも共通の完走・初回正解・コンボ条件へ加算します。3つすべて達成するとその日1回だけハンマーを1本受け取り、カレンダーに印を付けます。所持上限なら演出のみで、報酬を後日へ持ち越しません。
+Progress is added during play, and completion is announced at the top edge of the screen. Review also counts toward the shared finish, first-try and combo conditions. Completing all 3 gives 1 hammer, only 1 time that day, and marks the Calendar. If you already hold the maximum, only the effect plays; the reward is not carried over to a later day.
 
-### 7.4 トロフィー
+### 7.4 Trophies
 
-12分類・39シリーズ・306種を定義しています。分類は、つづける、たくさん、スキル、せいちょう、エクストラ、コンボ、せいかく、ドパ、ふくしゅう、がくねん、コレクション、ひみつです。各シリーズの段階を達成すると獲得し、取得済みのものは保持します。
+306 trophies are defined in 12 categories and 39 series. The categories are Keep it up, Hard work, Skills, Growth, Extra, Combo, Accuracy, Dopa, Review, Grades, Collection and Secret. A trophy is earned by reaching a step of its series, and trophies once earned are kept.
 
-獲得判定は結果・最終結果・タイトルなどで行い、プレイ中には獲得ダイアログを開きません。一度の通知は最大6件と残り件数です。既存の記録から初めて判定する場合は到達済みのものを一括で通知します。
+Trophies are checked at the results, the final results, the title screen and so on; the trophy dialog is never opened during play. One notification shows up to 6 trophies plus the number of remaining ones. When trophies are checked for the first time against existing records, everything already reached is announced together.
 
-一覧は「ぜんぶ／ゲットした／まだ」で絞り込み、シリーズを開いて全段階・獲得日・報酬を確認できます。「もうすぐ」は次の条件に近い12件を表示し、ひみつ・ドパ・単発条件は除きます。ランクは銅・銀・金・虹で、単独の段階は金、複数段階の最後は虹、ひみつは専用表示です。
+The list can be filtered with "All" / "Earned" / "Not yet", and opening a series shows all its steps, the dates earned and the rewards. "Almost" shows the 12 trophies closest to their next condition, excluding secret, Dopa and one-off conditions. The ranks are Bronze, Silver, Gold and Rainbow: a single-step series is Gold, the last step of a multi-step series is Rainbow, and secrets have their own display.
 
-現在の通常プレイでは、学年別の完走回数を累計へ渡していないため「各学年で遊ぶ」の18種は進みません。また、ひみつの「14問を誤答なし」「エクストラ5問以上を誤答なし」「日曜日」の取得に必要な値も更新されません。これらは一覧の定義数に含まれます。ひみつの残りは1月1日、7日以上空けた再開、4つの通常モードの完走です。
+In the current normal play, the number of finished by-grade plays is not passed to the lifetime statistics, so the 18 "Play Grade N" trophies do not progress. Likewise, the values needed for the secrets "14 problems with no wrong answer", "5 or more Extra problems with no wrong answer" and "Sunday" are never updated. These are still included in the number of trophies defined in the list. The remaining secrets are January 1, coming back after 7 or more days away, and finishing a play in all 4 regular modes (My Level, by grade, Practice and Review).
 
-累計プレイ時間は完走した基本の経過時間だけを加算し、エクストラの時間は含みません。トロフィーの「あそんだ時間」もこの値を使います。
+The lifetime play time adds up only the elapsed time of finished basic sets and does not include Extra time. The "Time played" trophies also use this value.
 
-各シリーズの閾値は次のとおりです。数値指標は閾値以上で達成します。学年・系統の完了とひみつは、それぞれ独立した条件です。
+The thresholds of each series are as follows. Numeric metrics are achieved at or above the threshold. Grade and branch completion and the secrets are each independent conditions.
 
-| 分類・シリーズ | 閾値または独立条件 |
+| Category: series | Thresholds or independent conditions |
 | --- | --- |
-| つづける：れんぞくで あそぶ | 3、5、7、10、14、21、30、50、75、100、150、200、365 |
-| つづける：あそんだ日 | 1、3、5、7、10、15、20、30、40、50、75、100、150、200、300、365、500、730、1000 |
-| つづける：ログインシール | 1、7、14、30、50、100、200、365 |
-| つづける：おうかんシール | 1、3、5、10、20、52 |
-| たくさん：といた もんだい | 10、30、50、100、200、300、500、750、1000、1500、2000、3000、5000、7500、10000、20000、30000、50000、100000 |
-| たくさん：いれた すうじ | 100、500、1000、3000、5000、10000、30000、50000、100000、300000 |
-| たくさん：あそんだ回数 | 1、3、5、10、20、30、50、100、200、300、500、1000、2000 |
-| たくさん：あそんだ時間 | 10、30、60、120、300、600、1200、3000（分） |
-| スキル：スキル かいほう | 3、5、10、15、20、25、30、35、40、45、50、55、58 |
-| スキル：スキル マスター | 1、3、5、10、15、20、25、30、35、40、45、50、55、58 |
-| スキル：学年 ぜんぶ マスター | 1年生 ぜんぶ マスター、2年生 ぜんぶ マスター、3年生 ぜんぶ マスター、4年生 ぜんぶ マスター、5年生 ぜんぶ マスター、6年生 ぜんぶ マスター |
-| スキル：けいとう ぜんぶ マスター | たし・ひき マスター、かけ・わり マスター、小数・分数 マスター、そのほか マスター |
-| エクストラ：エクストラに いく | 1、3、5、10、20、30、50、100、200、300 |
-| エクストラ：エクストラ 1回の さいこう | 3、5、7、10、12、15、18、20、23、25、30 |
-| エクストラ：エクストラで といた | 10、30、50、100、200、300、500、1000、2000、3000 |
-| コンボ：コンボ | 5、10、15、20、30、40、50、75、100、150、200、300 |
-| せいかく：ノーミスで かんそう | 1、3、5、10、20、30、50、100、200、300 |
-| せいかく：初回正解 | 10、50、100、300、500、1000、3000、5000、10000、30000 |
-| ドパ：ドパ | 2、3、4、5、6、7、8、9（常用対数） |
-| ふくしゅう：ふくしゅう | 1、5、10、30、50、100、200、300 |
-| がくねん：1ねんせいで あそぶ | 1、10、30 |
-| がくねん：2ねんせいで あそぶ | 1、10、30 |
-| がくねん：3ねんせいで あそぶ | 1、10、30 |
-| がくねん：4ねんせいで あそぶ | 1、10、30 |
-| がくねん：5ねんせいで あそぶ | 1、10、30 |
-| がくねん：6ねんせいで あそぶ | 1、10、30 |
-| ひみつ：ひみつ | 14もん パーフェクト、エクストラ ノーミス、にちようびの さんすう、おしょうがつ ドリル、おかえり！、ぜんぶの あそびかた |
-| つづける：クエスト コンプリート | 1、3、7、14、30、50、100、200、365 |
-| つづける：クエスト れんぞく | 2、3、5、7、14、30 |
-| つづける：ノーカンハンマー | 1、3、10 |
-| スキル：ほしの かず | 5、10、25、50、75、100、150、200、250、290 |
-| スキル：☆5の スキル | 1、3、5、10、20、30、58 |
-| スキル：学年 ぜんぶ ☆3 | 1年生 ぜんぶ ☆3、2年生 ぜんぶ ☆3、3年生 ぜんぶ ☆3、4年生 ぜんぶ ☆3、5年生 ぜんぶ ☆3、6年生 ぜんぶ ☆3 |
-| せいちょう：さびを みがく | 1、3、5、10、30、50 |
-| せいちょう：タイムカプセル | 1、3、5、10、30 |
-| せいちょう：あの日より はやい | 1、5、10 |
-| せいちょう：のびたよ！ | 1、5、10、30、50、100 |
-| コレクション：コレクション | 10、20、30、40、47 |
-| コレクション：ぜんぶ そろえた | 1、3、5、8 |
+| Keep it up: Play days in a row | 3, 5, 7, 10, 14, 21, 30, 50, 75, 100, 150, 200, 365 |
+| Keep it up: Days played | 1, 3, 5, 7, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 365, 500, 730, 1000 |
+| Keep it up: Login stickers | 1, 7, 14, 30, 50, 100, 200, 365 |
+| Keep it up: Crown stickers | 1, 3, 5, 10, 20, 52 |
+| Hard work: Problems solved | 10, 30, 50, 100, 200, 300, 500, 750, 1000, 1500, 2000, 3000, 5000, 7500, 10000, 20000, 30000, 50000, 100000 |
+| Hard work: Digits entered | 100, 500, 1000, 3000, 5000, 10000, 30000, 50000, 100000, 300000 |
+| Hard work: Times played | 1, 3, 5, 10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000 |
+| Hard work: Time played | 10, 30, 60, 120, 300, 600, 1200, 3000 (minutes) |
+| Skills: Skills unlocked | 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 58 |
+| Skills: Skills mastered | 1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 58 |
+| Skills: Master a whole grade | Grade 1 mastered, Grade 2 mastered, Grade 3 mastered, Grade 4 mastered, Grade 5 mastered, Grade 6 mastered |
+| Skills: Master a whole branch | Add & subtract: all mastered, Multiply & divide: all mastered, Decimals & fractions: all mastered, Other: all mastered |
+| Extra: Reach Extra | 1, 3, 5, 10, 20, 30, 50, 100, 200, 300 |
+| Extra: Best single Extra | 3, 5, 7, 10, 12, 15, 18, 20, 23, 25, 30 |
+| Extra: Solved in Extra | 10, 30, 50, 100, 200, 300, 500, 1000, 2000, 3000 |
+| Combo: Combo | 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300 |
+| Accuracy: Flawless finish | 1, 3, 5, 10, 20, 30, 50, 100, 200, 300 |
+| Accuracy: Right on the first try | 10, 50, 100, 300, 500, 1000, 3000, 5000, 10000, 30000 |
+| Dopa: Dopa | 2, 3, 4, 5, 6, 7, 8, 9 (common logarithm; the trophies read "100 Dopa" through "1 billion Dopa") |
+| Review: Review | 1, 5, 10, 30, 50, 100, 200, 300 |
+| Grades: Play Grade 1 | 1, 10, 30 |
+| Grades: Play Grade 2 | 1, 10, 30 |
+| Grades: Play Grade 3 | 1, 10, 30 |
+| Grades: Play Grade 4 | 1, 10, 30 |
+| Grades: Play Grade 5 | 1, 10, 30 |
+| Grades: Play Grade 6 | 1, 10, 30 |
+| Secret: Secret | Perfect 14, Clean Extra, Sunday math, New Year drill, Welcome back!, Every way to play |
+| Keep it up: Quests complete | 1, 3, 7, 14, 30, 50, 100, 200, 365 |
+| Keep it up: Quest streak | 2, 3, 5, 7, 14, 30 |
+| Keep it up: Streak Hammer | 1, 3, 10 |
+| Skills: Stars | 5, 10, 25, 50, 75, 100, 150, 200, 250, 290 |
+| Skills: ☆5 skills | 1, 3, 5, 10, 20, 30, 58 |
+| Skills: Whole grade at ☆3 | Grade 1 all ☆3, Grade 2 all ☆3, Grade 3 all ☆3, Grade 4 all ☆3, Grade 5 all ☆3, Grade 6 all ☆3 |
+| Growth: Polish off rust | 1, 3, 5, 10, 30, 50 |
+| Growth: Time capsules | 1, 3, 5, 10, 30 |
+| Growth: Faster than back then | 1, 5, 10 |
+| Growth: You improved! | 1, 5, 10, 30, 50, 100 |
+| Collection: Collection | 10, 20, 30, 40, 47 |
+| Collection: Full sets | 1, 3, 5, 8 |
 
-### 7.5 前回とくらべる
+### 7.5 Compared with before
 
-基本結果で、同じスキルの以前の記録より伸びた点を「のびたよ！」として最大3行表示します。今回と比較相手の双方に3問以上が必要です。比較相手は、前回遊んだ日、21日以上前の直近の日、最初に解いた3問です。同日内の過去の回だけを比較相手にはしません。
+On the basic results, up to 3 lines under "You improved!" show where you did better than in earlier records for the same skill. Both this play and the comparison need 3 or more problems. The comparisons are the previous day played, the most recent day at least 21 days ago, and the first 3 problems ever solved. Earlier plays from the same day are not used as a comparison.
 
-解答時間は回答マスあたりの平均で比較し、表示は今回の平均マス数に換算した1問あたりの秒数です。時間が10%以上短縮、または初回正解率が10ポイント以上改善した項目を候補にします。各スキルで最も大きい改善を1つ選び、全体で改善の大きい順に表示します。改善がなければ表示しません。実力チェック・デモ・成長記録を停止する確認用URLは対象外です。
+Answer times are compared as averages per answer cell and are shown as seconds per problem, converted using this play's average number of cells. Items where the time dropped by 10% or more, or the first-try rate improved by 10 percentage points or more, are candidates. Each skill contributes its 1 largest improvement, and these are shown with the largest improvements first overall. If nothing improved, nothing is shown. The skill check, the demo and the testing URLs that stop growth records are excluded.
 
-### 7.6 タイムカプセル
+### 7.6 Time capsule
 
-スキルごとに保存した最初の3問から、マスター済みで、解いた時点から `30 × 86400000` ms以上経過した未使用問題のうち最も古いものを選びます。
+From the first 3 problems saved for each skill, the oldest unused problem is chosen among those whose skill is mastered and for which `30 × 86400000` ms or more have passed since it was solved.
 
-通常のじぶんレベル、学年別、れんしゅうの基本セットが4問以上の場合、0始まりの `max(1, min(N−2, floor(N/2)))` 番目を置き換えます。実力チェック、ふくしゅう、エクストラ、デモ、成長記録を停止する確認用URLは対象外です。1日に1問までで、予告を終えた時点の日付を保存するため、それ以後に中断しても同日の再提示はしません。問題を完了した時点で使用済みになります。
+When the basic set of regular My Level, by-grade or Practice play has 4 or more problems, the problem at 0-based position `max(1, min(N−2, floor(N/2)))` is replaced. The skill check, Review, Extra, the demo and the testing URLs that stop growth records are excluded. There is at most 1 per day: the date is saved when the intro finishes, so even if play is interrupted after that, it is not offered again on the same day. The problem becomes used when it is completed.
 
-封筒の予告とオレンジの縁で過去の問題と分かるようにします。比較は今回の時間が過去の0.95倍未満なら時間短縮、そうでなければ誤答回数の減少、どちらもなければ再び解けたことと日付を表示します。5%ちょうどの短縮では時間短縮の表示になりません。
+An envelope intro and an orange border make it clear that this is a problem from the past. For the comparison, if this time is less than 0.95 times the old time, the time saved is shown; otherwise, a drop in the number of wrong answers is shown; if neither applies, it shows that you solved it again, together with the date. A reduction of exactly 5% is not shown as faster.
 
-### 7.7 コレクションと演出の解放
+### 7.7 Collection and unlocking effects
 
-8カテゴリ・47種です。各カテゴリに初期状態で使えるものが1つあり、残り39種は決められたトロフィーの報酬です。未解放のものには取得条件を表示します。
+There are 47 items in 8 categories. Each category has 1 item available from the start, and the remaining 39 are rewards for specific trophies. Items not yet unlocked show how to get them.
 
-| カテゴリ | 種類と解放条件（初期以外はトロフィー名） |
+| Category | Items and unlock conditions (trophy names, except for starter items) |
 | --- | --- |
-| はいけい（6種） | ほうしゃせん（初期）、よぞら（3日 れんぞく）、うみと あわ（100もん とく）、おまつり（あそんだ日 15日）、かみの こうさく（200もん とく）、うちゅう（エクストラ 10回） |
-| せいかいの しるし（5種） | はなまる（初期）、せいかいスタンプ（3回 あそぶ）、メダル（7日 れんぞく）、おうかん（ノーミス 3回）、はなびの わ（30コンボ） |
-| かみふぶき（6種） | かみふぶき（初期）、おんぷ（あそんだ日 3日）、はなびら（シール 7まい）、すうじ（1,000けた いれる）、あわ（ふくしゅう 10もん）、おかし（1回で 10もん） |
-| おんがく（5種） | マリンバ マーチ（初期）、8ビット（10回 あそぶ）、おまつり ばやし（5日 れんぞく）、ブラスバンド（あそんだ日 5日）、エレクトロ（エクストラ 3回） |
-| きせかえ（9種） | なし（初期）、ぼうし（あそんだ日 1日）、はちまき（50もん とく）、マント（20コンボ）、まるめがね（初回正解 100もん）、リボン（シール 14まい）、おうかん（14日 れんぞく）、まほうの ぼうし（☆5 1こ）、ヘッドホン（カプセル 1こ） |
-| ドパキチの いろ（8種） | ピンク（初期）、あお（5回 あそぶ）、みどり（あそんだ日 7日）、ゆきいろ（コンプリート 7日）、きいろ（300もん とく）、むらさき（エクストラ 100もん）、きんいろ（30日 れんぞく）、にじいろ（あそんだ日 100日） |
-| おきゃくさん（4種） | いろちがい（初期）、きせかえ おきゃくさん（初回正解 50もん）、にじいろ おきゃくさん（あそんだ日 30日）、おそろい おきゃくさん（ほし 100こ） |
-| フィナーレ（4種） | きょだい ドパキチ（初期）、はなびたいかい（エクストラ 5回）、パレード（10日 れんぞく）、ロケット（エクストラ 20回） |
+| Background (6 items) | Sunburst (starter), Night sky (3-day streak), Sea & bubbles (Solve 100), Festival (15 days played), Paper craft (Solve 200), Outer space (Extra 10 times) |
+| Correct mark (5 items) | Flower circle (starter), Correct stamp (Play 3 times), Medal (7-day streak), Crown (3 flawless runs), Firework ring (30 combo) |
+| Confetti (6 items) | Paper confetti (starter), Music notes (3 days played), Petals (7 stickers), Numbers (1,000 digits), Bubbles (Review 10), Candy (10 in one Extra) |
+| Music (5 items) | Marimba March (starter), 8-bit (Play 10 times), Festival drums (5-day streak), Brass band (5 days played), Electro (Extra 3 times) |
+| Outfit (9 items) | None (starter), Cap (First day), Headband (Solve 50), Cape (20 combo), Round glasses (100 first tries), Ribbon (14 stickers), Crown (14-day streak), Wizard hat (First ☆5 skill), Headphones (1 capsule) |
+| Dopakichi's color (8 items) | Pink (starter), Blue (Play 5 times), Green (7 days played), Snow white (7 quest days), Yellow (Solve 300), Purple (100 Extra problems), Gold (30-day streak), Rainbow (100 days played) |
+| Crowd (4 items) | Color mix (starter), Dressed-up crowd (50 first tries), Rainbow crowd (30 days played), Matching crowd (100 stars) |
+| Finale (4 items) | Giant Dopakichi (starter), Fireworks show (Extra 5 times), Parade (10-day streak), Rocket (Extra 20 times) |
 
-カテゴリごとに固定するか、「おまかせ」を選びます。おまかせはプレイ開始ごとに所持品から選択し、タイトルでは基本の見た目を使います。選択は保存され、得点や問題の難度には影響しません。
+For each category, you either fix an item or choose "Shuffle". Shuffle picks from the items you own at the start of each play, and the title screen uses the basic look. The choices are saved and do not affect the score or the difficulty of the problems.
 
-コレクション画面では背景・印・粒子・衣装・色・観客・フィナーレを試せます。曲は7秒試聴します。衣装と色はドパキチの元の形へ重ねて反映し、観客・フィナーレにも選択した装いを使います。
+On the Collection screen, you can try out backgrounds, marks, particles, outfits, colors, crowds and finales. Songs play a 7-second preview. Outfits and colors are layered onto Dopakichi's original shape, and the chosen look is also used for the crowd and the finale.
 
-## 8. ドパキチと演出・音
+## 8. Dopakichi, effects and sound
 
-ドパキチは原則ノンバーバルです。造形の基準は `docs/dopakichi.svg` です。大きな横耳、横に広い丸い頭、クリーム色の顔と腹、二重の円の目、細い腕と青い足を持ちます。基本色はピンク `#FF97BF`、クリーム `#FFF3E4`、耳の内側 `#FFE6F0`、青 `#2F79F7`、輪郭 `#000000` です。
+Dopakichi is nonverbal as a rule. The design reference is `docs/dopakichi.svg`. Dopakichi has large ears sticking out sideways, a wide round head, a cream-colored face and belly, double-circle eyes, thin arms and blue feet. The base colors are pink `#FF97BF`, cream `#FFF3E4`, inner ear `#FFE6F0`, blue `#2F79F7` and outline `#000000`.
 
-入力した数字は空いている手で運びます。左右の手は別々の数字を運べ、判定と運搬を分けて次の入力を待たせません。途中正解・最終正解には跳躍、拍手、回転などを使い、誤答では崩れてから復帰します。誤答演技は10種あり、序盤は4種、中盤は8種、強度0.6以上では10種から、直前と同じものを避けて選びます。
+Each entered digit is carried in a free hand. The left and right hands can carry different digits, and judging is kept separate from carrying, so the next input never has to wait. Intermediate and final correct answers get jumps, clapping, spins and so on; on a wrong answer, Dopakichi collapses and then recovers. There are 10 wrong-answer acts: early on one is chosen from 4, midway from 8, and at intensity 0.6 or higher from all 10, avoiding a repeat of the previous one.
 
-基本の問題番号を0始まりの `i`、問題数を `N` とすると、演出強度は `E = 0.08 + 0.92 × (i/(N−1))^1.3` です。1問だけの場合は `E = 1` とします。エクストラは完了数 `k` に対し `tier = floor(k/3)`、`E = 1 + min(0.5, tier × 0.1)` です。
+With `i` the 0-based basic problem number and `N` the number of problems, the effect intensity is `E = 0.08 + 0.92 × (i/(N−1))^1.3`. With only 1 problem, `E = 1`. In Extra, for `k` completed problems, `tier = floor(k/3)` and `E = 1 + min(0.5, tier × 0.1)`.
 
-強度に応じて背景、はなまるなどの正解印、紙吹雪・星・花火・硬貨、観客、行進、リーチ、電飾、揺れを重ねます。フィナーレは巨大ドパキチ、花火大会、ロケット、パレードから選び、最後に100点を示します。入力とテンキーの配置、筆算の位の対応を維持します。
+Depending on the intensity, the background, correct marks such as the flower circle, confetti, stars, fireworks and coins, the crowd, marching, the reach effect ("LAST DIGIT!"), lights and shaking are layered on. The finale is one of Giant Dopakichi, Fireworks show, Rocket and Parade, and at the end it shows 100 points (the "100 pts" stamp). The layout of the input and the number pad, and the place-value alignment of column calculations, are preserved.
 
-音楽と効果音はWeb Audio APIで合成し、外部の録音素材を読み込みません。基本のマリンバ マーチに、8ビット、おまつり ばやし、ブラスバンド、エレクトロを加えた5曲があります。発振器・ノイズ・フィルターと残響等を使い、打楽器、低音、和音、旋律を段階的に重ねます。
+Music and sound effects are synthesized with the Web Audio API; no external recorded audio is loaded. There are 5 songs: the basic Marimba March plus 8-bit, Festival drums, Brass band and Electro. Using oscillators, noise, filters, reverb and so on, percussion, bass, chords and melody are layered in stages.
 
-基本のテンポは `112 + min(1, E) × 16` BPMで、通常の最初は113.28 BPM、最後は128 BPMです。最終問では基準から2半音上げます。エクストラは `134 + tier × 5` BPM、調は基準から `2 + min(tier, 5)` 半音です。転調には上限があり、テンポにはこの式による固定上限はありません。
+The basic tempo is `112 + min(1, E) × 16` BPM: normally 113.28 BPM at the start and 128 BPM at the end. On the last problem, the key is raised 2 semitones above the base. Extra is `134 + tier × 5` BPM, in a key `2 + min(tier, 5)` semitones above the base. The key change has an upper limit, but this formula puts no fixed upper limit on the tempo.
 
-キー、数字の着地、正解、誤答、ドパの節目、時計などを音で補い、音程は曲の和音と同期します。音の開始にはブラウザが求めるユーザー操作を使います。背景はWebGLを用い、利用不可やコンテキスト喪失時はCSSの背景へ切り替えます。
+Key presses, digits landing, correct and wrong answers, Dopa milestones, the clock and so on are reinforced with sound, with pitches that follow the song's chords. Audio starts with the user interaction that browsers require. The background uses WebGL and falls back to a CSS background when WebGL is unavailable or the context is lost.
 
-## 9. 設定とアクセシビリティ
+## 9. Settings and accessibility
 
-| 設定 | 内容と初期値 |
+| Setting | Contents and default |
 | --- | --- |
-| 問題数 | 6・10・14問。初期値10問 |
-| 音 | オン／オフ。初期値オン。プレイ画面のミュートからも変更可能 |
-| 音量 | 0〜100%。初期値80% |
-| 動きの強さ | 0〜100%。未設定なら端末の動きを減らす指定に合わせて0%、それ以外は100% |
-| デモプレイ | 自動操作を1周表示 |
-| すべて リセット | 確認を2回行って端末内のデータを初期化 |
+| Language | The globe menu at the top of Settings: English or 日本語 (Japanese). Default English. Choosing Japanese opens the original game in `ja/`, and choosing English there comes back. The choice is remembered on the device apart from the game data, so resetting all data keeps it |
+| Number of problems | 6, 10 or 14. Default 10 |
+| Sound | On / off. Default on. Can also be changed with the mute button on the play screen |
+| Volume | 0–100%. Default 80% |
+| Motion | 0–100%. If not set, 0% when the device asks for reduced motion, otherwise 100% |
+| Demo play | Shows 1 round of automatic play |
+| Reset everything | Resets the data on the device after 2 confirmations |
 
-動きの強さは粒子量、揺れ、閃光、背景、観客、ドパキチの大きな動きに反映します。0%では主要な移動・揺れ・閃光を止め、ガイドも静止ポーズにします。ただし全描画を停止する機能ではなく、通常画面の呼吸などと少量の粒子が残る処理があります。値を操作すると設定画面で反応を試せます。計算の判定と得点規則は変わりません。
+Motion affects the amount of particles, shaking, flashes, the background, the crowd and Dopakichi's big movements. At 0%, the main movements, shaking and flashes stop, and the guide also uses still poses. However, it does not stop all rendering: some processing remains, such as the idle breathing motion on normal screens and a small number of particles. Changing the value lets you try out the response on the Settings screen. Answer judging and the scoring rules do not change.
 
-Escapeは、開いているダイアログを閉じるか、タイトル以外では「タイトルに もどる？」の確認を開きます。「つづける」を初期フォーカスにし、確認中は入力、基本の経過時間、エクストラとコンボの期限、問題ごとの計測を止めます。中断までに完了した問題の習熟等は残ります。基本結果前なら完走履歴は作成しません。デモ中のEscapeはデモ終了です。
+Escape closes an open dialog or, on any screen other than the title, opens the "Back to the title?" confirmation, as does the round back button at the top left of the play screen (hidden during demo play, which any tap already ends). The stay button ("Keep playing" during play, "Stay here" elsewhere) has the initial focus, and while the confirmation is open, input, the basic elapsed time, the Extra and combo deadlines and per-problem timing are stopped. Mastery and other progress from the problems completed before quitting is kept. If you quit before the basic results, no finished-play history entry is created. Escape during the demo ends the demo.
 
-ボタンのアクセシブル名、フォーカス表示、数字以外のラベル、ガイド内のフォーカス循環を用意します。スクリーンリーダーだけでの全プレイや、すべての端末での操作性を保証するものではありません。
+Accessible names for buttons, visible focus, labels for anything other than digits, and focus cycling within the guide are provided. Full play with a screen reader alone, or usability on every device, is not guaranteed.
 
-高さ700px以下では問題用紙・演出領域・余白を調整し、テンキーの最下段まで画面内に収めます。短い画面でもキーの高さ48pxを維持します。
+At heights of 700px or less, the problem sheet, the effects area and the margins are adjusted so that everything down to the bottom row of the number pad fits on the screen. Keys stay 48px tall even on short screens. On narrow screens, big one-line texts (cut-ins, Dopa milestones and finale stamps) shrink to fit.
 
-全リセットの1回目は「すべて リセット」で消す内容を示し、2回目は「ほんとうに けしますか？」で復元できないことを確認します。どちらも「やめる」が初期フォーカスです。キャンセル、Escape、背景タップでは削除しません。2回目の確定で、接頭辞 `dopa-drill` を持つ保存キーをすべて削除し、メモリのキャッシュを破棄して再読み込みします。無関係なキーは保持します。
+The 1st full-reset confirmation, "Reset everything", shows what will be erased, and the 2nd, "Really erase everything?", confirms that it cannot be undone. In both, "Cancel" has the initial focus. Canceling, pressing Escape or tapping the background does not erase anything. Confirming the 2nd one deletes every storage key with the prefix `dopa-drill`, discards the in-memory cache and reloads. Unrelated keys are kept.
 
-設定・履歴・習熟・星・成長記録・トロフィー・コレクション選択・シール・クエスト・アイテム・初回ガイド状態が初期化の対象です。再起動時には初回ガイドや初期アイテムなどが改めて作られます。ブラウザが削除を拒否した場合も処理は例外終了しませんが、保存済みデータの消去は保証できません。
+The reset covers settings, history, mastery, stars, growth records, trophies, collection choices, stickers, quests, items and the first-run guide state. On restart, the first-run guide, the starting items and so on are created again. If the browser refuses the deletion, the process still does not end with an exception, but erasure of the saved data cannot be guaranteed.
 
-## 10. 保存とプライバシー
+## 10. Storage and privacy
 
-保存先はブラウザのlocalStorageで、キーは `dopa-drill:v1`、データの版は1です。名前などの個人情報を入力する欄はなく、アプリから学習記録をサーバーへ送信しません。広告、外部解析、ランキング、端末間の同期はありません。配信サーバーからゲームの静的ファイルを取得して動作します。
+Data is stored in the browser's localStorage under the key `dopa-drill:v1`, with data version 1. There are no fields for entering personal information such as names, and the app does not send learning records to any server. There are no ads, external analytics, rankings or cross-device sync. The game runs by fetching its static files from the hosting server.
 
-保存領域が使えない、読み取りに失敗する、JSONが壊れている場合には、初期状態で起動し、保存が失敗してもその場のゲームを継続します。ブラウザのデータ消去、保存制限、別のブラウザや配信元での利用では記録を引き継げません。
+If storage is unavailable, reading fails or the JSON is corrupted, the game starts in its initial state, and if saving fails, the game in progress continues. Records do not carry over when browser data is cleared, when storage is restricted, or when the game is used in another browser or from another origin.
 
-| 記録 | 内容・上限 |
+| Record | Contents and limits |
 | --- | --- |
-| 設定・ガイド | 問題数、音、音量、動き、ガイド表示済み |
-| 完走履歴 | 最大3000件。日付、モード、得点、正解、おしい、基本時間、ドパ、エクストラ |
-| スキル | 直近6問の初回正解、直近24署名、直近30問の時間・マス数・誤答・日付、直近60日分の集計、最初の3問そのもの、最終初回正解・マスター日時、星 |
-| ふくしゅう | 最大40問の問題そのもの |
-| 累計統計 | 完了問題・マス・初回正解・誤答、基本完走とモード、基本時間、最大ドパ、エクストラ、最大コンボ、ふくしゅう、遊んだ日、磨いた回数、比較・カプセル |
-| 継続・報酬 | シール、ログイン日、ノーカン日、ハンマー、クエスト、獲得済みトロフィー、演出の選択 |
+| Settings and guide | Number of problems, sound, volume, motion, guide shown |
+| Finished-play history | Up to 3000 entries. Date, mode, score, correct, Oops, basic time, Dopa, Extra |
+| Skills | First-try results of the last 6 problems, the last 24 signatures, time, cell count, wrong answers and date of the last 30 problems, aggregates for the last 60 days, the first 3 problems themselves, time of the last first-try correct answer and of mastery, stars |
+| Review | The problems themselves, up to 40 |
+| Lifetime statistics | Completed problems, cells, first-try correct and wrong answers, finished basic sets and modes, basic time, best Dopa, Extra, best combo, Review, days played, times polished, comparisons and capsules |
+| Continuity and rewards | Stickers, login days, saved days, hammers, quests, earned trophies, effect choices |
 
-1問の解答時間は入力受付から最後の正解入力までで、問題間の演出と確認ダイアログを含みません。累計の問題・マス・誤答は問題を完了した時点で加算するため、途中終了した未完了問題の操作は集計しません。
+The answer time for 1 problem runs from when input is accepted until the last correct input, excluding the effects between problems and confirmation dialogs. The lifetime problem, cell and wrong-answer counts are added when a problem is completed, so actions on unfinished problems abandoned partway are not counted.
 
-統計がまだない保存データでは履歴から取得できる値を初期化します。過去のマス数や最大コンボなど、履歴から分からない値は0から計測します。確認用URLは保存全体を停止する機能ではありません。具体的な違いは次章に記載します。
+For saved data that has no statistics yet, the values that can be obtained from the history are initialized from it. Values that the history cannot tell, such as past cell counts and the best combo, are measured from 0. The testing URLs do not stop saving as a whole; the specific differences are described in the next section.
 
-## 11. 技術構成・実行・検証
+## 11. Technical structure, running and testing
 
-### 11.1 ファイル構成
+### 11.1 File structure
 
-依存ライブラリのないES Modulesで実装し、アプリのビルドは不要です。静的配信で動き、サーバー側の計算処理を必要としません。
+The game is implemented as ES Modules with no library dependencies, and the app needs no build step. It runs from static hosting and needs no server-side computation.
 
-公開サイトは [dopa-drill.tanosix.com](https://dopa-drill.tanosix.com/) です。Cloudflare Workers Static Assetsで製品ファイルのみを配信します。`app/_headers` の `Cache-Control: no-transform` により、配信時のアクセス解析スクリプトの自動挿入を止めています。
+The original Japanese game is published at [dopa-drill.tanosix.com](https://dopa-drill.tanosix.com/), which serves only the product files with Cloudflare Workers Static Assets. `Cache-Control: no-transform` in `app/_headers` stops analytics scripts from being injected automatically at delivery.
 
-| ファイル・ディレクトリ | 役割 |
+| File or directory | Role |
 | --- | --- |
-| `app/index.html`、`app/style.css` | 画面とスタイル |
-| `app/js/main.js` | 進行、入力、画面、演出の連携 |
-| `app/js/guide.js` | 初回ガイドとヘルプ、案内要素の配置 |
-| `app/js/skills.js`、`app/js/problems.js` | スキル定義、問題生成、入力手順 |
-| `app/js/session.js` | 出題計画、習熟、星、さび、タイムカプセル |
-| `app/js/scoring.js`、`app/js/growth.js` | 得点・ドパ・コンボ、成長統計と比較 |
-| `app/js/quests.js`、`app/js/trophies.js`、`app/js/unlocks.js` | クエスト、実績、演出カタログ |
-| `app/js/store.js` | 保存、履歴、ログイン、ハンマー、リセット |
-| `app/js/dopakichi.js` | パーツ分割SVGのマスコットと演技 |
-| `app/js/fx.js`、`app/js/bg.js` | Canvas 2Dの粒子とWebGL背景 |
-| `app/js/audio.js`、`app/js/core.js` | Web Audio合成、時計・補間・ばね |
-| `app/fonts/` | Dela Gothic One、Zen Maru Gothicのローカルサブセット。SIL Open Font License |
-| `tests/` | 問題生成、判定、保存、成長等のテスト |
-| `tools/build_fonts.sh` | 画面の文言を変更した場合のフォント再生成 |
-| `docs/` | 本書、カリキュラム、ドパキチの造形資料 |
+| `app/index.html`, `app/style.css` | Screens and styles |
+| `app/js/main.js` | Coordinates game flow, input, screens and effects |
+| `app/js/guide.js` | First-run guide and help, placement of the guide elements |
+| `app/js/skills.js`, `app/js/problems.js` | Skill definitions, problem generation, input steps |
+| `app/js/session.js` | Problem planning, mastery, stars, rust, time capsule |
+| `app/js/scoring.js`, `app/js/growth.js` | Score, Dopa and combo; growth statistics and comparisons |
+| `app/js/quests.js`, `app/js/trophies.js`, `app/js/unlocks.js` | Quests, achievements, effects catalog |
+| `app/js/store.js` | Storage, history, login, hammer, reset |
+| `app/js/dopakichi.js` | The mascot as an SVG split into parts, and its acting |
+| `app/js/fx.js`, `app/js/bg.js` | Canvas 2D particles and WebGL background |
+| `app/js/audio.js`, `app/js/core.js` | Web Audio synthesis; clock, interpolation and springs |
+| `app/fonts/` | Local subsets of Dela Gothic One and Zen Maru Gothic (the same families as the original), re-subset for the English text. SIL Open Font License |
+| `app/ja/` | The original Japanese game, unchanged apart from the language menu, the play screen's back button and fonts with the two characters of 言語 added. It shares the save data with the English version |
+| `tests/` | Tests for problem generation, judging, storage, growth and more |
+| `tools/build_fonts.sh` | Regenerates the font subsets when the on-screen text changes |
+| `docs/` | This document, the curriculum, Dopakichi design reference |
 
-### 11.2 起動とテスト
+### 11.2 Running and testing
 
-リポジトリ直下から、例えば次のコマンドで静的配信できます。表示したサーバーのアドレスで `/app/` を開きます。ES Modulesを使うため、HTMLファイルを直接開くのではなくHTTPで配信します。
+From the repository root, you can serve the files statically with a command such as the following. Open `/app/` at the server address shown. Because ES Modules are used, serve the files over HTTP instead of opening the HTML file directly.
 
 ```sh
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-Node.jsを使うテストは次のコマンドで実行します。
+Run the tests, which use Node.js, with the following command.
 
 ```sh
 node --test tests/*.test.mjs
 ```
 
-製品のテストは `tests/app_*.test.mjs` の11ファイル・58件です。上記コマンドは同梱された他のテストも含むため、全体の件数は配布物によって異なります。ファイル単位の件数だけが表示されるNode.js環境では、対応する環境で `--experimental-test-isolation=none` を加えると個別テストを集計できます。
+The product tests are 59 tests in the 11 files `tests/app_*.test.mjs`. The command above also runs other bundled tests, so the total count varies by distribution. In Node.js environments that report counts only per file, adding `--experimental-test-isolation=none` (where supported) lets the individual tests be counted.
 
-問題生成・入力手順、得点、保存とリセット、スキル・星、出題計画、成長比較、クエスト、トロフィー、解放演出、ガイドの配置計算を検査します。自動テストの成功は、実機の描画・音質・操作感の検証を代替しません。
+The tests check problem generation and input steps, scoring, storage and reset, skills and stars, problem planning, growth comparisons, quests, trophies, unlockable effects and the guide's layout calculations. Passing the automated tests does not replace checking the rendering, sound quality and feel on real devices.
 
-### 11.3 確認用URLパラメータ
+### 11.3 Testing URL parameters
 
-`/app/?count=6&seed=123` のように指定します。
+Specify them like `/app/?count=6&seed=123`.
 
-| パラメータ | 動作 |
+| Parameter | Behavior |
 | --- | --- |
-| `count=6`、`count=10`、`count=14` | 起動時の問題数を選択 |
-| `seed=<数値>` | 問題選択・生成等に用いる乱数を固定。全視覚効果の乱数までは固定しない |
-| `extra=<秒>` | エクストラの既定90秒を置き換える。開始時の900ms加算は共通 |
-| `skill=<スキルID>` | 通常の問題選択をそのスキルに置き換える。ふくしゅうや固定テンプレートとの併用には選択処理の優先順位がある |
-| `demo` | じぶんレベルの入口から固定テンプレートの基本セットを開始。初問は27＋35。自動操作は行わない |
-| `capture` | 音のイベントを収集する確認経路。通常のライブ音声出力と自動ガイド・タイトル報酬通知等を抑制 |
+| `count=6`, `count=10`, `count=14` | Selects the number of problems at startup |
+| `lang=en`, `lang=ja` | `lang=en` stays in English and `lang=ja` opens the Japanese version, without changing the saved choice |
+| `seed=<number>` | Fixes the random numbers used for problem selection, generation and so on. Does not fix the random numbers of every visual effect |
+| `extra=<seconds>` | Replaces Extra's default 90 seconds. The 900ms added at the start still applies |
+| `skill=<skill ID>` | Replaces normal problem selection with that skill. When combined with Review or the fixed template, the selection logic's order of precedence applies |
+| `demo` | Starts the fixed-template basic set from the My Level entry point. The first problem is 27 + 35. No automatic play |
+| `capture` | A testing path that collects sound events. Suppresses the normal live audio output, the automatic guide, title-screen reward notifications and so on |
 
-`skill` と固定テンプレートのプレイでは通常の解答時間・成長統計・クエストを停止しますが、完走履歴とふくしゅうは保存されます。`skill` では出題計画が実力チェックの場合、その計画側のマスター付与とチェック完了の保存も動作します。トロフィー判定は `skill` と `capture` では停止しますが、`demo` の指定だけでは停止しません。`capture` でも通常の進捗・履歴・統計の保存は続きます。これらを記録を残さない練習機能としては扱わないでください。
+Plays with `skill` or the fixed template stop the normal answer timing, growth statistics and quests, but the finished-play history and Review are still saved. With `skill`, when the problem plan is the skill check, that plan's mastery grants and the saving of check completion also take effect. Trophy checks stop with `skill` and `capture`, but not with `demo` alone. Even with `capture`, normal progress, history and statistics continue to be saved. Do not treat these as a way to practice without leaving records.

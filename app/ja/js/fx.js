@@ -194,12 +194,9 @@ export class FX {
         }
         case 'text': {
           const pop = k < 0.12 ? 0.6 + (k / 0.12) * 0.5 : k < 0.2 ? 1.1 - ((k - 0.12) / 0.08) * 0.1 : 1;
-          c.font = `900 ${p.size}px "Dela Gothic One", "Zen Maru Gothic", sans-serif`;
-          // Keep the whole text on screen when it pops up near an edge.
-          const half = ((c.measureText(p.str).width + p.size * 0.28) * pop) / 2;
-          const x = Math.min(Math.max(p.x, half + 4), innerWidth - half - 4);
-          c.setTransform(dpr * pop, 0, 0, dpr * pop, x * dpr, p.y * dpr);
+          c.setTransform(dpr * pop, 0, 0, dpr * pop, p.x * dpr, p.y * dpr);
           c.globalAlpha = fade;
+          c.font = `900 ${p.size}px "Dela Gothic One", "Zen Maru Gothic", sans-serif`;
           c.textAlign = 'center'; c.textBaseline = 'middle';
           c.lineWidth = p.size * 0.28; c.lineJoin = 'round'; c.strokeStyle = INK; c.strokeText(p.str, 0, 0);
           c.fillStyle = p.color; c.fillText(p.str, 0, 0);
