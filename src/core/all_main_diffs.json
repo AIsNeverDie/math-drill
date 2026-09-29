@@ -1,0 +1,602 @@
+[
+  {
+    "line": 64,
+    "en": "const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];",
+    "cn": "const MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];",
+    "tw": "const MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];"
+  },
+  {
+    "line": 66,
+    "en": "const nOf = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;",
+    "cn": "const nOf = (n, one, many) => `${n} 个${one}`;",
+    "tw": "const nOf = (n, one, many) => `${n} 個${one}`;"
+  },
+  {
+    "line": 68,
+    "en": "const listJoin = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join(', ')} and ${a[a.length - 1]}`);",
+    "cn": "const listJoin = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join('、')}与${a[a.length - 1]}`);",
+    "tw": "const listJoin = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join('、')}與${a[a.length - 1]}`);"
+  },
+  {
+    "line": 175,
+    "en": "  if (q.rewarded) return '<b class=\"qdone\">Complete!</b>';",
+    "cn": "  if (q.rewarded) return '<b class=\"qdone\">全部完成！</b>';",
+    "tw": "  if (q.rewarded) return '<b class=\"qdone\">全部完成！</b>';"
+  },
+  {
+    "line": 176,
+    "en": "  return `Clear all: <i class=\"qham\">${HAMMER_SVG}</i>+1`;",
+    "cn": "  return `全部通关：<i class=\"qham\">${HAMMER_SVG}</i>+1`;",
+    "tw": "  return `全部通關：<i class=\"qham\">${HAMMER_SVG}</i>+1`;"
+  },
+  {
+    "line": 190,
+    "en": "  el.innerHTML = `<p class=\"qm-head\">${\"Today's quests\"} <span>${questRewardText(q)}</span></p><ol class=\"quest-list\">${questRows(q.list)}</ol>${got ? `<p class=\"qm-got\">${got.hammer ? `<i class=\"qham\">${HAMMER_SVG}</i>You got a Streak Hammer!` : \"Your hammers are full! Let's just celebrate.\"}</p>` : ''}`;",
+    "cn": "  el.innerHTML = `<p class=\"qm-head\">今日任务 <span>${questRewardText(q)}</span></p><ol class=\"quest-list\">${questRows(q.list)}</ol>${got ? `<p class=\"qm-got\">${got.hammer ? `<i class=\"qham\">${HAMMER_SVG}</i>获得了 1 支打卡补签锤！` : \"补签锤已满！尽情庆祝吧！\"}</p>` : ''}`;",
+    "tw": "  el.innerHTML = `<p class=\"qm-head\">今日任務 <span>${questRewardText(q)}</span></p><ol class=\"quest-list\">${questRows(q.list)}</ol>${got ? `<p class=\"qm-got\">${got.hammer ? `<i class=\"qham\">${HAMMER_SVG}</i>獲得了 1 支打卡補簽槌！` : \"補簽槌已滿！盡情慶祝吧！\"}</p>` : ''}`;"
+  },
+  {
+    "line": 198,
+    "en": "  el.innerHTML = q ? `<b>Quest clear!</b><span>${qs.questText(q)}</span>` : '<b>All quests complete!</b>';",
+    "cn": "  el.innerHTML = q ? `<b>任务达成！</b><span>${qs.questText(q)}</span>` : '<b>今日任务全部达成！</b>';",
+    "tw": "  el.innerHTML = q ? `<b>任務達成！</b><span>${qs.questText(q)}</span>` : '<b>今日任務全部達成！</b>';"
+  },
+  {
+    "line": 211,
+    "en": "const MODE_LABEL = { level: 'My Level', grade: (g) => `Grade ${g}`, review: 'Review', practice: 'Practice', drill: 'Drill' };",
+    "cn": "const MODE_LABEL = { level: '我的等级', grade: (g) => `${g}年级`, review: '错题复习', practice: '专项练习', drill: '综合练习' };",
+    "tw": "const MODE_LABEL = { level: '我的等級', grade: (g) => `${g}年級`, review: '錯題複習', practice: '專項練習', drill: '綜合練習' };"
+  },
+  {
+    "line": 352,
+    "en": "  $('#clock-label').textContent = `Goal ${fmtTime(S.targetMs)}`;",
+    "cn": "  $('#clock-label').textContent = `目标 ${fmtTime(S.targetMs)}`;",
+    "tw": "  $('#clock-label').textContent = `目標 ${fmtTime(S.targetMs)}`;"
+  },
+  {
+    "line": 403,
+    "en": "  } else if (E > 0.22 || extra) cutin(extra ? `EX ${S.extra.solved + 1}` : last ? 'Last one!' : `Q${S.qi + 1}`, E);",
+    "cn": "  } else if (E > 0.22 || extra) cutin(extra ? `EX ${S.extra.solved + 1}` : last ? '最后一题！' : `Q${S.qi + 1}`, E);",
+    "tw": "  } else if (E > 0.22 || extra) cutin(extra ? `EX ${S.extra.solved + 1}` : last ? '最後一題！' : `Q${S.qi + 1}`, E);"
+  },
+  {
+    "line": 586,
+    "en": "    $('#step-label').innerHTML = `<b>${st.label}</b><span class=\"help-text\">${`<b>Hint</b> ${st.help.text}`}</span>`;",
+    "cn": "    $('#step-label').innerHTML = `<b>${st.label}</b><span class=\"help-text\">${`<b>提示</b> ${st.help.text}`}</span>`;",
+    "tw": "    $('#step-label').innerHTML = `<b>${st.label}</b><span class=\"help-text\">${`<b>提示</b> ${st.help.text}`}</span>`;"
+  },
+  {
+    "line": 633,
+    "en": "    cutin(`Unlocked! ${name}`, Math.max(0.6, S.E));",
+    "cn": "    cutin(`解锁新技能！ ${name}`, Math.max(0.6, S.E));",
+    "tw": "    cutin(`解鎖新技能！ ${name}`, Math.max(0.6, S.E));"
+  },
+  {
+    "line": 755,
+    "en": "  stamp: (c) => `<circle class=\"sp\" r=\"56\" fill=\"none\" stroke=\"${c}\" stroke-width=\"8\"/><circle class=\"sp\" r=\"45\" fill=\"none\" stroke=\"${c}\" stroke-width=\"2.8\"/><text class=\"fl\" y=\"9\" text-anchor=\"middle\" font-family=\"Dela Gothic One, sans-serif\" ${'font-size=\"17\" textLength=\"80\" lengthAdjust=\"spacingAndGlyphs\"'} fill=\"${c}\" transform=\"rotate(-12)\">${'CORRECT'}</text><path class=\"fl\" d=\"M-30 -30 l3 6 6 1 -4.5 4 1 6.5 -5.5 -3 -5.5 3 1 -6.5 -4.5 -4 6 -1z M30 26 l3 6 6 1 -4.5 4 1 6.5 -5.5 -3 -5.5 3 1 -6.5 -4.5 -4 6 -1z\" fill=\"${c}\"/>`,",
+    "cn": "  stamp: (c) => `<circle class=\"sp\" r=\"56\" fill=\"none\" stroke=\"${c}\" stroke-width=\"8\"/><circle class=\"sp\" r=\"45\" fill=\"none\" stroke=\"${c}\" stroke-width=\"2.8\"/><text class=\"fl\" y=\"9\" text-anchor=\"middle\" font-family=\"Dela Gothic One, sans-serif\" ${'font-size=\"17\" textLength=\"80\" lengthAdjust=\"spacingAndGlyphs\"'} fill=\"${c}\" transform=\"rotate(-12)\">${'优秀'}</text><path class=\"fl\" d=\"M-30 -30 l3 6 6 1 -4.5 4 1 6.5 -5.5 -3 -5.5 3 1 -6.5 -4.5 -4 6 -1z M30 26 l3 6 6 1 -4.5 4 1 6.5 -5.5 -3 -5.5 3 1 -6.5 -4.5 -4 6 -1z\" fill=\"${c}\"/>`,",
+    "tw": "  stamp: (c) => `<circle class=\"sp\" r=\"56\" fill=\"none\" stroke=\"${c}\" stroke-width=\"8\"/><circle class=\"sp\" r=\"45\" fill=\"none\" stroke=\"${c}\" stroke-width=\"2.8\"/><text class=\"fl\" y=\"9\" text-anchor=\"middle\" font-family=\"Dela Gothic One, sans-serif\" ${'font-size=\"17\" textLength=\"80\" lengthAdjust=\"spacingAndGlyphs\"'} fill=\"${c}\" transform=\"rotate(-12)\">${'優秀'}</text><path class=\"fl\" d=\"M-30 -30 l3 6 6 1 -4.5 4 1 6.5 -5.5 -3 -5.5 3 1 -6.5 -4.5 -4 6 -1z M30 26 l3 6 6 1 -4.5 4 1 6.5 -5.5 -3 -5.5 3 1 -6.5 -4.5 -4 6 -1z\" fill=\"${c}\"/>`,"
+  },
+  {
+    "line": 881,
+    "en": "  fx.text(c.x, c.y + 26, `${S.combo} combo!`, { color: '#ffd23f', size: 26 + Math.min(20, S.combo / 5), vy: -90, life: 1 });",
+    "cn": "  fx.text(c.x, c.y + 26, `${S.combo} 连击！`, { color: '#ffd23f', size: 26 + Math.min(20, S.combo / 5), vy: -90, life: 1 });",
+    "tw": "  fx.text(c.x, c.y + 26, `${S.combo} 連擊！`, { color: '#ffd23f', size: 26 + Math.min(20, S.combo / 5), vy: -90, life: 1 });"
+  },
+  {
+    "line": 894,
+    "en": "  fx.text(c.x, c.y + 20, timeout ? `${had} combo over` : `${had} combo`, { color: '#b9bbd9', size: 15, vy: 40, life: 0.8 });",
+    "cn": "  fx.text(c.x, c.y + 20, timeout ? `${had} 连击中断` : `${had} 连击`, { color: '#b9bbd9', size: 15, vy: 40, life: 0.8 });",
+    "tw": "  fx.text(c.x, c.y + 20, timeout ? `${had} 連擊結束` : `${had} 連擊`, { color: '#b9bbd9', size: 15, vy: 40, life: 0.8 });"
+  },
+  {
+    "line": 903,
+    "en": "  $('#combo-mult').textContent = max ? 'Dopa ×2 MAX' : `Dopa ×${comboMult(S.combo).toFixed(2)}`;",
+    "cn": "  $('#combo-mult').textContent = max ? '多帕能量 ×2 MAX' : `多帕 ×${comboMult(S.combo).toFixed(2)}`;",
+    "tw": "  $('#combo-mult').textContent = max ? '多帕能量 ×2 MAX' : `多帕 ×${comboMult(S.combo).toFixed(2)}`;"
+  },
+  {
+    "line": 923,
+    "en": "  fx.text(x, y, `+${points.toLocaleString('en-US')} pts`, { color: '#ffd23f', size: 30 + Math.min(26, Math.log2(points / 10) * 4), vy: -160, life: 1.1 });",
+    "cn": "  fx.text(x, y, `+${points.toLocaleString('zh-CN')} 分`, { color: '#ffd23f', size: 30 + Math.min(26, Math.log2(points / 10) * 4), vy: -160, life: 1.1 });",
+    "tw": "  fx.text(x, y, `+${points.toLocaleString('zh-CN')} 分`, { color: '#ffd23f', size: 30 + Math.min(26, Math.log2(points / 10) * 4), vy: -160, life: 1.1 });"
+  },
+  {
+    "line": 1050,
+    "en": "    bigStamp('100 pts');",
+    "cn": "    bigStamp('100 分！');",
+    "tw": "    bigStamp('100 分！');"
+  },
+  {
+    "line": 1064,
+    "en": "    bigStamp('100 pts');",
+    "cn": "    bigStamp('100 分！');",
+    "tw": "    bigStamp('100 分！');"
+  },
+  {
+    "line": 1090,
+    "en": "    bigStamp('100 pts');",
+    "cn": "    bigStamp('100 分！');",
+    "tw": "    bigStamp('100 分！');"
+  },
+  {
+    "line": 1109,
+    "en": "    banner.className = 'finale-banner'; banner.textContent = '100 pts!';",
+    "cn": "    banner.className = 'finale-banner'; banner.textContent = '100 分！';",
+    "tw": "    banner.className = 'finale-banner'; banner.textContent = '100 分！';"
+  },
+  {
+    "line": 1119,
+    "en": "    bigStamp('100 pts');",
+    "cn": "    bigStamp('100 分！');",
+    "tw": "    bigStamp('100 分！');"
+  },
+  {
+    "line": 1160,
+    "en": "  $('#result-title').textContent = review ? 'Review clear!' : `${modeName(S.plan)} clear!`;",
+    "cn": "  $('#result-title').textContent = review ? '错题复习通关！' : `${modeName(S.plan)} 通关！`;",
+    "tw": "  $('#result-title').textContent = review ? '錯題複習通關！' : `${modeName(S.plan)} 通關！`;"
+  },
+  {
+    "line": 1162,
+    "en": "  un.textContent = review ? '' : ok ? 'Extra unlocked!' : 'A first-try rate of 80% or more unlocks Extra';",
+    "cn": "  un.textContent = review ? '' : ok ? '加时赛已解锁！' : '初次正确率达到 80% 以上即可进入加时赛';",
+    "tw": "  un.textContent = review ? '' : ok ? '加時賽已解鎖！' : '初次正確率達到 80% 以上即可進入加時賽';"
+  },
+  {
+    "line": 1165,
+    "en": "  $('#go-extra small').textContent = `${Math.round(EXTRA_MS / 1000)} seconds`;",
+    "cn": "  $('#go-extra small').textContent = `限时 ${Math.round(EXTRA_MS / 1000)} 秒`;",
+    "tw": "  $('#go-extra small').textContent = `限時 ${Math.round(EXTRA_MS / 1000)} 秒`;"
+  },
+  {
+    "line": 1195,
+    "en": "  $('#clock-label').textContent = 'Left';",
+    "cn": "  $('#clock-label').textContent = '剩余时间';",
+    "tw": "  $('#clock-label').textContent = '剩餘時間';"
+  },
+  {
+    "line": 1202,
+    "en": "  cutin('EXTRA', 1);",
+    "cn": "  cutin('加时赛！', 1);",
+    "tw": "  cutin('加時賽！', 1);"
+  },
+  {
+    "line": 1213,
+    "en": "  bigStamp(\"Time's up!\");",
+    "cn": "  bigStamp('时间到！');",
+    "tw": "  bigStamp('時間到！');"
+  },
+  {
+    "line": 1223,
+    "en": "  $('#f-break').textContent = `Basic ${BASIC_SCORE} + Extra ${S.extra.score.toLocaleString('en-US')}`;",
+    "cn": "  $('#f-break').textContent = `基础关 ${BASIC_SCORE} + 加时赛 ${S.extra.score.toLocaleString('zh-CN')}`;",
+    "tw": "  $('#f-break').textContent = `基礎關 ${BASIC_SCORE} + 加時賽 ${S.extra.score.toLocaleString('zh-TW')}`;"
+  },
+  {
+    "line": 1318,
+    "en": "  el.innerHTML = `<div class=\"ci-env\">${ENVELOPE_SVG}<div class=\"ci-letter\">${`<small>TIME CAPSULE</small><b>From ${fmtDay(info.d)}</b><span>A problem from when you first started!</span>`}</div></div>`;",
+    "cn": "  el.innerHTML = `<div class=\"ci-env\">${ENVELOPE_SVG}<div class=\"ci-letter\">${`<small>时光胶囊</small><b>来自 ${fmtDay(info.d)}</b><span>这是你最初开始练习时做过的题目！</span>`}</div></div>`;",
+    "tw": "  el.innerHTML = `<div class=\"ci-env\">${ENVELOPE_SVG}<div class=\"ci-letter\">${`<small>時光膠囊</small><b>來自 ${fmtDay(info.d)}</b><span>這是你最初開始練習時做過的題目！</span>`}</div></div>`;"
+  },
+  {
+    "line": 1343,
+    "en": "  const line = cmp.what === 'time' ? `${day} ${sec(cmp.from)} → today ${sec(cmp.to)}` : cmp.what === 'miss' ? `Oops: ${day} ${cmp.from} → today ${cmp.to}` : `Solved the problem from ${day} again`;",
+    "cn": "  const line = cmp.what === 'time' ? `${day} ${sec(cmp.from)} → 今日 ${sec(cmp.to)}` : cmp.what === 'miss' ? `失误：${day} ${cmp.from} → 今日 ${cmp.to}` : `再次成功解出 ${day} 的题目`;",
+    "tw": "  const line = cmp.what === 'time' ? `${day} ${sec(cmp.from)} → 今日 ${sec(cmp.to)}` : cmp.what === 'miss' ? `失誤：${day} ${cmp.from} → 今日 ${cmp.to}` : `再次成功解出 ${day} 的題目`;"
+  },
+  {
+    "line": 1348,
+    "en": "  el.innerHTML = cmp.what === 'none' ? `<small>TIME CAPSULE</small><b>From ${day}</b><span>Solved it again!</span>`",
+    "cn": "  el.innerHTML = cmp.what === 'none' ? `<small>时光胶囊</small><b>来自 ${day}</b><span>再次成功解出！</span>`",
+    "tw": "  el.innerHTML = cmp.what === 'none' ? `<small>時光膠囊</small><b>來自 ${day}</b><span>再次成功解出！</span>`"
+  },
+  {
+    "line": 1349,
+    "en": "    : `<small>TIME CAPSULE</small><span class=\"cr-row\"><span class=\"cr-old\"><i>Then</i>${cmp.what === 'time' ? sec(cmp.from) : `Oops ${cmp.from}`}</span><span class=\"cr-arrow\">→</span><span class=\"cr-new\"><i>Today</i>${cmp.what === 'time' ? sec(cmp.to) : `Oops ${cmp.to}`}</span></span>`;",
+    "cn": "    : `<small>时光胶囊</small><span class=\"cr-row\"><span class=\"cr-old\"><i>当时</i>${cmp.what === 'time' ? sec(cmp.from) : `失误 ${cmp.from}`}</span><span class=\"cr-arrow\">→</span><span class=\"cr-new\"><i>今日</i>${cmp.what === 'time' ? sec(cmp.to) : `失误 ${cmp.to}`}</span></span>`;",
+    "tw": "    : `<small>時光膠囊</small><span class=\"cr-row\"><span class=\"cr-old\"><i>當時</i>${cmp.what === 'time' ? sec(cmp.from) : `失誤 ${cmp.from}`}</span><span class=\"cr-arrow\">→</span><span class=\"cr-new\"><i>今日</i>${cmp.what === 'time' ? sec(cmp.to) : `失誤 ${cmp.to}`}</span></span>`;"
+  },
+  {
+    "line": 1371,
+    "en": "  fx.text(x, y, 'Shine! Sparkle!', { color: '#ffd23f', size: 26, vy: -80, life: 1.1 });",
+    "cn": "  fx.text(x, y, '闪闪发光！', { color: '#ffd23f', size: 26, vy: -80, life: 1.1 });",
+    "tw": "  fx.text(x, y, '閃閃發光！', { color: '#ffd23f', size: 26, vy: -80, life: 1.1 });"
+  },
+  {
+    "line": 1385,
+    "en": "  const when = (x) => (x.kind === 'first' ? `First (${fmtDay(x.d)})` : growth.daysBetween(x.d, today) === 1 ? 'Yesterday' : fmtDay(x.d));",
+    "cn": "  const when = (x) => (x.kind === 'first' ? `初次（${fmtDay(x.d)}）` : growth.daysBetween(x.d, today) === 1 ? '昨天' : fmtDay(x.d));",
+    "tw": "  const when = (x) => (x.kind === 'first' ? `初次（${fmtDay(x.d)}）` : growth.daysBetween(x.d, today) === 1 ? '昨天' : fmtDay(x.d));"
+  },
+  {
+    "line": 1386,
+    "en": "  const val = (what, v) => (what === 'time' ? `${Math.max(0.1, v / 1000).toFixed(1)}s` : `${Math.round(v * 100)}%`);",
+    "cn": "  const val = (what, v) => (what === 'time' ? `${Math.max(0.1, v / 1000).toFixed(1)}秒` : `${Math.round(v * 100)}%`);",
+    "tw": "  const val = (what, v) => (what === 'time' ? `${Math.max(0.1, v / 1000).toFixed(1)}秒` : `${Math.round(v * 100)}%`);"
+  },
+  {
+    "line": 1387,
+    "en": "  el.innerHTML = `<p class=\"gb-head\">${'You improved!'}</p>${lines.map((x) => `<div class=\"gb-line\"><b>${SKILL[x.skill].name}</b><span class=\"gb-row\"><span class=\"gb-what\">${x.what === 'time' ? 'Per problem' : 'First try'}</span><span class=\"gb-old\"><small>${when(x)}</small>${val(x.what, x.from)}</span><span class=\"gb-arrow\">→</span><span class=\"gb-new\"><small>${'Today'}</small><em data-what=\"${x.what}\" data-from=\"${x.from}\" data-to=\"${x.to}\">${val(x.what, S.reduced ? x.to : x.from)}</em></span></span></div>`).join('')}`;",
+    "cn": "  el.innerHTML = `<p class=\"gb-head\">自我成长！进步了！</p>${lines.map((x) => `<div class=\"gb-line\"><b>${SKILL[x.skill].name}</b><span class=\"gb-row\"><span class=\"gb-what\">${x.what === 'time' ? '每题用时' : '初次正确率'}</span><span class=\"gb-old\"><small>${when(x)}</small>${val(x.what, x.from)}</span><span class=\"gb-arrow\">→</span><span class=\"gb-new\"><small>今日</small><em data-what=\"${x.what}\" data-from=\"${x.from}\" data-to=\"${x.to}\">${val(x.what, S.reduced ? x.to : x.from)}</em></span></span></div>`).join('')}`;",
+    "tw": "  el.innerHTML = `<p class=\"gb-head\">自我成長！進步了！</p>${lines.map((x) => `<div class=\"gb-line\"><b>${SKILL[x.skill].name}</b><span class=\"gb-row\"><span class=\"gb-what\">${x.what === 'time' ? '每題用時' : '初次正確率'}</span><span class=\"gb-old\"><small>${when(x)}</small>${val(x.what, x.from)}</span><span class=\"gb-arrow\">→</span><span class=\"gb-new\"><small>今日</small><em data-what=\"${x.what}\" data-from=\"${x.from}\" data-to=\"${x.to}\">${val(x.what, S.reduced ? x.to : x.from)}</em></span></span></div>`).join('')}`;"
+  },
+  {
+    "line": 1411,
+    "en": "    ...(S.capsuleNews ? [`<p class=\"capsule-news\"><b>Time capsule</b>${S.capsuleNews}</p>`] : []),",
+    "cn": "    ...(S.capsuleNews ? [`<p class=\"capsule-news\"><b>时光胶囊</b>${S.capsuleNews}</p>`] : []),",
+    "tw": "    ...(S.capsuleNews ? [`<p class=\"capsule-news\"><b>時光膠囊</b>${S.capsuleNews}</p>`] : []),"
+  },
+  {
+    "line": 1412,
+    "en": "    ...(S.polished || []).map((id) => `<p class=\"polish-news\">Polished! ${SKILL[id].name}</p>`),",
+    "cn": "    ...(S.polished || []).map((id) => `<p class=\"polish-news\">重焕光彩！ ${SKILL[id].name}</p>`),",
+    "tw": "    ...(S.polished || []).map((id) => `<p class=\"polish-news\">重煥光芒！ ${SKILL[id].name}</p>`),"
+  },
+  {
+    "line": 1413,
+    "en": "    ...Object.entries(S.newStars || {}).map(([id, n]) => `<p class=\"star-up\">${starRow(n)}<span>${`Now ☆${n}! ${SKILL[id].name}`}</span></p>`),",
+    "cn": "    ...Object.entries(S.newStars || {}).map(([id, n]) => `<p class=\"star-up\">${starRow(n)}<span>${`升至 ☆${n}！${SKILL[id].name}`}</span></p>`),",
+    "tw": "    ...Object.entries(S.newStars || {}).map(([id, n]) => `<p class=\"star-up\">${starRow(n)}<span>${`升至 ☆${n}！${SKILL[id].name}`}</span></p>`),"
+  },
+  {
+    "line": 1414,
+    "en": "    ...S.newMastered.map((id) => `<p class=\"mastered\">Mastered! ${SKILL[id].name}</p>`),",
+    "cn": "    ...S.newMastered.map((id) => `<p class=\"mastered\">完全精通！ ${SKILL[id].name}</p>`),",
+    "tw": "    ...S.newMastered.map((id) => `<p class=\"mastered\">完全精通！ ${SKILL[id].name}</p>`),"
+  },
+  {
+    "line": 1415,
+    "en": "    ...S.newUnlocks.map((id) => `<p>Unlocked! ${SKILL[id].name}</p>`),",
+    "cn": "    ...S.newUnlocks.map((id) => `<p>解锁新技能！ ${SKILL[id].name}</p>`),",
+    "tw": "    ...S.newUnlocks.map((id) => `<p>解鎖新技能！ ${SKILL[id].name}</p>`),"
+  },
+  {
+    "line": 1417,
+    "en": "  if (S.plan.placement) items.unshift(`<p>Skill check done: ${SKILLS.filter((x) => stateOf(progress(), x.id) === 'mastered').length} cleared</p>`);",
+    "cn": "  if (S.plan.placement) items.unshift(`<p>能力诊断完成：已掌握 ${SKILLS.filter((x) => stateOf(progress(), x.id) === 'mastered').length} 项技能</p>`);",
+    "tw": "  if (S.plan.placement) items.unshift(`<p>能力診斷完成：已掌握 ${SKILLS.filter((x) => stateOf(progress(), x.id) === 'mastered').length} 項技能</p>`);"
+  },
+  {
+    "line": 1422,
+    "en": "  btn.textContent = `Redo ${nOf(n, 'missed problem')}`;",
+    "cn": "  btn.textContent = `重做 ${n} 道错题`;",
+    "tw": "  btn.textContent = `重做 ${n} 道錯題`;"
+  },
+  {
+    "line": 1434,
+    "en": "  $('#level-sub').textContent = prog.placed ? `Next: \"${SKILL[frontier(prog)[0] || ORDER[ORDER.length - 1]].name}\"` : 'Starts with a skill check';",
+    "cn": "  $('#level-sub').textContent = prog.placed ? `下一目标：「${SKILL[frontier(prog)[0] || ORDER[ORDER.length - 1]].name}」` : '从能力诊断开始';",
+    "tw": "  $('#level-sub').textContent = prog.placed ? `下一目標：「${SKILL[frontier(prog)[0] || ORDER[ORDER.length - 1]].name}」` : '從能力診斷開始';"
+  },
+  {
+    "line": 1497,
+    "en": "      if (el > S.targetMs) $('#clock-label').textContent = 'Over goal';",
+    "cn": "      if (el > S.targetMs) $('#clock-label').textContent = '超出目标用时';",
+    "tw": "      if (el > S.targetMs) $('#clock-label').textContent = '超出目標用時';"
+  },
+  {
+    "line": 1583,
+    "en": "  b.querySelector('b').textContent = m ? 'Off' : 'On';",
+    "cn": "  b.querySelector('b').textContent = m ? '关闭' : '开启';",
+    "tw": "  b.querySelector('b').textContent = m ? '關閉' : '開啟';"
+  },
+  {
+    "line": 1585,
+    "en": "  $('#mute').setAttribute('aria-label', m ? 'Unmute' : 'Mute');",
+    "cn": "  $('#mute').setAttribute('aria-label', m ? '取消静音' : '静音');",
+    "tw": "  $('#mute').setAttribute('aria-label', m ? '取消靜音' : '靜音');"
+  },
+  {
+    "line": 1682,
+    "en": "    b.innerHTML = `<i class=\"hold\"></i><span class=\"g\">${`Grade ${sk.grade}`}</span><span>${name}</span>${st === 'learning' ? '<i class=\"ring\"></i>' : ''}${st === 'mastered' ? `<i class=\"stars s${stars}\">${starRow(stars)}</i>` : ''}${rusty ? '<i class=\"rust\" aria-hidden=\"true\">rust</i>' : ''}`;",
+    "cn": "    b.innerHTML = `<i class=\"hold\"></i><span class=\"g\">${sk.grade}年级</span><span>${name}</span>${st === 'learning' ? '<i class=\"ring\"></i>' : ''}${st === 'mastered' ? `<i class=\"stars s${stars}\">${starRow(stars)}</i>` : ''}${rusty ? '<i class=\"rust\" aria-hidden=\"true\">生疏</i>' : ''}`;",
+    "tw": "    b.innerHTML = `<i class=\"hold\"></i><span class=\"g\">${sk.grade}年級</span><span>${name}</span>${st === 'learning' ? '<i class=\"ring\"></i>' : ''}${st === 'mastered' ? `<i class=\"stars s${stars}\">${starRow(stars)}</i>` : ''}${rusty ? '<i class=\"rust\" aria-hidden=\"true\">生疏</i>' : ''}`;"
+  },
+  {
+    "line": 1683,
+    "en": "    b.setAttribute('aria-label', `${sk.name}: ${{ locked: 'locked', new: 'new', learning: 'learning', mastered: `mastered, ${nOf(stars, 'star')}${rusty ? ', rusty' : ''}` }[st]}`);",
+    "cn": "    b.setAttribute('aria-label', `${sk.name}: ${{ locked: '未解锁', new: '新技能', learning: '练习中', mastered: `已掌握, ${stars}星${rusty ? ', 需要复习' : ''}` }[st]}`);",
+    "tw": "    b.setAttribute('aria-label', `${sk.name}: ${{ locked: '未解鎖', new: '新技能', learning: '練習中', mastered: `已掌握, ${stars}星${rusty ? ', 需要複習' : ''}` }[st]}`);"
+  },
+  {
+    "line": 1729,
+    "en": "  $('#si-grade').textContent = `Grade ${sk.grade} · ${LANES[sk.lane]}`;",
+    "cn": "  $('#si-grade').textContent = `${sk.grade} 年级 · ${LANES[sk.lane]}`;",
+    "tw": "  $('#si-grade').textContent = `${sk.grade} 年級 · ${LANES[sk.lane]}`;"
+  },
+  {
+    "line": 1732,
+    "en": "  $('#si-next').innerHTML = next ? `<p class=\"si-label\">${`Next: ☆${next.n}`}</p><p class=\"si-text\">${next.text}</p><p class=\"si-now\">${next.now}</p>` : '<p class=\"si-text done\">☆5 reached! Amazing!</p>';",
+    "cn": "  $('#si-next').innerHTML = next ? `<p class=\"si-label\">${`下一阶段：☆${next.n}`}</p><p class=\"si-text\">${next.text}</p><p class=\"si-now\">${next.now}</p>` : '<p class=\"si-text done\">已达成最高 ☆5！太出色了！</p>';",
+    "tw": "  $('#si-next').innerHTML = next ? `<p class=\"si-label\">${`下一階段：☆${next.n}`}</p><p class=\"si-text\">${next.text}</p><p class=\"si-now\">${next.now}</p>` : '<p class=\"si-text done\">已達成最高 ☆5！太出色了！</p>';"
+  },
+  {
+    "line": 1733,
+    "en": "  $('#si-note').textContent = `${rustyOf(prog).includes(id) ? 'A little rusty! One first-try answer makes it shine. ' : ''}Solved: ${r.n || 0}${best != null ? ` · Fastest: ${(best / 1000).toFixed(1)}s` : ''}`;",
+    "cn": "  $('#si-note').textContent = `${rustyOf(prog).includes(id) ? '有些生疏了！一次作答正确即可重新点亮。' : ''}累计答对：${r.n || 0}${best != null ? ` · 最快纪录：${(best / 1000).toFixed(1)}秒` : ''}`;",
+    "tw": "  $('#si-note').textContent = `${rustyOf(prog).includes(id) ? '有些生疏了！一次作答正確即可重新點亮。' : ''}累計答對：${r.n || 0}${best != null ? ` · 最快紀錄：${(best / 1000).toFixed(1)}秒` : ''}`;"
+  },
+  {
+    "line": 1828,
+    "en": "    toast('No records to erase yet');",
+    "cn": "    toast('目前尚无可重置的记录');",
+    "tw": "    toast('目前尚無可重置的記錄');"
+  },
+  {
+    "line": 1836,
+    "en": "    title: 'Erase skill',",
+    "cn": "    title: '重置技能记录',",
+    "tw": "    title: '重置單元記錄',"
+  },
+  {
+    "line": 1837,
+    "en": "    msg: `This erases your records for \"${SKILL[id].name}\".${deps ? `<br>The <b>${deps}</b> ${deps === 1 ? 'skill that builds' : 'skills that build'} on it will be erased and locked again too.` : ''}`,",
+    "cn": "    msg: `将重置「${SKILL[id].name}」的全部练习记录。${deps ? `<br>受其影响的 <b>${deps}</b> 个后续技能也将一并重置并重新锁定。` : ''}`,",
+    "tw": "    msg: `將重置「${SKILL[id].name}」的全部練習記錄。${deps ? `<br>受其影響的 <b>${deps}</b> 個後續單元也將一併重置並重新鎖定。` : ''}`,"
+  },
+  {
+    "line": 1838,
+    "en": "    list: ids.slice(0, MAX).map((x) => `<li>${SKILL[x].name}</li>`).join('') + (ids.length > MAX ? `<li class=\"more\">+${ids.length - MAX} more</li>` : ''),",
+    "cn": "    list: ids.slice(0, MAX).map((x) => `<li>${SKILL[x].name}</li>`).join('') + (ids.length > MAX ? `<li class=\"more\">+${ids.length - MAX} 项...</li>` : ''),",
+    "tw": "    list: ids.slice(0, MAX).map((x) => `<li>${SKILL[x].name}</li>`).join('') + (ids.length > MAX ? `<li class=\"more\">+${ids.length - MAX} 項...</li>` : ''),"
+  },
+  {
+    "line": 1839,
+    "en": "    yes: 'Erase', no: 'Cancel',",
+    "cn": "    yes: '确认重置', no: '取消',",
+    "tw": "    yes: '確認重置', no: '取消',"
+  },
+  {
+    "line": 1851,
+    "en": "  toast(`Erased ${nOf(gone.length, 'skill')}`);",
+    "cn": "  toast(`已重置 ${gone.length} 个技能`);",
+    "tw": "  toast(`已重置 ${gone.length} 個單元`);"
+  },
+  {
+    "line": 1866,
+    "en": "    title: 'Back to the title?',",
+    "cn": "    title: '返回主标题？',",
+    "tw": "    title: '返回主畫面？',"
+  },
+  {
+    "line": 1867,
+    "en": "    msg: playing ? 'This play will end here.' : \"You'll go back to the title screen.\",",
+    "cn": "    msg: playing ? '当前挑战进度将在此结束。' : '确定要返回主页面吗？',",
+    "tw": "    msg: playing ? '當前挑戰進度將在此結束。' : '確定要返回主畫面嗎？',"
+  },
+  {
+    "line": 1868,
+    "en": "    yes: 'Go back', no: playing ? 'Keep playing' : 'Stay here', danger: playing,",
+    "cn": "    yes: '返回', no: playing ? '继续挑战' : '留在当前', danger: playing,",
+    "tw": "    yes: '返回', no: playing ? '繼續挑戰' : '留在這裡', danger: playing,"
+  },
+  {
+    "line": 1884,
+    "en": "const MODE_NAMES = { drill: (h) => h.count ? `${h.count}-problem drill` : 'Drill', level: () => 'My Level', grade: (h) => `Grade ${h.grade}`, review: () => 'Review', practice: (h) => `Practice (${SKILL[h.skill]?.name || ''})` };",
+    "cn": "const MODE_NAMES = { drill: (h) => h.count ? `${h.count}题练习` : '练习', level: () => '我的等级', grade: (h) => `${h.grade}年级`, review: () => '错题复习', practice: (h) => `专项练习 (${SKILL[h.skill]?.name || ''})` };",
+    "tw": "const MODE_NAMES = { drill: (h) => h.count ? `${h.count}題練習` : '練習', level: () => '我的等級', grade: (h) => `${h.grade}年級`, review: () => '錯題複習', practice: (h) => `專項練習 (${SKILL[h.skill]?.name || ''})` };"
+  },
+  {
+    "line": 1894,
+    "en": "  $('#cal-title').textContent = `${MONTHS[m]} ${y}`;",
+    "cn": "  $('#cal-title').textContent = `${y}年 ${MONTHS[m]}`;",
+    "tw": "  $('#cal-title').textContent = `${y}年 ${MONTHS[m]}`;"
+  },
+  {
+    "line": 1908,
+    "en": "    const label = info ? `${MONTHS[m]} ${d}: ${nOf(info.plays, 'play')}, best ${info.best} pts${questDays[key] ? ', quests complete' : ''}` : `${MONTHS[m]} ${d}`;",
+    "cn": "    const label = info ? `${m + 1}月${d}日: 完成 ${info.plays} 轮, 最高 ${info.best} 分${questDays[key] ? ', 今日任务全通关' : ''}` : `${m + 1}月${d}日`;",
+    "tw": "    const label = info ? `${m + 1}月${d}日: 完成 ${info.plays} 輪, 最高 ${info.best} 分${questDays[key] ? ', 今日任務全通關' : ''}` : `${m + 1}月${d}日`;"
+  },
+  {
+    "line": 1915,
+    "en": "    const ncStamp = nc ? '<span class=\"nc\">SAVED</span>' : '';",
+    "cn": "    const ncStamp = nc ? '<span class=\"nc\">补签</span>' : '';",
+    "tw": "    const ncStamp = nc ? '<span class=\"nc\">補簽</span>' : '';"
+  },
+  {
+    "line": 1927,
+    "en": "  if (n >= 1) badges.push(`<span class=\"cal-badge${n >= 3 ? ' hot' : ''}\">${`Streak<b>${n}</b>${n === 1 ? 'day' : 'days'}${playedToday ? '' : ` (today makes ${n + 1})`}`}</span>`);",
+    "cn": "  if (n >= 1) badges.push(`<span class=\"cal-badge${n >= 3 ? ' hot' : ''}\">连续打卡<b>${n}</b>天${playedToday ? '' : `（今天完成即达 ${n + 1} 天）`}</span>`);",
+    "tw": "  if (n >= 1) badges.push(`<span class=\"cal-badge${n >= 3 ? ' hot' : ''}\">連續打卡<b>${n}</b>天${playedToday ? '' : `（今天完成即達 ${n + 1} 天）`}</span>`);"
+  },
+  {
+    "line": 1928,
+    "en": "  else badges.push('<span class=\"cal-badge\">Start a streak today!</span>');",
+    "cn": "  else badges.push('<span class=\"cal-badge\">从今天开始连续打卡！</span>');",
+    "tw": "  else badges.push('<span class=\"cal-badge\">從今天開始連續打卡！</span>');"
+  },
+  {
+    "line": 1929,
+    "en": "  if (best >= 2) badges.push(`<span class=\"cal-badge best\">${`Best<b>${best}</b>days`}</span>`);",
+    "cn": "  if (best >= 2) badges.push(`<span class=\"cal-badge best\">最高连续<b>${best}</b>天</span>`);",
+    "tw": "  if (best >= 2) badges.push(`<span class=\"cal-badge best\">最高連續<b>${best}</b>天</span>`);"
+  },
+  {
+    "line": 1930,
+    "en": "  if (bonus.total) badges.push(`<span class=\"cal-badge stk\">${`Stickers<b>${bonus.total}</b>`}</span>`);",
+    "cn": "  if (bonus.total) badges.push(`<span class=\"cal-badge stk\">签到印章<b>${bonus.total}</b>个</span>`);",
+    "tw": "  if (bonus.total) badges.push(`<span class=\"cal-badge stk\">簽到印章<b>${bonus.total}</b>個</span>`);"
+  },
+  {
+    "line": 1932,
+    "en": "  badges.push(`<span class=\"cal-badge hmr\" aria-label=\"Streak Hammers: ${hammers}\"><i>${HAMMER_SVG}</i><b>${hammers}</b></span>`);",
+    "cn": "  badges.push(`<span class=\"cal-badge hmr\" aria-label=\"补签锤：${hammers}支\"><i>${HAMMER_SVG}</i><b>${hammers}</b></span>`);",
+    "tw": "  badges.push(`<span class=\"cal-badge hmr\" aria-label=\"補簽槌：${hammers}支\"><i>${HAMMER_SVG}</i><b>${hammers}</b></span>`);"
+  },
+  {
+    "line": 1963,
+    "en": "  $('#bonus-run').innerHTML = res.run >= 2 ? `Day<b>${res.run}</b>in a row!` : \"Today's bonus\";",
+    "cn": "  $('#bonus-run').innerHTML = res.run >= 2 ? `连续打卡第 <b>${res.run}</b> 天！` : '今日登录奖励';",
+    "tw": "  $('#bonus-run').innerHTML = res.run >= 2 ? `連續打卡第 <b>${res.run}</b> 天！` : '今日登入獎勵';"
+  },
+  {
+    "line": 1968,
+    "en": "    slots.push(`<div class=\"bonus-slot${got ? ' got' : ''}${i === res.slot ? ' today stamping' : ''}${i === 7 ? ' big' : ''}\"><span class=\"d\">${`Day ${i}`}</span>${got ? stickerSvg(type) : i === 7 ? '?' : i}</div>`);",
+    "cn": "    slots.push(`<div class=\"bonus-slot${got ? ' got' : ''}${i === res.slot ? ' today stamping' : ''}${i === 7 ? ' big' : ''}\"><span class=\"d\">第 ${i} 天</span>${got ? stickerSvg(type) : i === 7 ? '?' : i}</div>`);",
+    "tw": "    slots.push(`<div class=\"bonus-slot${got ? ' got' : ''}${i === res.slot ? ' today stamping' : ''}${i === 7 ? ' big' : ''}\"><span class=\"d\">第 ${i} 天</span>${got ? stickerSvg(type) : i === 7 ? '?' : i}</div>`);"
+  },
+  {
+    "line": 1971,
+    "en": "  $('#bonus-note').textContent = res.slot === 7 ? \"Special sticker! It's on your calendar.\" : `${nOf(7 - res.slot, 'more day')} to a special sticker`;",
+    "cn": "  $('#bonus-note').textContent = res.slot === 7 ? '获得特别纪念印章！已盖在你的日历上。' : `再连续签到 ${7 - res.slot} 天即可获得特别纪念印章`;",
+    "tw": "  $('#bonus-note').textContent = res.slot === 7 ? '獲得特別紀念印章！已蓋在你的日曆上。' : `再連續簽到 ${7 - res.slot} 天即可獲得特別紀念印章`;"
+  },
+  {
+    "line": 2070,
+    "en": "  $('#tg-title').textContent = 'New trophy!';",
+    "cn": "  $('#tg-title').textContent = '解锁新成就！';",
+    "tw": "  $('#tg-title').textContent = '解鎖新成就！';"
+  },
+  {
+    "line": 2071,
+    "en": "  $('#tg-sub').innerHTML = batch.length ? `<b>${batch.length}</b> earned from your past play!` : list.length > 1 ? `You earned <b>${list.length}</b>!` : '';",
+    "cn": "  $('#tg-sub').innerHTML = batch.length ? `根据过往练习直接获得 <b>${batch.length}</b> 项成就！` : list.length > 1 ? `获得了 <b>${list.length}</b> 项新成就！` : '';",
+    "tw": "  $('#tg-sub').innerHTML = batch.length ? `根據過往練習直接獲得 <b>${batch.length}</b> 項成就！` : list.length > 1 ? `獲得了 <b>${list.length}</b> 項新成就！` : '';"
+  },
+  {
+    "line": 2074,
+    "en": "  $('#tg-list').innerHTML = list.slice(0, MAX).map((x) => `<li class=\"r-${x.rank}\"><i>${trophySvg(x.rank)}</i><span><b>${x.name}</b><small>${x.desc}</small></span></li>`).join('') + (list.length > MAX ? `<li class=\"more\">+${list.length - MAX} more</li>` : '')",
+    "cn": "  $('#tg-list').innerHTML = list.slice(0, MAX).map((x) => `<li class=\"r-${x.rank}\"><i>${trophySvg(x.rank)}</i><span><b>${x.name}</b><small>${x.desc}</small></span></li>`).join('') + (list.length > MAX ? `<li class=\"more\">+${list.length - MAX} 项...</li>` : '')",
+    "tw": "  $('#tg-list').innerHTML = list.slice(0, MAX).map((x) => `<li class=\"r-${x.rank}\"><i>${trophySvg(x.rank)}</i><span><b>${x.name}</b><small>${x.desc}</small></span></li>`).join('') + (list.length > MAX ? `<li class=\"more\">+${list.length - MAX} 項...</li>` : '')"
+  },
+  {
+    "line": 2075,
+    "en": "    + rewards.map((it) => `<li class=\"reward\"><i>${itemThumb(it)}</i><span>${`<b>You got \"${it.name}\" (${catName(it.cat)})!</b><small>Pick it in the Collection</small>`}</span></li>`).join('');",
+    "cn": "    + rewards.map((it) => `<li class=\"reward\"><i>${itemThumb(it)}</i><span><b>获得了特效「${it.name}」(${catName(it.cat)})！</b><small>可前往图鉴收藏中选用</small></span></li>`).join('');",
+    "tw": "    + rewards.map((it) => `<li class=\"reward\"><i>${itemThumb(it)}</i><span><b>獲得了特效「${it.name}」(${catName(it.cat)})！</b><small>可前往圖鑑收藏中選用</small></span></li>`).join('');"
+  },
+  {
+    "line": 2121,
+    "en": "      const next = v.next ? `<span class=\"tr-next\">${`Next: ${secret ? '???' : v.next.name}${!secret && trophyValueText(v.next, v.value) ? ` (${trophyValueText(v.next, v.value)})` : ''}`}</span>` : '<span class=\"tr-next done\">Complete!</span>';",
+    "cn": "      const next = v.next ? `<span class=\"tr-next\">下一目标：${secret ? '???' : v.next.name}${!secret && trophyValueText(v.next, v.value) ? ` (${trophyValueText(v.next, v.value)})` : ''}</span>` : '<span class=\"tr-next done\">全部完成！</span>';",
+    "tw": "      const next = v.next ? `<span class=\"tr-next\">下一目標：${secret ? '???' : v.next.name}${!secret && trophyValueText(v.next, v.value) ? ` (${trophyValueText(v.next, v.value)})` : ''}</span>` : '<span class=\"tr-next done\">全部完成！</span>';"
+  },
+  {
+    "line": 2125,
+    "en": "        return `<li class=\"${got[x.id] ? 'got' : ''}\"><i>${trophySvg(got[x.id] ? x.rank : 'none')}</i><span><b>${hide ? '???' : x.name}</b><small>${hide ? 'Secret trophy' : x.desc}</small>${rw && !hide ? `<small class=\"rw\">Reward: ${catName(rw.cat)} \"${rw.name}\"</small>` : ''}</span><em>${got[x.id] ? day(got[x.id]) : ''}</em></li>`;",
+    "cn": "        return `<li class=\"${got[x.id] ? 'got' : ''}\"><i>${trophySvg(got[x.id] ? x.rank : 'none')}</i><span><b>${hide ? '???' : x.name}</b><small>${hide ? '隐藏成就' : x.desc}</small>${rw && !hide ? `<small class=\"rw\">奖励：${catName(rw.cat)}「${rw.name}」</small>` : ''}</span><em>${got[x.id] ? day(got[x.id]) : ''}</em></li>`;",
+    "tw": "        return `<li class=\"${got[x.id] ? 'got' : ''}\"><i>${trophySvg(got[x.id] ? x.rank : 'none')}</i><span><b>${hide ? '???' : x.name}</b><small>${hide ? '隱藏成就' : x.desc}</small>${rw && !hide ? `<small class=\"rw\">獎勵：${catName(rw.cat)}「${rw.name}」</small>` : ''}</span><em>${got[x.id] ? day(got[x.id]) : ''}</em></li>`;"
+  },
+  {
+    "line": 2136,
+    "en": "  $('#tr-list').innerHTML = html || '<p class=\"tr-empty\">Nothing here yet</p>';",
+    "cn": "  $('#tr-list').innerHTML = html || '<p class=\"tr-empty\">暂无内容</p>';",
+    "tw": "  $('#tr-list').innerHTML = html || '<p class=\"tr-empty\">暫無內容</p>';"
+  },
+  {
+    "line": 2202,
+    "en": "  $('#co-note').textContent = auto ? '\"Shuffle\" picks a different one you own every play' : 'Your pick is used every time';",
+    "cn": "  $('#co-note').textContent = auto ? '「随机轮换」将在每轮自动随机使用已解锁的特效' : '已锁定使用你当前选中的特效';",
+    "tw": "  $('#co-note').textContent = auto ? '「隨機輪換」將在每輪自動隨機使用已解鎖的特效' : '已鎖定使用你當前選中的特效';"
+  },
+  {
+    "line": 2203,
+    "en": "  $('#co-grid').innerHTML = `<button type=\"button\" class=\"co-item auto${auto ? ' on' : ''}\" data-id=\"auto\"><span class=\"co-th\"><b>${'?'}</b></span><span class=\"co-name\">${'Shuffle'}</span><small>${'Changes every play'}</small></button>`",
+    "cn": "  $('#co-grid').innerHTML = `<button type=\"button\" class=\"co-item auto${auto ? ' on' : ''}\" data-id=\"auto\"><span class=\"co-th\"><b>${'?'}</b></span><span class=\"co-name\">${'随机轮换'}</span><small>${'每轮随机使用已解锁物品'}</small></button>`",
+    "tw": "  $('#co-grid').innerHTML = `<button type=\"button\" class=\"co-item auto${auto ? ' on' : ''}\" data-id=\"auto\"><span class=\"co-th\"><b>${'?'}</b></span><span class=\"co-name\">${'隨機輪換'}</span><small>${'每輪隨機使用已解鎖物品'}</small></button>`"
+  },
+  {
+    "line": 2208,
+    "en": "      return `<button type=\"button\" class=\"co-item${own ? '' : ' locked'}${on ? ' on' : ''}\" data-id=\"${it.id}\"${own ? '' : ` aria-label=\"Locked. Earn the trophy &quot;${tro ? tro.name : ''}&quot; to get it\"`}><span class=\"co-th\">${itemThumb(it)}</span><span class=\"co-name\">${own ? it.name : '???'}</span>${own ? '<small>&nbsp;</small>' : `<small class=\"co-lock\">Trophy: ${tro ? tro.name : ''}</small>`}</button>`;",
+    "cn": "      return `<button type=\"button\" class=\"co-item${own ? '' : ' locked'}${on ? ' on' : ''}\" data-id=\"${it.id}\"${own ? '' : ` aria-label=\"未解锁。达成成就「${tro ? tro.name : ''}」即可获得\"`}><span class=\"co-th\">${itemThumb(it)}</span><span class=\"co-name\">${own ? it.name : '???'}</span>${own ? '<small>&nbsp;</small>' : `<small class=\"co-lock\">成就：${tro ? tro.name : ''}</small>`}</button>`;",
+    "tw": "      return `<button type=\"button\" class=\"co-item${own ? '' : ' locked'}${on ? ' on' : ''}\" data-id=\"${it.id}\"${own ? '' : ` aria-label=\"未解鎖。達成成就「${tro ? tro.name : ''}」即可獲得\"`}><span class=\"co-th\">${itemThumb(it)}</span><span class=\"co-name\">${own ? it.name : '???'}</span>${own ? '<small>&nbsp;</small>' : `<small class=\"co-lock\">成就：${tro ? tro.name : ''}</small>`}</button>`;"
+  },
+  {
+    "line": 2212,
+    "en": "  $('#co-now').textContent = `${catName(co.cat)}: ${auto ? 'Shuffle' : (ul.ITEM[eq[co.cat]] || {}).name || ''}`;",
+    "cn": "  $('#co-now').textContent = `${catName(co.cat)}: ${auto ? '随机轮换' : (ul.ITEM[eq[co.cat]] || {}).name || ''}`;",
+    "tw": "  $('#co-now').textContent = `${catName(co.cat)}: ${auto ? '隨機輪換' : (ul.ITEM[eq[co.cat]] || {}).name || ''}`;"
+  },
+  {
+    "line": 2258,
+    "en": "const fmtDay = (key) => { const [, m, d] = key.split('-').map(Number); return `${MONTHS[m - 1].slice(0, 3)} ${d}`; };",
+    "cn": "const fmtDay = (key) => { const [, m, d] = key.split('-').map(Number); return `${m}月${d}日`; };",
+    "tw": "const fmtDay = (key) => { const [, m, d] = key.split('-').map(Number); return `${m}月${d}日`; };"
+  },
+  {
+    "line": 2264,
+    "en": "  $('#hammer-msg').innerHTML = `You didn't play on ${days}.<br>Stamp ${offer.days.length > 1 ? 'them' : 'it'} <b>SAVED</b>,<br>and your <b>${offer.run}</b>-day streak goes on!`;",
+    "cn": "  $('#hammer-msg').innerHTML = `${days}那天没有练习算术。<br>使用补签锤盖上<b>补签</b>印章，<br>即可延续连续 <b>${offer.run}</b> 天的打卡纪录！`;",
+    "tw": "  $('#hammer-msg').innerHTML = `${days}那天沒有練習算術。<br>使用補簽槌蓋上<b>補簽</b>印章，<br>即可延續連續 <b>${offer.run}</b> 天的打卡紀錄！`;"
+  },
+  {
+    "line": 2266,
+    "en": "  $('#hammer-have').innerHTML = `${'Your hammers'} ${Array.from({ length: max }, (_, i) => `<i class=\"${i < offer.hammers ? 'on' : ''}\">${HAMMER_SVG}</i>`).join('')}`;",
+    "cn": "  $('#hammer-have').innerHTML = `${'持有补签锤'} ${Array.from({ length: max }, (_, i) => `<i class=\"${i < offer.hammers ? 'on' : ''}\">${HAMMER_SVG}</i>`).join('')}`;",
+    "tw": "  $('#hammer-have').innerHTML = `${'持有補簽槌'} ${Array.from({ length: max }, (_, i) => `<i class=\"${i < offer.hammers ? 'on' : ''}\">${HAMMER_SVG}</i>`).join('')}`;"
+  },
+  {
+    "line": 2267,
+    "en": "  $('#hammer-yes').textContent = `Use ${nOf(offer.days.length, 'hammer')}`;",
+    "cn": "  $('#hammer-yes').textContent = `使用 ${offer.days.length} 支补签锤`;",
+    "tw": "  $('#hammer-yes').textContent = `使用 ${offer.days.length} 支補簽槌`;"
+  },
+  {
+    "line": 2310,
+    "en": "    if (!S.reduced) { fx.text(c.x, c.y - 30, `${offer.run}-day streak saved!`, { color: '#ff7ab6', size: 26, vy: -70, life: 1.4 }); fx.burst(c.x, c.y, { count: 40, kinds: ['star', 'confetti', 'heart'], speed: 520, up: 160 }); }",
+    "cn": "    if (!S.reduced) { fx.text(c.x, c.y - 30, `连续 ${offer.run} 天打卡纪录已保住！`, { color: '#ff7ab6', size: 26, vy: -70, life: 1.4 }); fx.burst(c.x, c.y, { count: 40, kinds: ['star', 'confetti', 'heart'], speed: 520, up: 160 }); }",
+    "tw": "    if (!S.reduced) { fx.text(c.x, c.y - 30, `連續 ${offer.run} 天打卡紀錄已保住！`, { color: '#ff7ab6', size: 26, vy: -70, life: 1.4 }); fx.burst(c.x, c.y, { count: 40, kinds: ['star', 'confetti', 'heart'], speed: 520, up: 160 }); }"
+  },
+  {
+    "line": 2383,
+    "en": "  $('#day-title').textContent = `${MONTHS[m - 1]} ${d}`;",
+    "cn": "  $('#day-title').textContent = `${MONTHS[m - 1]}${d}日`;",
+    "tw": "  $('#day-title').textContent = `${MONTHS[m - 1]}${d}日`;"
+  },
+  {
+    "line": 2388,
+    "en": "    const extra = h.extraOk ? ` · Extra ${h.extraOk}` : '';",
+    "cn": "    const extra = h.extraOk ? ` · 加时赛答对 ${h.extraOk} 题` : '';",
+    "tw": "    const extra = h.extraOk ? ` · 加時賽答對 ${h.extraOk} 題` : '';"
+  },
+  {
+    "line": 2390,
+    "en": "    return `<li><span class=\"t\">${time}</span><span class=\"m\">${name}</span><span class=\"s\">${`${(h.score || 0).toLocaleString('en-US')} pts`}</span><span class=\"d\">${`Correct ${h.ok ?? '-'} · Oops ${h.ng ?? '-'}${extra} · ${fmtTime(h.timeMs || 0)}`}</span></li>`;",
+    "cn": "    return `<li><span class=\"t\">${time}</span><span class=\"m\">${name}</span><span class=\"s\">${`${(h.score || 0).toLocaleString(\"zh-CN\")} 分`}</span><span class=\"d\">${`答对 ${h.ok ?? \"-\"} · 失误 ${h.ng ?? \"-\"}${extra} · ${fmtTime(h.timeMs || 0)}`}</span></li>`;",
+    "tw": "    return `<li><span class=\"t\">${time}</span><span class=\"m\">${name}</span><span class=\"s\">${`${(h.score || 0).toLocaleString(\"zh-CN\")} 分`}</span><span class=\"d\">${`答對 ${h.ok ?? \"-\"} · 失誤 ${h.ng ?? \"-\"}${extra} · ${fmtTime(h.timeMs || 0)}`}</span></li>`;"
+  },
+  {
+    "line": 2427,
+    "en": "    title: 'Reset everything',",
+    "cn": "    title: '清除所有数据',",
+    "tw": "    title: '清除所有資料',"
+  },
+  {
+    "line": 2428,
+    "en": "    msg: 'This erases all records, skills, trophies, collection items, stickers and settings.',",
+    "cn": "    msg: '这将清除所有打卡记录、技能树、成就奖杯、图鉴收藏、签到印章和设置。',",
+    "tw": "    msg: '這將清除所有打卡記錄、技能、成就獎杯、收藏物品、貼紙和設定。',"
+  },
+  {
+    "line": 2429,
+    "en": "    yes: 'Erase', no: 'Cancel', focusBack: $('#open-settings'),",
+    "cn": "    yes: '确认重置', no: '取消', focusBack: $('#open-settings'),",
+    "tw": "    yes: '確認重置', no: '取消', focusBack: $('#open-settings'),"
+  },
+  {
+    "line": 2431,
+    "en": "      title: 'Really erase everything?',",
+    "cn": "      title: '确定要彻底清除所有数据吗？',",
+    "tw": "      title: '確定要徹底清除全部資料嗎？',"
+  },
+  {
+    "line": 2432,
+    "en": "      msg: \"Once it's erased, it can't be brought back.\",",
+    "cn": "      msg: '数据一旦清除将无法找回，请再次确认。',",
+    "tw": "      msg: '資料一旦清除將無法復原，請再次確認。',"
+  },
+  {
+    "line": 2433,
+    "en": "      yes: 'Erase all', no: 'Cancel', urgent: true, focusBack: $('#open-settings'),",
+    "cn": "      yes: '确认全部清除', no: '取消', urgent: true, focusBack: $('#open-settings'),",
+    "tw": "      yes: '確認全部清除', no: '取消', urgent: true, focusBack: $('#open-settings'),"
+  },
+  {
+    "line": 2550,
+    "en": "  if (!target || target === 'en') return;",
+    "cn": "  if (!target || target === 'zh-CN') return;",
+    "tw": "  if (!target || target === 'zh-TW') return;"
+  }
+]

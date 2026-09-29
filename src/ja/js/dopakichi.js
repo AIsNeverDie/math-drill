@@ -234,7 +234,15 @@ export class Dopakichi {
   restHand(side, h) { return this.toScreen(side * (G.rest.x + h.raise * 34), G.rest.y - h.raise * 120); }
   get headCenter() { return this.toScreen(0, G.head.cy); }
 
-  place(x, y) { this.x = x; this.y = y; this.home = { x, y }; this.ground = y; }
+  place(x, y) {
+    this.x = x; this.y = y; this.home = { x, y }; this.ground = y;
+    this.hands.forEach((h) => {
+      if (h.mode === 'rest') {
+        const r = this.restHand(h.side, h);
+        h.x = r.x; h.y = r.y;
+      }
+    });
+  }
 
   update(dt, t, ctx = {}) {
     this.sq.step(dt); this.lean.step(dt); this.tilt.step(dt); this.earL.step(dt); this.earR.step(dt);
@@ -257,8 +265,11 @@ export class Dopakichi {
     const rot = this.rot + this.lean.value;
     this.root.setAttribute('opacity', this.opacity);
     // Arms live in a separate front layer, so hide them together with the body.
-    this.root.style.display = this.visible ? '' : 'none';
-    this.armsFront.style.display = this.visible ? '' : 'none';
+    // Also auto-hide if scrolled completely offscreen (prevents runaway arm coordinates)
+    const offscreen = this.y < -120 || this.y > (window.innerHeight || 800) + 200;
+    const show = this.visible && !offscreen;
+    this.root.style.display = show ? '' : 'none';
+    this.armsFront.style.display = show ? '' : 'none';
     this.armsFront.setAttribute('opacity', this.opacity);
     this.bodyG.setAttribute('transform', `translate(${bx} ${by - pc}) rotate(${rot}) translate(0 ${pc}) scale(${S * sx} ${S * sy})`);
     const gy = this.ground ?? this.y;
@@ -302,6 +313,8 @@ export class Dopakichi {
         h.x = r.x + sway; h.y = r.y;
       }
       const a = this.arms[i];
+      // Prevent hands from ever flying above the top of screen
+      if (h.y < 16) h.y = 16;
       const dx = h.x - sh.x; const dy = h.y - sh.y;
       const len = Math.hypot(dx, dy) || 1;
       const nx = -dy / len; const ny = dx / len;

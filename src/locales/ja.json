@@ -1,0 +1,1614 @@
+{
+  "lang": "ja",
+  "lanes": [
+    "たし・ひき",
+    "かけ・わり",
+    "小数・分数",
+    "そのほか"
+  ],
+  "skills": {
+    "g1-compose10": "10のまとまり",
+    "g1-add-nc": "1けたのたしざん",
+    "g1-sub-nb": "10までのひきざん",
+    "g1-add-c": "くりあがりのたしざん",
+    "g1-sub-b": "くりさがりのひきざん",
+    "g1-add3": "3つのかずのけいさん",
+    "g1-add-2d1": "2けた＋1けた",
+    "g1-sub-2d1": "2けた−1けた",
+    "g2-vadd2-nc": "2けたのたしざん ひっさん",
+    "g2-vadd2-c": "くりあがりのひっさん",
+    "g2-vsub2-nb": "2けたのひきざん ひっさん",
+    "g2-vsub2-b": "くりさがりのひっさん",
+    "g2-vadd3s": "百をこえるたしざん",
+    "g2-vsub3s": "百からのひきざん",
+    "g2-kuku25": "九九 5と2のだん",
+    "g2-kuku34": "九九 3と4のだん",
+    "g2-kuku67": "九九 6と7のだん",
+    "g2-kuku891": "九九 8・9・1のだん",
+    "g2-kuku-mix": "九九 まぜこぜ",
+    "g2-mul-tens": "何十×1けた",
+    "g2-frac-of": "1/2と1/4",
+    "g3-vadd3": "3けたのたしざん",
+    "g3-vsub3": "3けたのひきざん",
+    "g3-vadd4": "4けたのたしざん",
+    "g3-vsub4": "4けたのひきざん",
+    "g3-div-basic": "わりざん",
+    "g3-div-rem": "あまりのあるわりざん",
+    "g3-div-tens": "何十÷1けた",
+    "g3-vmul-2x1": "2けた×1けた ひっさん",
+    "g3-vmul-3x1": "3けた×1けた",
+    "g3-vmul-2x2": "2けた×2けた",
+    "g3-vmul-3x2": "3けた×2けた",
+    "g3-dec-add1": "小数のたしざん",
+    "g3-dec-sub1": "小数のひきざん",
+    "g3-frac-same": "分数のたしひき",
+    "g4-vdiv-2d1": "2けた÷1けた ひっさん",
+    "g4-vdiv-3d1": "3けた÷1けた",
+    "g4-vdiv-2d2": "2けた÷2けた",
+    "g4-vdiv-3d2": "3けた÷2けた",
+    "g4-order": "けいさんのきまり",
+    "g4-round": "がい数（四捨五入）",
+    "g4-dec-add2": "小数第2位のたしひき",
+    "g4-dec-mul": "小数×整数",
+    "g4-dec-div": "小数÷整数",
+    "g4-frac-mixed": "帯分数のたしひき",
+    "g5-dec-mul": "小数×小数",
+    "g5-dec-div": "小数÷小数",
+    "g5-gcd": "最大公約数",
+    "g5-lcm": "最小公倍数",
+    "g5-frac-reduce": "約分",
+    "g5-frac-diff": "分母がちがう分数",
+    "g5-frac-int": "分数×÷整数",
+    "g5-percent": "百分率",
+    "g6-frac-mul": "分数×分数",
+    "g6-frac-div": "分数÷分数",
+    "g6-frac-dec": "小数と分数のけいさん",
+    "g6-ratio": "等しい比",
+    "g6-letter": "xをもとめる"
+  },
+  "trophies": {
+    "streak-3": {
+      "name": "3日 れんぞく",
+      "desc": "3日 つづけて あそぶ"
+    },
+    "streak-5": {
+      "name": "5日 れんぞく",
+      "desc": "5日 つづけて あそぶ"
+    },
+    "streak-7": {
+      "name": "7日 れんぞく",
+      "desc": "7日 つづけて あそぶ"
+    },
+    "streak-10": {
+      "name": "10日 れんぞく",
+      "desc": "10日 つづけて あそぶ"
+    },
+    "streak-14": {
+      "name": "14日 れんぞく",
+      "desc": "14日 つづけて あそぶ"
+    },
+    "streak-21": {
+      "name": "21日 れんぞく",
+      "desc": "21日 つづけて あそぶ"
+    },
+    "streak-30": {
+      "name": "30日 れんぞく",
+      "desc": "30日 つづけて あそぶ"
+    },
+    "streak-50": {
+      "name": "50日 れんぞく",
+      "desc": "50日 つづけて あそぶ"
+    },
+    "streak-75": {
+      "name": "75日 れんぞく",
+      "desc": "75日 つづけて あそぶ"
+    },
+    "streak-100": {
+      "name": "100日 れんぞく",
+      "desc": "100日 つづけて あそぶ"
+    },
+    "streak-150": {
+      "name": "150日 れんぞく",
+      "desc": "150日 つづけて あそぶ"
+    },
+    "streak-200": {
+      "name": "200日 れんぞく",
+      "desc": "200日 つづけて あそぶ"
+    },
+    "streak-365": {
+      "name": "365日 れんぞく",
+      "desc": "365日 つづけて あそぶ"
+    },
+    "days-1": {
+      "name": "あそんだ日 1日",
+      "desc": "あそんだ日が ぜんぶで 1日"
+    },
+    "days-3": {
+      "name": "あそんだ日 3日",
+      "desc": "あそんだ日が ぜんぶで 3日"
+    },
+    "days-5": {
+      "name": "あそんだ日 5日",
+      "desc": "あそんだ日が ぜんぶで 5日"
+    },
+    "days-7": {
+      "name": "あそんだ日 7日",
+      "desc": "あそんだ日が ぜんぶで 7日"
+    },
+    "days-10": {
+      "name": "あそんだ日 10日",
+      "desc": "あそんだ日が ぜんぶで 10日"
+    },
+    "days-15": {
+      "name": "あそんだ日 15日",
+      "desc": "あそんだ日が ぜんぶで 15日"
+    },
+    "days-20": {
+      "name": "あそんだ日 20日",
+      "desc": "あそんだ日が ぜんぶで 20日"
+    },
+    "days-30": {
+      "name": "あそんだ日 30日",
+      "desc": "あそんだ日が ぜんぶで 30日"
+    },
+    "days-40": {
+      "name": "あそんだ日 40日",
+      "desc": "あそんだ日が ぜんぶで 40日"
+    },
+    "days-50": {
+      "name": "あそんだ日 50日",
+      "desc": "あそんだ日が ぜんぶで 50日"
+    },
+    "days-75": {
+      "name": "あそんだ日 75日",
+      "desc": "あそんだ日が ぜんぶで 75日"
+    },
+    "days-100": {
+      "name": "あそんだ日 100日",
+      "desc": "あそんだ日が ぜんぶで 100日"
+    },
+    "days-150": {
+      "name": "あそんだ日 150日",
+      "desc": "あそんだ日が ぜんぶで 150日"
+    },
+    "days-200": {
+      "name": "あそんだ日 200日",
+      "desc": "あそんだ日が ぜんぶで 200日"
+    },
+    "days-300": {
+      "name": "あそんだ日 300日",
+      "desc": "あそんだ日が ぜんぶで 300日"
+    },
+    "days-365": {
+      "name": "あそんだ日 365日",
+      "desc": "あそんだ日が ぜんぶで 365日"
+    },
+    "days-500": {
+      "name": "あそんだ日 500日",
+      "desc": "あそんだ日が ぜんぶで 500日"
+    },
+    "days-730": {
+      "name": "あそんだ日 730日",
+      "desc": "あそんだ日が ぜんぶで 730日"
+    },
+    "days-1000": {
+      "name": "あそんだ日 1,000日",
+      "desc": "あそんだ日が ぜんぶで 1,000日"
+    },
+    "stickers-1": {
+      "name": "シール 1まい",
+      "desc": "ログインボーナスの シールを 1まい あつめる"
+    },
+    "stickers-7": {
+      "name": "シール 7まい",
+      "desc": "ログインボーナスの シールを 7まい あつめる"
+    },
+    "stickers-14": {
+      "name": "シール 14まい",
+      "desc": "ログインボーナスの シールを 14まい あつめる"
+    },
+    "stickers-30": {
+      "name": "シール 30まい",
+      "desc": "ログインボーナスの シールを 30まい あつめる"
+    },
+    "stickers-50": {
+      "name": "シール 50まい",
+      "desc": "ログインボーナスの シールを 50まい あつめる"
+    },
+    "stickers-100": {
+      "name": "シール 100まい",
+      "desc": "ログインボーナスの シールを 100まい あつめる"
+    },
+    "stickers-200": {
+      "name": "シール 200まい",
+      "desc": "ログインボーナスの シールを 200まい あつめる"
+    },
+    "stickers-365": {
+      "name": "シール 365まい",
+      "desc": "ログインボーナスの シールを 365まい あつめる"
+    },
+    "crowns-1": {
+      "name": "おうかん 1こ",
+      "desc": "7日めの おうかんシールを 1まい あつめる"
+    },
+    "crowns-3": {
+      "name": "おうかん 3こ",
+      "desc": "7日めの おうかんシールを 3まい あつめる"
+    },
+    "crowns-5": {
+      "name": "おうかん 5こ",
+      "desc": "7日めの おうかんシールを 5まい あつめる"
+    },
+    "crowns-10": {
+      "name": "おうかん 10こ",
+      "desc": "7日めの おうかんシールを 10まい あつめる"
+    },
+    "crowns-20": {
+      "name": "おうかん 20こ",
+      "desc": "7日めの おうかんシールを 20まい あつめる"
+    },
+    "crowns-52": {
+      "name": "おうかん 52こ",
+      "desc": "7日めの おうかんシールを 52まい あつめる"
+    },
+    "problems-10": {
+      "name": "10もん とく",
+      "desc": "もんだいを ぜんぶで 10もん とく"
+    },
+    "problems-30": {
+      "name": "30もん とく",
+      "desc": "もんだいを ぜんぶで 30もん とく"
+    },
+    "problems-50": {
+      "name": "50もん とく",
+      "desc": "もんだいを ぜんぶで 50もん とく"
+    },
+    "problems-100": {
+      "name": "100もん とく",
+      "desc": "もんだいを ぜんぶで 100もん とく"
+    },
+    "problems-200": {
+      "name": "200もん とく",
+      "desc": "もんだいを ぜんぶで 200もん とく"
+    },
+    "problems-300": {
+      "name": "300もん とく",
+      "desc": "もんだいを ぜんぶで 300もん とく"
+    },
+    "problems-500": {
+      "name": "500もん とく",
+      "desc": "もんだいを ぜんぶで 500もん とく"
+    },
+    "problems-750": {
+      "name": "750もん とく",
+      "desc": "もんだいを ぜんぶで 750もん とく"
+    },
+    "problems-1000": {
+      "name": "1,000もん とく",
+      "desc": "もんだいを ぜんぶで 1,000もん とく"
+    },
+    "problems-1500": {
+      "name": "1,500もん とく",
+      "desc": "もんだいを ぜんぶで 1,500もん とく"
+    },
+    "problems-2000": {
+      "name": "2,000もん とく",
+      "desc": "もんだいを ぜんぶで 2,000もん とく"
+    },
+    "problems-3000": {
+      "name": "3,000もん とく",
+      "desc": "もんだいを ぜんぶで 3,000もん とく"
+    },
+    "problems-5000": {
+      "name": "5,000もん とく",
+      "desc": "もんだいを ぜんぶで 5,000もん とく"
+    },
+    "problems-7500": {
+      "name": "7,500もん とく",
+      "desc": "もんだいを ぜんぶで 7,500もん とく"
+    },
+    "problems-10000": {
+      "name": "1万もん とく",
+      "desc": "もんだいを ぜんぶで 1万もん とく"
+    },
+    "problems-20000": {
+      "name": "2万もん とく",
+      "desc": "もんだいを ぜんぶで 2万もん とく"
+    },
+    "problems-30000": {
+      "name": "3万もん とく",
+      "desc": "もんだいを ぜんぶで 3万もん とく"
+    },
+    "problems-50000": {
+      "name": "5万もん とく",
+      "desc": "もんだいを ぜんぶで 5万もん とく"
+    },
+    "problems-100000": {
+      "name": "10万もん とく",
+      "desc": "もんだいを ぜんぶで 10万もん とく"
+    },
+    "cells-100": {
+      "name": "100けた いれる",
+      "desc": "正しい すうじを ぜんぶで 100けた いれる"
+    },
+    "cells-500": {
+      "name": "500けた いれる",
+      "desc": "正しい すうじを ぜんぶで 500けた いれる"
+    },
+    "cells-1000": {
+      "name": "1,000けた いれる",
+      "desc": "正しい すうじを ぜんぶで 1,000けた いれる"
+    },
+    "cells-3000": {
+      "name": "3,000けた いれる",
+      "desc": "正しい すうじを ぜんぶで 3,000けた いれる"
+    },
+    "cells-5000": {
+      "name": "5,000けた いれる",
+      "desc": "正しい すうじを ぜんぶで 5,000けた いれる"
+    },
+    "cells-10000": {
+      "name": "1万けた いれる",
+      "desc": "正しい すうじを ぜんぶで 1万けた いれる"
+    },
+    "cells-30000": {
+      "name": "3万けた いれる",
+      "desc": "正しい すうじを ぜんぶで 3万けた いれる"
+    },
+    "cells-50000": {
+      "name": "5万けた いれる",
+      "desc": "正しい すうじを ぜんぶで 5万けた いれる"
+    },
+    "cells-100000": {
+      "name": "10万けた いれる",
+      "desc": "正しい すうじを ぜんぶで 10万けた いれる"
+    },
+    "cells-300000": {
+      "name": "30万けた いれる",
+      "desc": "正しい すうじを ぜんぶで 30万けた いれる"
+    },
+    "plays-1": {
+      "name": "1回 あそぶ",
+      "desc": "ドリルを ぜんぶで 1回 さいごまで とく"
+    },
+    "plays-3": {
+      "name": "3回 あそぶ",
+      "desc": "ドリルを ぜんぶで 3回 さいごまで とく"
+    },
+    "plays-5": {
+      "name": "5回 あそぶ",
+      "desc": "ドリルを ぜんぶで 5回 さいごまで とく"
+    },
+    "plays-10": {
+      "name": "10回 あそぶ",
+      "desc": "ドリルを ぜんぶで 10回 さいごまで とく"
+    },
+    "plays-20": {
+      "name": "20回 あそぶ",
+      "desc": "ドリルを ぜんぶで 20回 さいごまで とく"
+    },
+    "plays-30": {
+      "name": "30回 あそぶ",
+      "desc": "ドリルを ぜんぶで 30回 さいごまで とく"
+    },
+    "plays-50": {
+      "name": "50回 あそぶ",
+      "desc": "ドリルを ぜんぶで 50回 さいごまで とく"
+    },
+    "plays-100": {
+      "name": "100回 あそぶ",
+      "desc": "ドリルを ぜんぶで 100回 さいごまで とく"
+    },
+    "plays-200": {
+      "name": "200回 あそぶ",
+      "desc": "ドリルを ぜんぶで 200回 さいごまで とく"
+    },
+    "plays-300": {
+      "name": "300回 あそぶ",
+      "desc": "ドリルを ぜんぶで 300回 さいごまで とく"
+    },
+    "plays-500": {
+      "name": "500回 あそぶ",
+      "desc": "ドリルを ぜんぶで 500回 さいごまで とく"
+    },
+    "plays-1000": {
+      "name": "1,000回 あそぶ",
+      "desc": "ドリルを ぜんぶで 1,000回 さいごまで とく"
+    },
+    "plays-2000": {
+      "name": "2,000回 あそぶ",
+      "desc": "ドリルを ぜんぶで 2,000回 さいごまで とく"
+    },
+    "minutes-10": {
+      "name": "あわせて 10ふん",
+      "desc": "あそんだ時間が ぜんぶで 10ふん"
+    },
+    "minutes-30": {
+      "name": "あわせて 30ふん",
+      "desc": "あそんだ時間が ぜんぶで 30ふん"
+    },
+    "minutes-60": {
+      "name": "あわせて 1時間",
+      "desc": "あそんだ時間が ぜんぶで 1時間"
+    },
+    "minutes-120": {
+      "name": "あわせて 2時間",
+      "desc": "あそんだ時間が ぜんぶで 2時間"
+    },
+    "minutes-300": {
+      "name": "あわせて 5時間",
+      "desc": "あそんだ時間が ぜんぶで 5時間"
+    },
+    "minutes-600": {
+      "name": "あわせて 10時間",
+      "desc": "あそんだ時間が ぜんぶで 10時間"
+    },
+    "minutes-1200": {
+      "name": "あわせて 20時間",
+      "desc": "あそんだ時間が ぜんぶで 20時間"
+    },
+    "minutes-3000": {
+      "name": "あわせて 50時間",
+      "desc": "あそんだ時間が ぜんぶで 50時間"
+    },
+    "unlocked-3": {
+      "name": "かいほう 3こ",
+      "desc": "スキルを 3こ かいほうする"
+    },
+    "unlocked-5": {
+      "name": "かいほう 5こ",
+      "desc": "スキルを 5こ かいほうする"
+    },
+    "unlocked-10": {
+      "name": "かいほう 10こ",
+      "desc": "スキルを 10こ かいほうする"
+    },
+    "unlocked-15": {
+      "name": "かいほう 15こ",
+      "desc": "スキルを 15こ かいほうする"
+    },
+    "unlocked-20": {
+      "name": "かいほう 20こ",
+      "desc": "スキルを 20こ かいほうする"
+    },
+    "unlocked-25": {
+      "name": "かいほう 25こ",
+      "desc": "スキルを 25こ かいほうする"
+    },
+    "unlocked-30": {
+      "name": "かいほう 30こ",
+      "desc": "スキルを 30こ かいほうする"
+    },
+    "unlocked-35": {
+      "name": "かいほう 35こ",
+      "desc": "スキルを 35こ かいほうする"
+    },
+    "unlocked-40": {
+      "name": "かいほう 40こ",
+      "desc": "スキルを 40こ かいほうする"
+    },
+    "unlocked-45": {
+      "name": "かいほう 45こ",
+      "desc": "スキルを 45こ かいほうする"
+    },
+    "unlocked-50": {
+      "name": "かいほう 50こ",
+      "desc": "スキルを 50こ かいほうする"
+    },
+    "unlocked-55": {
+      "name": "かいほう 55こ",
+      "desc": "スキルを 55こ かいほうする"
+    },
+    "unlocked-58": {
+      "name": "かいほう 58こ",
+      "desc": "スキルを 58こ かいほうする"
+    },
+    "mastered-1": {
+      "name": "マスター 1こ",
+      "desc": "スキルを 1こ マスターする"
+    },
+    "mastered-3": {
+      "name": "マスター 3こ",
+      "desc": "スキルを 3こ マスターする"
+    },
+    "mastered-5": {
+      "name": "マスター 5こ",
+      "desc": "スキルを 5こ マスターする"
+    },
+    "mastered-10": {
+      "name": "マスター 10こ",
+      "desc": "スキルを 10こ マスターする"
+    },
+    "mastered-15": {
+      "name": "マスター 15こ",
+      "desc": "スキルを 15こ マスターする"
+    },
+    "mastered-20": {
+      "name": "マスター 20こ",
+      "desc": "スキルを 20こ マスターする"
+    },
+    "mastered-25": {
+      "name": "マスター 25こ",
+      "desc": "スキルを 25こ マスターする"
+    },
+    "mastered-30": {
+      "name": "マスター 30こ",
+      "desc": "スキルを 30こ マスターする"
+    },
+    "mastered-35": {
+      "name": "マスター 35こ",
+      "desc": "スキルを 35こ マスターする"
+    },
+    "mastered-40": {
+      "name": "マスター 40こ",
+      "desc": "スキルを 40こ マスターする"
+    },
+    "mastered-45": {
+      "name": "マスター 45こ",
+      "desc": "スキルを 45こ マスターする"
+    },
+    "mastered-50": {
+      "name": "マスター 50こ",
+      "desc": "スキルを 50こ マスターする"
+    },
+    "mastered-55": {
+      "name": "マスター 55こ",
+      "desc": "スキルを 55こ マスターする"
+    },
+    "mastered-58": {
+      "name": "マスター 58こ",
+      "desc": "スキルを 58こ マスターする"
+    },
+    "gradeDone-1": {
+      "name": "1年生 ぜんぶ マスター",
+      "desc": "1年生の スキルを ぜんぶ マスターする"
+    },
+    "gradeDone-2": {
+      "name": "2年生 ぜんぶ マスター",
+      "desc": "2年生の スキルを ぜんぶ マスターする"
+    },
+    "gradeDone-3": {
+      "name": "3年生 ぜんぶ マスター",
+      "desc": "3年生の スキルを ぜんぶ マスターする"
+    },
+    "gradeDone-4": {
+      "name": "4年生 ぜんぶ マスター",
+      "desc": "4年生の スキルを ぜんぶ マスターする"
+    },
+    "gradeDone-5": {
+      "name": "5年生 ぜんぶ マスター",
+      "desc": "5年生の スキルを ぜんぶ マスターする"
+    },
+    "gradeDone-6": {
+      "name": "6年生 ぜんぶ マスター",
+      "desc": "6年生の スキルを ぜんぶ マスターする"
+    },
+    "laneDone-0": {
+      "name": "たし・ひき マスター",
+      "desc": "「たし・ひき」の スキルを ぜんぶ マスターする"
+    },
+    "laneDone-1": {
+      "name": "かけ・わり マスター",
+      "desc": "「かけ・わり」の スキルを ぜんぶ マスターする"
+    },
+    "laneDone-2": {
+      "name": "小数・分数 マスター",
+      "desc": "「小数・分数」の スキルを ぜんぶ マスターする"
+    },
+    "laneDone-3": {
+      "name": "そのほか マスター",
+      "desc": "「そのほか」の スキルを ぜんぶ マスターする"
+    },
+    "extras-1": {
+      "name": "エクストラ 1回",
+      "desc": "エクストラに 1回 すすむ"
+    },
+    "extras-3": {
+      "name": "エクストラ 3回",
+      "desc": "エクストラに 3回 すすむ"
+    },
+    "extras-5": {
+      "name": "エクストラ 5回",
+      "desc": "エクストラに 5回 すすむ"
+    },
+    "extras-10": {
+      "name": "エクストラ 10回",
+      "desc": "エクストラに 10回 すすむ"
+    },
+    "extras-20": {
+      "name": "エクストラ 20回",
+      "desc": "エクストラに 20回 すすむ"
+    },
+    "extras-30": {
+      "name": "エクストラ 30回",
+      "desc": "エクストラに 30回 すすむ"
+    },
+    "extras-50": {
+      "name": "エクストラ 50回",
+      "desc": "エクストラに 50回 すすむ"
+    },
+    "extras-100": {
+      "name": "エクストラ 100回",
+      "desc": "エクストラに 100回 すすむ"
+    },
+    "extras-200": {
+      "name": "エクストラ 200回",
+      "desc": "エクストラに 200回 すすむ"
+    },
+    "extras-300": {
+      "name": "エクストラ 300回",
+      "desc": "エクストラに 300回 すすむ"
+    },
+    "extraBest-3": {
+      "name": "1回で 3もん",
+      "desc": "1回の エクストラで 3もん とく"
+    },
+    "extraBest-5": {
+      "name": "1回で 5もん",
+      "desc": "1回の エクストラで 5もん とく"
+    },
+    "extraBest-7": {
+      "name": "1回で 7もん",
+      "desc": "1回の エクストラで 7もん とく"
+    },
+    "extraBest-10": {
+      "name": "1回で 10もん",
+      "desc": "1回の エクストラで 10もん とく"
+    },
+    "extraBest-12": {
+      "name": "1回で 12もん",
+      "desc": "1回の エクストラで 12もん とく"
+    },
+    "extraBest-15": {
+      "name": "1回で 15もん",
+      "desc": "1回の エクストラで 15もん とく"
+    },
+    "extraBest-18": {
+      "name": "1回で 18もん",
+      "desc": "1回の エクストラで 18もん とく"
+    },
+    "extraBest-20": {
+      "name": "1回で 20もん",
+      "desc": "1回の エクストラで 20もん とく"
+    },
+    "extraBest-23": {
+      "name": "1回で 23もん",
+      "desc": "1回の エクストラで 23もん とく"
+    },
+    "extraBest-25": {
+      "name": "1回で 25もん",
+      "desc": "1回の エクストラで 25もん とく"
+    },
+    "extraBest-30": {
+      "name": "1回で 30もん",
+      "desc": "1回の エクストラで 30もん とく"
+    },
+    "extraSolved-10": {
+      "name": "エクストラ 10もん",
+      "desc": "エクストラで ぜんぶで 10もん とく"
+    },
+    "extraSolved-30": {
+      "name": "エクストラ 30もん",
+      "desc": "エクストラで ぜんぶで 30もん とく"
+    },
+    "extraSolved-50": {
+      "name": "エクストラ 50もん",
+      "desc": "エクストラで ぜんぶで 50もん とく"
+    },
+    "extraSolved-100": {
+      "name": "エクストラ 100もん",
+      "desc": "エクストラで ぜんぶで 100もん とく"
+    },
+    "extraSolved-200": {
+      "name": "エクストラ 200もん",
+      "desc": "エクストラで ぜんぶで 200もん とく"
+    },
+    "extraSolved-300": {
+      "name": "エクストラ 300もん",
+      "desc": "エクストラで ぜんぶで 300もん とく"
+    },
+    "extraSolved-500": {
+      "name": "エクストラ 500もん",
+      "desc": "エクストラで ぜんぶで 500もん とく"
+    },
+    "extraSolved-1000": {
+      "name": "エクストラ 1,000もん",
+      "desc": "エクストラで ぜんぶで 1,000もん とく"
+    },
+    "extraSolved-2000": {
+      "name": "エクストラ 2,000もん",
+      "desc": "エクストラで ぜんぶで 2,000もん とく"
+    },
+    "extraSolved-3000": {
+      "name": "エクストラ 3,000もん",
+      "desc": "エクストラで ぜんぶで 3,000もん とく"
+    },
+    "combo-5": {
+      "name": "5コンボ",
+      "desc": "5コンボを だす"
+    },
+    "combo-10": {
+      "name": "10コンボ",
+      "desc": "10コンボを だす"
+    },
+    "combo-15": {
+      "name": "15コンボ",
+      "desc": "15コンボを だす"
+    },
+    "combo-20": {
+      "name": "20コンボ",
+      "desc": "20コンボを だす"
+    },
+    "combo-30": {
+      "name": "30コンボ",
+      "desc": "30コンボを だす"
+    },
+    "combo-40": {
+      "name": "40コンボ",
+      "desc": "40コンボを だす"
+    },
+    "combo-50": {
+      "name": "50コンボ",
+      "desc": "50コンボを だす"
+    },
+    "combo-75": {
+      "name": "75コンボ",
+      "desc": "75コンボを だす"
+    },
+    "combo-100": {
+      "name": "100コンボ",
+      "desc": "100コンボを だす"
+    },
+    "combo-150": {
+      "name": "150コンボ",
+      "desc": "150コンボを だす"
+    },
+    "combo-200": {
+      "name": "200コンボ",
+      "desc": "200コンボを だす"
+    },
+    "combo-300": {
+      "name": "300コンボ",
+      "desc": "300コンボを だす"
+    },
+    "perfects-1": {
+      "name": "ノーミス 1回",
+      "desc": "初回正解率100%で 1回 さいごまで とく"
+    },
+    "perfects-3": {
+      "name": "ノーミス 3回",
+      "desc": "初回正解率100%で 3回 さいごまで とく"
+    },
+    "perfects-5": {
+      "name": "ノーミス 5回",
+      "desc": "初回正解率100%で 5回 さいごまで とく"
+    },
+    "perfects-10": {
+      "name": "ノーミス 10回",
+      "desc": "初回正解率100%で 10回 さいごまで とく"
+    },
+    "perfects-20": {
+      "name": "ノーミス 20回",
+      "desc": "初回正解率100%で 20回 さいごまで とく"
+    },
+    "perfects-30": {
+      "name": "ノーミス 30回",
+      "desc": "初回正解率100%で 30回 さいごまで とく"
+    },
+    "perfects-50": {
+      "name": "ノーミス 50回",
+      "desc": "初回正解率100%で 50回 さいごまで とく"
+    },
+    "perfects-100": {
+      "name": "ノーミス 100回",
+      "desc": "初回正解率100%で 100回 さいごまで とく"
+    },
+    "perfects-200": {
+      "name": "ノーミス 200回",
+      "desc": "初回正解率100%で 200回 さいごまで とく"
+    },
+    "perfects-300": {
+      "name": "ノーミス 300回",
+      "desc": "初回正解率100%で 300回 さいごまで とく"
+    },
+    "firstTry-10": {
+      "name": "初回正解 10もん",
+      "desc": "いっかいで 正解した もんだいが 10もん"
+    },
+    "firstTry-50": {
+      "name": "初回正解 50もん",
+      "desc": "いっかいで 正解した もんだいが 50もん"
+    },
+    "firstTry-100": {
+      "name": "初回正解 100もん",
+      "desc": "いっかいで 正解した もんだいが 100もん"
+    },
+    "firstTry-300": {
+      "name": "初回正解 300もん",
+      "desc": "いっかいで 正解した もんだいが 300もん"
+    },
+    "firstTry-500": {
+      "name": "初回正解 500もん",
+      "desc": "いっかいで 正解した もんだいが 500もん"
+    },
+    "firstTry-1000": {
+      "name": "初回正解 1,000もん",
+      "desc": "いっかいで 正解した もんだいが 1,000もん"
+    },
+    "firstTry-3000": {
+      "name": "初回正解 3,000もん",
+      "desc": "いっかいで 正解した もんだいが 3,000もん"
+    },
+    "firstTry-5000": {
+      "name": "初回正解 5,000もん",
+      "desc": "いっかいで 正解した もんだいが 5,000もん"
+    },
+    "firstTry-10000": {
+      "name": "初回正解 1万もん",
+      "desc": "いっかいで 正解した もんだいが 1万もん"
+    },
+    "firstTry-30000": {
+      "name": "初回正解 3万もん",
+      "desc": "いっかいで 正解した もんだいが 3万もん"
+    },
+    "dopa-2": {
+      "name": "100ドパ",
+      "desc": "1回の プレイで ドパ 100を こえる"
+    },
+    "dopa-3": {
+      "name": "1000ドパ",
+      "desc": "1回の プレイで ドパ 1000を こえる"
+    },
+    "dopa-4": {
+      "name": "1万ドパ",
+      "desc": "1回の プレイで ドパ 1万を こえる"
+    },
+    "dopa-5": {
+      "name": "10万ドパ",
+      "desc": "1回の プレイで ドパ 10万を こえる"
+    },
+    "dopa-6": {
+      "name": "100万ドパ",
+      "desc": "1回の プレイで ドパ 100万を こえる"
+    },
+    "dopa-7": {
+      "name": "1000万ドパ",
+      "desc": "1回の プレイで ドパ 1000万を こえる"
+    },
+    "dopa-8": {
+      "name": "1億ドパ",
+      "desc": "1回の プレイで ドパ 1億を こえる"
+    },
+    "dopa-9": {
+      "name": "10億ドパ",
+      "desc": "1回の プレイで ドパ 10億を こえる"
+    },
+    "review-1": {
+      "name": "ふくしゅう 1もん",
+      "desc": "まちがえた もんだいを 1もん やりなおす"
+    },
+    "review-5": {
+      "name": "ふくしゅう 5もん",
+      "desc": "まちがえた もんだいを 5もん やりなおす"
+    },
+    "review-10": {
+      "name": "ふくしゅう 10もん",
+      "desc": "まちがえた もんだいを 10もん やりなおす"
+    },
+    "review-30": {
+      "name": "ふくしゅう 30もん",
+      "desc": "まちがえた もんだいを 30もん やりなおす"
+    },
+    "review-50": {
+      "name": "ふくしゅう 50もん",
+      "desc": "まちがえた もんだいを 50もん やりなおす"
+    },
+    "review-100": {
+      "name": "ふくしゅう 100もん",
+      "desc": "まちがえた もんだいを 100もん やりなおす"
+    },
+    "review-200": {
+      "name": "ふくしゅう 200もん",
+      "desc": "まちがえた もんだいを 200もん やりなおす"
+    },
+    "review-300": {
+      "name": "ふくしゅう 300もん",
+      "desc": "まちがえた もんだいを 300もん やりなおす"
+    },
+    "grade1-1": {
+      "name": "1ねんせい 1回",
+      "desc": "「1ねんせい」で 1回 あそぶ"
+    },
+    "grade1-10": {
+      "name": "1ねんせい 10回",
+      "desc": "「1ねんせい」で 10回 あそぶ"
+    },
+    "grade1-30": {
+      "name": "1ねんせい 30回",
+      "desc": "「1ねんせい」で 30回 あそぶ"
+    },
+    "grade2-1": {
+      "name": "2ねんせい 1回",
+      "desc": "「2ねんせい」で 1回 あそぶ"
+    },
+    "grade2-10": {
+      "name": "2ねんせい 10回",
+      "desc": "「2ねんせい」で 10回 あそぶ"
+    },
+    "grade2-30": {
+      "name": "2ねんせい 30回",
+      "desc": "「2ねんせい」で 30回 あそぶ"
+    },
+    "grade3-1": {
+      "name": "3ねんせい 1回",
+      "desc": "「3ねんせい」で 1回 あそぶ"
+    },
+    "grade3-10": {
+      "name": "3ねんせい 10回",
+      "desc": "「3ねんせい」で 10回 あそぶ"
+    },
+    "grade3-30": {
+      "name": "3ねんせい 30回",
+      "desc": "「3ねんせい」で 30回 あそぶ"
+    },
+    "grade4-1": {
+      "name": "4ねんせい 1回",
+      "desc": "「4ねんせい」で 1回 あそぶ"
+    },
+    "grade4-10": {
+      "name": "4ねんせい 10回",
+      "desc": "「4ねんせい」で 10回 あそぶ"
+    },
+    "grade4-30": {
+      "name": "4ねんせい 30回",
+      "desc": "「4ねんせい」で 30回 あそぶ"
+    },
+    "grade5-1": {
+      "name": "5ねんせい 1回",
+      "desc": "「5ねんせい」で 1回 あそぶ"
+    },
+    "grade5-10": {
+      "name": "5ねんせい 10回",
+      "desc": "「5ねんせい」で 10回 あそぶ"
+    },
+    "grade5-30": {
+      "name": "5ねんせい 30回",
+      "desc": "「5ねんせい」で 30回 あそぶ"
+    },
+    "grade6-1": {
+      "name": "6ねんせい 1回",
+      "desc": "「6ねんせい」で 1回 あそぶ"
+    },
+    "grade6-10": {
+      "name": "6ねんせい 10回",
+      "desc": "「6ねんせい」で 10回 あそぶ"
+    },
+    "grade6-30": {
+      "name": "6ねんせい 30回",
+      "desc": "「6ねんせい」で 30回 あそぶ"
+    },
+    "secret-perfect14": {
+      "name": "14もん パーフェクト",
+      "desc": "14もんを おしい 0回で とく"
+    },
+    "secret-extraClean": {
+      "name": "エクストラ ノーミス",
+      "desc": "エクストラで 5もん いじょう、おしい 0回"
+    },
+    "secret-sunday": {
+      "name": "にちようびの さんすう",
+      "desc": "にちようびに あそぶ"
+    },
+    "secret-newyear": {
+      "name": "おしょうがつ ドリル",
+      "desc": "1月1日に あそぶ"
+    },
+    "secret-comeback": {
+      "name": "おかえり！",
+      "desc": "1しゅうかん いじょう あいてから また あそぶ"
+    },
+    "secret-allmodes": {
+      "name": "ぜんぶの あそびかた",
+      "desc": "じぶんレベル・学年べつ・れんしゅう・ふくしゅうを ぜんぶ あそぶ"
+    },
+    "questDays-1": {
+      "name": "コンプリート 1日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 1日"
+    },
+    "questDays-3": {
+      "name": "コンプリート 3日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 3日"
+    },
+    "questDays-7": {
+      "name": "コンプリート 7日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 7日"
+    },
+    "questDays-14": {
+      "name": "コンプリート 14日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 14日"
+    },
+    "questDays-30": {
+      "name": "コンプリート 30日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 30日"
+    },
+    "questDays-50": {
+      "name": "コンプリート 50日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 50日"
+    },
+    "questDays-100": {
+      "name": "コンプリート 100日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 100日"
+    },
+    "questDays-200": {
+      "name": "コンプリート 200日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 200日"
+    },
+    "questDays-365": {
+      "name": "コンプリート 365日",
+      "desc": "きょうの クエストを ぜんぶ クリアした日が 365日"
+    },
+    "questRun-2": {
+      "name": "クエスト 2日 れんぞく",
+      "desc": "2日 つづけて クエストを ぜんぶ クリアする"
+    },
+    "questRun-3": {
+      "name": "クエスト 3日 れんぞく",
+      "desc": "3日 つづけて クエストを ぜんぶ クリアする"
+    },
+    "questRun-5": {
+      "name": "クエスト 5日 れんぞく",
+      "desc": "5日 つづけて クエストを ぜんぶ クリアする"
+    },
+    "questRun-7": {
+      "name": "クエスト 7日 れんぞく",
+      "desc": "7日 つづけて クエストを ぜんぶ クリアする"
+    },
+    "questRun-14": {
+      "name": "クエスト 14日 れんぞく",
+      "desc": "14日 つづけて クエストを ぜんぶ クリアする"
+    },
+    "questRun-30": {
+      "name": "クエスト 30日 れんぞく",
+      "desc": "30日 つづけて クエストを ぜんぶ クリアする"
+    },
+    "hammer-1": {
+      "name": "はじめての ノーカン",
+      "desc": "ノーカンハンマーを 1回 つかう"
+    },
+    "hammer-3": {
+      "name": "ノーカン 3回",
+      "desc": "ノーカンハンマーを 3回 つかう"
+    },
+    "hammer-10": {
+      "name": "ノーカン 10回",
+      "desc": "ノーカンハンマーを 10回 つかう"
+    },
+    "starsTotal-5": {
+      "name": "ほし 5こ",
+      "desc": "スキルの ほしを ぜんぶで 5こ あつめる"
+    },
+    "starsTotal-10": {
+      "name": "ほし 10こ",
+      "desc": "スキルの ほしを ぜんぶで 10こ あつめる"
+    },
+    "starsTotal-25": {
+      "name": "ほし 25こ",
+      "desc": "スキルの ほしを ぜんぶで 25こ あつめる"
+    },
+    "starsTotal-50": {
+      "name": "ほし 50こ",
+      "desc": "スキルの ほしを ぜんぶで 50こ あつめる"
+    },
+    "starsTotal-75": {
+      "name": "ほし 75こ",
+      "desc": "スキルの ほしを ぜんぶで 75こ あつめる"
+    },
+    "starsTotal-100": {
+      "name": "ほし 100こ",
+      "desc": "スキルの ほしを ぜんぶで 100こ あつめる"
+    },
+    "starsTotal-150": {
+      "name": "ほし 150こ",
+      "desc": "スキルの ほしを ぜんぶで 150こ あつめる"
+    },
+    "starsTotal-200": {
+      "name": "ほし 200こ",
+      "desc": "スキルの ほしを ぜんぶで 200こ あつめる"
+    },
+    "starsTotal-250": {
+      "name": "ほし 250こ",
+      "desc": "スキルの ほしを ぜんぶで 250こ あつめる"
+    },
+    "starsTotal-290": {
+      "name": "ほし 290こ",
+      "desc": "スキルの ほしを ぜんぶで 290こ あつめる"
+    },
+    "star5-1": {
+      "name": "☆5 1こ",
+      "desc": "☆5の スキルを 1こ つくる"
+    },
+    "star5-3": {
+      "name": "☆5 3こ",
+      "desc": "☆5の スキルを 3こ つくる"
+    },
+    "star5-5": {
+      "name": "☆5 5こ",
+      "desc": "☆5の スキルを 5こ つくる"
+    },
+    "star5-10": {
+      "name": "☆5 10こ",
+      "desc": "☆5の スキルを 10こ つくる"
+    },
+    "star5-20": {
+      "name": "☆5 20こ",
+      "desc": "☆5の スキルを 20こ つくる"
+    },
+    "star5-30": {
+      "name": "☆5 30こ",
+      "desc": "☆5の スキルを 30こ つくる"
+    },
+    "star5-58": {
+      "name": "☆5 58こ",
+      "desc": "☆5の スキルを 58こ つくる"
+    },
+    "gradeStar3-1": {
+      "name": "1年生 ぜんぶ ☆3",
+      "desc": "1年生の スキルを ぜんぶ ☆3 いじょうに する"
+    },
+    "gradeStar3-2": {
+      "name": "2年生 ぜんぶ ☆3",
+      "desc": "2年生の スキルを ぜんぶ ☆3 いじょうに する"
+    },
+    "gradeStar3-3": {
+      "name": "3年生 ぜんぶ ☆3",
+      "desc": "3年生の スキルを ぜんぶ ☆3 いじょうに する"
+    },
+    "gradeStar3-4": {
+      "name": "4年生 ぜんぶ ☆3",
+      "desc": "4年生の スキルを ぜんぶ ☆3 いじょうに する"
+    },
+    "gradeStar3-5": {
+      "name": "5年生 ぜんぶ ☆3",
+      "desc": "5年生の スキルを ぜんぶ ☆3 いじょうに する"
+    },
+    "gradeStar3-6": {
+      "name": "6年生 ぜんぶ ☆3",
+      "desc": "6年生の スキルを ぜんぶ ☆3 いじょうに する"
+    },
+    "polished-1": {
+      "name": "ピカピカ 1回",
+      "desc": "さびた スキルを 1回 みがく"
+    },
+    "polished-3": {
+      "name": "ピカピカ 3回",
+      "desc": "さびた スキルを 3回 みがく"
+    },
+    "polished-5": {
+      "name": "ピカピカ 5回",
+      "desc": "さびた スキルを 5回 みがく"
+    },
+    "polished-10": {
+      "name": "ピカピカ 10回",
+      "desc": "さびた スキルを 10回 みがく"
+    },
+    "polished-30": {
+      "name": "ピカピカ 30回",
+      "desc": "さびた スキルを 30回 みがく"
+    },
+    "polished-50": {
+      "name": "ピカピカ 50回",
+      "desc": "さびた スキルを 50回 みがく"
+    },
+    "capsules-1": {
+      "name": "カプセル 1こ",
+      "desc": "タイムカプセルを 1こ あける"
+    },
+    "capsules-3": {
+      "name": "カプセル 3こ",
+      "desc": "タイムカプセルを 3こ あける"
+    },
+    "capsules-5": {
+      "name": "カプセル 5こ",
+      "desc": "タイムカプセルを 5こ あける"
+    },
+    "capsules-10": {
+      "name": "カプセル 10こ",
+      "desc": "タイムカプセルを 10こ あける"
+    },
+    "capsules-30": {
+      "name": "カプセル 30こ",
+      "desc": "タイムカプセルを 30こ あける"
+    },
+    "capsuleFaster-1": {
+      "name": "あの日より はやく 1回",
+      "desc": "タイムカプセルで あの日より はやく とく（1回）"
+    },
+    "capsuleFaster-5": {
+      "name": "あの日より はやく 5回",
+      "desc": "タイムカプセルで あの日より はやく とく（5回）"
+    },
+    "capsuleFaster-10": {
+      "name": "あの日より はやく 10回",
+      "desc": "タイムカプセルで あの日より はやく とく（10回）"
+    },
+    "grew-1": {
+      "name": "のびた 1回",
+      "desc": "けっかで「のびたよ！」が 1回 でる"
+    },
+    "grew-5": {
+      "name": "のびた 5回",
+      "desc": "けっかで「のびたよ！」が 5回 でる"
+    },
+    "grew-10": {
+      "name": "のびた 10回",
+      "desc": "けっかで「のびたよ！」が 10回 でる"
+    },
+    "grew-30": {
+      "name": "のびた 30回",
+      "desc": "けっかで「のびたよ！」が 30回 でる"
+    },
+    "grew-50": {
+      "name": "のびた 50回",
+      "desc": "けっかで「のびたよ！」が 50回 でる"
+    },
+    "grew-100": {
+      "name": "のびた 100回",
+      "desc": "けっかで「のびたよ！」が 100回 でる"
+    },
+    "items-10": {
+      "name": "コレクション 10こ",
+      "desc": "コレクションを 10こ あつめる"
+    },
+    "items-20": {
+      "name": "コレクション 20こ",
+      "desc": "コレクションを 20こ あつめる"
+    },
+    "items-30": {
+      "name": "コレクション 30こ",
+      "desc": "コレクションを 30こ あつめる"
+    },
+    "items-40": {
+      "name": "コレクション 40こ",
+      "desc": "コレクションを 40こ あつめる"
+    },
+    "items-47": {
+      "name": "コレクション 47こ",
+      "desc": "コレクションを 47こ あつめる"
+    },
+    "catComplete-1": {
+      "name": "1しゅるい コンプリート",
+      "desc": "コレクションの 1しゅるいを ぜんぶ そろえる"
+    },
+    "catComplete-3": {
+      "name": "3しゅるい コンプリート",
+      "desc": "コレクションの 3しゅるいを ぜんぶ そろえる"
+    },
+    "catComplete-5": {
+      "name": "5しゅるい コンプリート",
+      "desc": "コレクションの 5しゅるいを ぜんぶ そろえる"
+    },
+    "catComplete-8": {
+      "name": "8しゅるい コンプリート",
+      "desc": "コレクションの 8しゅるいを ぜんぶ そろえる"
+    }
+  },
+  "series": {
+    "streak": {
+      "title": "れんぞくで あそぶ",
+      "cat": "つづける"
+    },
+    "days": {
+      "title": "あそんだ日",
+      "cat": "つづける"
+    },
+    "stickers": {
+      "title": "ログインシール",
+      "cat": "つづける"
+    },
+    "crowns": {
+      "title": "おうかんシール",
+      "cat": "つづける"
+    },
+    "problems": {
+      "title": "といた もんだい",
+      "cat": "たくさん"
+    },
+    "cells": {
+      "title": "いれた すうじ",
+      "cat": "たくさん"
+    },
+    "plays": {
+      "title": "あそんだ回数",
+      "cat": "たくさん"
+    },
+    "minutes": {
+      "title": "あそんだ時間",
+      "cat": "たくさん"
+    },
+    "unlocked": {
+      "title": "スキル かいほう",
+      "cat": "スキル"
+    },
+    "mastered": {
+      "title": "スキル マスター",
+      "cat": "スキル"
+    },
+    "gradeDone": {
+      "title": "学年 ぜんぶ マスター",
+      "cat": "スキル"
+    },
+    "laneDone": {
+      "title": "けいとう ぜんぶ マスター",
+      "cat": "スキル"
+    },
+    "extras": {
+      "title": "エクストラに いく",
+      "cat": "エクストラ"
+    },
+    "extraBest": {
+      "title": "エクストラ 1回の さいこう",
+      "cat": "エクストラ"
+    },
+    "extraSolved": {
+      "title": "エクストラで といた",
+      "cat": "エクストラ"
+    },
+    "combo": {
+      "title": "コンボ",
+      "cat": "コンボ"
+    },
+    "perfects": {
+      "title": "ノーミスで かんそう",
+      "cat": "せいかく"
+    },
+    "firstTry": {
+      "title": "初回正解",
+      "cat": "せいかく"
+    },
+    "dopa": {
+      "title": "ドパ",
+      "cat": "ドパ"
+    },
+    "review": {
+      "title": "ふくしゅう",
+      "cat": "ふくしゅう"
+    },
+    "grade1": {
+      "title": "1ねんせいで あそぶ",
+      "cat": "がくねん"
+    },
+    "grade2": {
+      "title": "2ねんせいで あそぶ",
+      "cat": "がくねん"
+    },
+    "grade3": {
+      "title": "3ねんせいで あそぶ",
+      "cat": "がくねん"
+    },
+    "grade4": {
+      "title": "4ねんせいで あそぶ",
+      "cat": "がくねん"
+    },
+    "grade5": {
+      "title": "5ねんせいで あそぶ",
+      "cat": "がくねん"
+    },
+    "grade6": {
+      "title": "6ねんせいで あそぶ",
+      "cat": "がくねん"
+    },
+    "secret": {
+      "title": "ひみつ",
+      "cat": "ひみつ"
+    },
+    "questDays": {
+      "title": "クエスト コンプリート",
+      "cat": "つづける"
+    },
+    "questRun": {
+      "title": "クエスト れんぞく",
+      "cat": "つづける"
+    },
+    "hammer": {
+      "title": "ノーカンハンマー",
+      "cat": "つづける"
+    },
+    "starsTotal": {
+      "title": "ほしの かず",
+      "cat": "スキル"
+    },
+    "star5": {
+      "title": "☆5の スキル",
+      "cat": "スキル"
+    },
+    "gradeStar3": {
+      "title": "学年 ぜんぶ ☆3",
+      "cat": "スキル"
+    },
+    "polished": {
+      "title": "さびを みがく",
+      "cat": "せいちょう"
+    },
+    "capsules": {
+      "title": "タイムカプセル",
+      "cat": "せいちょう"
+    },
+    "capsuleFaster": {
+      "title": "あの日より はやい",
+      "cat": "せいちょう"
+    },
+    "grew": {
+      "title": "のびたよ！",
+      "cat": "せいちょう"
+    },
+    "items": {
+      "title": "コレクション",
+      "cat": "コレクション"
+    },
+    "catComplete": {
+      "title": "ぜんぶ そろえた",
+      "cat": "コレクション"
+    }
+  },
+  "trophy_cats": [
+    "つづける",
+    "たくさん",
+    "スキル",
+    "せいちょう",
+    "エクストラ",
+    "コンボ",
+    "せいかく",
+    "ドパ",
+    "ふくしゅう",
+    "がくねん",
+    "コレクション",
+    "ひみつ"
+  ],
+  "trophy_rank_name": {
+    "bronze": "どう",
+    "silver": "ぎん",
+    "gold": "きん",
+    "rainbow": "にじ",
+    "secret": "ひみつ"
+  },
+  "unlock_cats": [
+    {
+      "key": "bg",
+      "name": "はいけい"
+    },
+    {
+      "key": "mark",
+      "name": "せいかいの しるし"
+    },
+    {
+      "key": "particle",
+      "name": "かみふぶき"
+    },
+    {
+      "key": "music",
+      "name": "おんがく"
+    },
+    {
+      "key": "costume",
+      "name": "きせかえ"
+    },
+    {
+      "key": "color",
+      "name": "ドパキチの いろ"
+    },
+    {
+      "key": "crowd",
+      "name": "おきゃくさん"
+    },
+    {
+      "key": "finale",
+      "name": "フィナーレ"
+    }
+  ],
+  "unlock_items": {
+    "bg:classic": "ほうしゃせん",
+    "mark:hanamaru": "はなまる",
+    "particle:classic": "かみふぶき",
+    "music:classic": "マリンバ マーチ",
+    "costume:none": "なし",
+    "color:pink": "ピンク",
+    "crowd:classic": "いろちがい",
+    "finale:classic": "きょだい ドパキチ",
+    "costume:cap": "ぼうし",
+    "particle:note": "おんぷ",
+    "mark:stamp": "せいかいスタンプ",
+    "bg:night": "よぞら",
+    "color:blue": "あお",
+    "finale:fireworks": "はなびたいかい",
+    "music:chip": "8ビット",
+    "crowd:costume": "きせかえ おきゃくさん",
+    "bg:sea": "うみと あわ",
+    "bg:festival": "おまつり",
+    "bg:paper": "かみの こうさく",
+    "bg:space": "うちゅう",
+    "mark:medal": "メダル",
+    "mark:crown": "おうかん",
+    "mark:ring": "はなびの わ",
+    "particle:petal": "はなびら",
+    "particle:digit": "すうじ",
+    "particle:bubble": "あわ",
+    "particle:candy": "おかし",
+    "music:matsuri": "おまつり ばやし",
+    "music:brass": "ブラスバンド",
+    "music:electro": "エレクトロ",
+    "costume:hachimaki": "はちまき",
+    "costume:cape": "マント",
+    "costume:glasses": "まるめがね",
+    "costume:ribbon": "リボン",
+    "costume:crown": "おうかん",
+    "costume:wizard": "まほうの ぼうし",
+    "costume:headphones": "ヘッドホン",
+    "color:mint": "みどり",
+    "color:snow": "ゆきいろ",
+    "color:yellow": "きいろ",
+    "color:violet": "むらさき",
+    "color:gold": "きんいろ",
+    "color:rainbow": "にじいろ",
+    "crowd:rainbow": "にじいろ おきゃくさん",
+    "crowd:twins": "おそろい おきゃくさん",
+    "finale:parade": "パレード",
+    "finale:rocket": "ロケット"
+  },
+  "guide": {
+    "intro": {
+      "title": "あそびかた",
+      "text": "もんだいは 3つの\nえらびかたが あるよ"
+    },
+    "level": {
+      "target": "#start",
+      "title": "じぶんレベル",
+      "text": "いまの きみに あった もんだい。\nはじめは じつりょくチェック"
+    },
+    "grades": {
+      "target": ".grades",
+      "title": "1ねんせい〜6ねんせい",
+      "text": "がくねんの もんだいを\nまとめて れんしゅう"
+    },
+    "tree": {
+      "target": "#open-tree",
+      "title": "スキルツリー",
+      "text": "やりたい もんだいを\n1つ えらんで れんしゅう"
+    },
+    "trophy": {
+      "target": "#open-trophy",
+      "title": "トロフィー",
+      "text": "あそぶと もらえるよ。\nつづけて あそぶと ふえていく"
+    },
+    "collection": {
+      "target": "#open-collect",
+      "title": "コレクション",
+      "text": "トロフィーの ごほうびで ふえる\nはいけい・おんがく・きせかえなどを\nえらべるよ"
+    },
+    "last": {
+      "target": "#start",
+      "title": "まよったら じぶんレベル！",
+      "text": "この せつめいは\n？ で また みられるよ",
+      "recommend": true
+    },
+    "labels": {
+      "recommend": "おすすめ",
+      "skip": "とばす",
+      "back": "もどる",
+      "next": "つぎへ"
+    }
+  },
+  "quests": {
+    "play1": "1回 あそぶ",
+    "combo5": "5コンボを だす",
+    "first5": "初回正解を 5もん",
+    "review1": "ふくしゅうを 1もん",
+    "new1": "NEWの スキルを 1もん",
+    "extra": "エクストラまで すすむ",
+    "extra5": "エクストラで 5もん とく",
+    "combo20": "20コンボを だす",
+    "play2": "2回 あそぶ",
+    "grade1": "学年べつで 1回 あそぶ",
+    "learn10": "れんしゅうちゅうの スキルを 10もん"
+  },
+  "scoring_code_snippet": "// Pure scoring and \"dopa\" curves (kept separate from the director for testing).\n\nexport const BASIC_SCORE = 100;\nexport const EXTRA_BASE = 10;\n\n// Points for the k-th (0-based) extra problem grow gently: 10, 15, 20, ...\n// A very fast player (20-25 extra problems in 90 s) ends in the 1000s.\nexport const EXTRA_STEP = 5;\nexport const extraPoints = (k) => EXTRA_BASE + EXTRA_STEP * k;\nexport const extraTotal = (n) => EXTRA_BASE * n + EXTRA_STEP * (n * (n - 1)) / 2;\n\n// Dopa is tracked as log10 and grows one answer cell at a time. The base\n// curves below are what a player with no combo gets; combos multiply each\n// step (see comboMult), so a steady combo lands back near the old targets.\n// Without combo the basic set ends near 10^2.3 (about 200); a full combo\n// doubles every step after 20 cells and ends near 1万.\nexport const BASIC_DOPA_L = 2.3;\nexport function basicDopaL(frac) {\n  const f = Math.min(1, Math.max(0, frac));\n  return BASIC_DOPA_L * f ** 1.15;\n}\n// Extra problems follow a saturating curve on top of the basic set.\nconst EXTRA_SPAN = 3.0; const EXTRA_TAU = 10;\nexport const extraDopaL = (n) => BASIC_DOPA_L + EXTRA_SPAN * (1 - Math.exp(-n / EXTRA_TAU));\nexport const extraProblemGain = (k) => extraDopaL(k + 1) - extraDopaL(k);\n// Hard ceiling: about 12億, whatever the combo.\nexport const DOPA_MAX_L = 9.08;\n\n// ---------------------------------------------------------------- combo\n// One combo per correct answer cell, carried across problems. It does not\n// change the score; it only makes dopa grow faster: the multiplier rises\n// evenly from x1.0 and tops out at x2.0 at 20 combo.\nexport const COMBO_DOPA = { max: 2, full: 20 };\nexport const comboMult = (combo) => 1 + (COMBO_DOPA.max - 1) * Math.min(1, Math.max(0, combo) / COMBO_DOPA.full);\nexport const comboMaxed = (combo) => combo >= COMBO_DOPA.full;\n\n// Add one answer cell's worth of dopa. `base` is the no-combo step (log10).\nexport function addDopa(L, base, combo) {\n  return Math.min(DOPA_MAX_L, L + Math.max(0.003, base) * comboMult(combo));\n}\n\n// Time allowed to enter the next answer cell before the combo breaks\n// (provisional). Harder skills (higher grade) get longer; the first cell of\n// a problem adds time to read it.\nexport const COMBO_TIME = { base: 3000, perGrade: 600, read: 2500 };\nexport function comboWindowMs(grade = 3, first = false) {\n  const g = Math.min(6, Math.max(1, grade || 3));\n  return COMBO_TIME.base + COMBO_TIME.perGrade * (g - 1) + (first ? COMBO_TIME.read : 0);\n}\n// Milestones worth a bigger show: 10, 20, 30, 50, 75, 100, then every 50.\nexport const comboMilestone = (c) => [10, 20, 30, 50, 75].includes(c) || (c >= 100 && c % 50 === 0);\n\nconst UNITS = [[68, '無量大数'], [64, '不可思議'], [60, '那由他'], [56, '阿僧祇'], [52, '恒河沙'], [48, '極'], [44, '載'], [40, '正'], [36, '澗'], [32, '溝'], [28, '穣'], [24, '秭'], [20, '垓'], [16, '京'], [12, '兆'], [8, '億'], [4, '万']];\n// Milestones below 万 are celebrated but not used as display units.\nconst MILESTONES = [[3, '千'], [2, '百']];\n\nexport function fmtDopa(L) {\n  if (!Number.isFinite(L) || L >= 72) return '∞';\n  if (L < 4) return Math.round(10 ** L).toLocaleString('ja-JP');\n  const u = UNITS.find(([e]) => L >= e - 1e-9);\n  const m = 10 ** (L - u[0]);\n  return (m < 10 ? m.toFixed(1) : String(Math.floor(m))) + u[1];\n}\n\nexport function unitOf(L) {\n  if (L >= 72) return '∞';\n  // Between 万 and 億, each extra digit is its own milestone (10万, 100万, 1000万).\n  if (L >= 4 && L < 8) return ['万', '十万', '百万', '千万'][Math.floor(L + 1e-9) - 4];\n  const u = UNITS.find(([e]) => L >= e - 1e-9) || MILESTONES.find(([e]) => L >= e - 1e-9);\n  return u ? u[1] : '';\n}\n\nconst LABELS = { '∞': '∞', 百: '100', 千: '1000', 十万: '10万', 百万: '100万', 千万: '1000万' };\nexport const unitLabel = (u) => LABELS[u] || `1${u}`;\n"
+}

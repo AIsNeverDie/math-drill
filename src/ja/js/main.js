@@ -2457,7 +2457,7 @@ $('#cal-next').addEventListener('click', () => moveMonth(1));
 $('#cal-grid').addEventListener('click', (e) => { const b = e.target.closest('[data-day]'); if (b) openDay(b.dataset.day); });
 $('#close-day').addEventListener('click', () => { $('#day-log').hidden = true; });
 $('#day-log').addEventListener('click', (e) => { if (e.target.id === 'day-log') $('#day-log').hidden = true; });
-$('#screen-title').addEventListener('scroll', () => requestAnimationFrame(layoutActors), { passive: true });
+$('#screen-title').addEventListener('scroll', layoutActors, { passive: true });
 $$('#screen-result, #screen-final, #tree-scroll, #tr-scroll').forEach((el) => el.addEventListener('scroll', () => requestAnimationFrame(layoutActors), { passive: true }));
 $('#open-settings').addEventListener('click', openSettings);
 $('#open-guide').addEventListener('click', () => openGuide(true));
