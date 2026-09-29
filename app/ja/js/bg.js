@@ -1,8 +1,4 @@
-// Full-screen WebGL backdrop: sunburst rays that grow into a rainbow tunnel of
-// Dopakichi silhouettes. Falls back to a CSS conic gradient without WebGL.
-
-const VERT = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0., 1.); }`;
-const FRAG = `precision highp float;
+const i="attribute vec2 p; void main(){ gl_Position = vec4(p, 0., 1.); }",h=`precision highp float;
 uniform vec2 uRes; uniform vec2 uCenter; uniform float uTime, uE, uKick, uFlash, uReach, uHue, uTheme;
 vec3 hsv(float h, float s, float v){ vec3 k = clamp(abs(mod(h*6. + vec3(0.,4.,2.), 6.) - 3.) - 1., 0., 1.); return v * mix(vec3(1.), k, s); }
 float hash(vec2 c){ return fract(sin(dot(c, vec2(127.1, 311.7))) * 43758.5453); }
@@ -193,81 +189,4 @@ void main(){
   alpha = max(alpha, uReach * .88);
   alpha = max(alpha, clamp(uFlash, 0., 1.));
   gl_FragColor = vec4(col * alpha, alpha);
-}`;
-
-export const THEMES = ['classic', 'night', 'sea', 'space', 'festival', 'paper'];
-const FALLBACK = [
-  'repeating-conic-gradient(from 0deg at 50% 50%, #3b6bff 0 9deg, #ff7ab6 9deg 18deg)',
-  'repeating-conic-gradient(from 0deg at 50% 50%, #1b1d4d 0 9deg, #3b2f7a 9deg 18deg)',
-  'repeating-conic-gradient(from 0deg at 50% 50%, #3aa7d8 0 9deg, #8fe3ef 9deg 18deg)',
-  'repeating-conic-gradient(from 0deg at 50% 50%, #14082e 0 9deg, #4a1f6e 9deg 18deg)',
-  'repeating-conic-gradient(from 0deg at 50% 50%, #ff4f5e 0 9deg, #fff1e0 9deg 18deg)',
-  'repeating-conic-gradient(from 0deg at 50% 50%, #ffb8d4 0 9deg, #c4d6ff 9deg 18deg)',
-];
-
-export class Backdrop {
-  constructor(canvas, fallback) {
-    this.canvas = canvas;
-    this.fallback = fallback;
-    this.state = { E: 0, kick: 0, flash: 0, reach: 0, hue: 0, cx: 0, cy: 0, theme: 0 };
-    this.gl = null;
-    try { this.init(); } catch (e) { console.warn('webgl off', e); this.gl = null; }
-    if (!this.gl) { canvas.style.display = 'none'; fallback.style.display = 'block'; }
-  }
-  init() {
-    const gl = this.canvas.getContext('webgl', { antialias: false, premultipliedAlpha: true, alpha: true, powerPreference: 'high-performance' });
-    if (!gl) return;
-    const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
-    const prog = gl.createProgram();
-    gl.attachShader(prog, sh(gl.VERTEX_SHADER, VERT));
-    gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FRAG));
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
-    gl.useProgram(prog);
-    const buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    const loc = gl.getAttribLocation(prog, 'p');
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    this.u = {};
-    for (const n of ['uRes', 'uCenter', 'uTime', 'uE', 'uKick', 'uFlash', 'uReach', 'uHue', 'uTheme']) this.u[n] = gl.getUniformLocation(prog, n);
-    this.gl = gl;
-    this.canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); this.gl = null; this.canvas.style.display = 'none'; this.fallback.style.display = 'block'; });
-  }
-  resize() {
-    const dpr = Math.min(1.25, window.devicePixelRatio || 1);
-    const w = Math.round(innerWidth * dpr); const h = Math.round(innerHeight * dpr);
-    if (this.canvas.width !== w || this.canvas.height !== h) { this.canvas.width = w; this.canvas.height = h; }
-    this.dpr = dpr;
-  }
-  // Unlockable backgrounds (id041, id042); the CSS fallback gets matching colours.
-  setTheme(name) {
-    const i = Math.max(0, THEMES.indexOf(name));
-    this.state.theme = i;
-    this.fallback.style.background = FALLBACK[i];
-  }
-  render(t) {
-    const s = this.state;
-    if (!this.gl) {
-      const f = this.fallback;
-      f.style.opacity = String(Math.min(1, Math.max(s.reach * 0.8, (s.E - 0.12) * 2)));
-      f.style.transform = `rotate(${(t / 1000) * (8 + 40 * s.E)}deg) scale(${1 + s.kick * 0.04})`;
-      f.style.filter = s.E > 0.6 ? `hue-rotate(${(t / 20) % 360}deg)` : 'none';
-      return;
-    }
-    this.resize();
-    const gl = this.gl;
-    gl.viewport(0, 0, this.canvas.width, this.canvas.height);
-    gl.uniform2f(this.u.uRes, this.canvas.width, this.canvas.height);
-    gl.uniform2f(this.u.uCenter, s.cx * this.dpr, s.cy * this.dpr);
-    gl.uniform1f(this.u.uTime, t / 1000);
-    gl.uniform1f(this.u.uE, s.E);
-    gl.uniform1f(this.u.uKick, s.kick);
-    gl.uniform1f(this.u.uFlash, s.flash);
-    gl.uniform1f(this.u.uReach, s.reach);
-    gl.uniform1f(this.u.uHue, s.hue);
-    gl.uniform1f(this.u.uTheme, s.theme);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-  }
-}
+}`;export const THEMES=["classic","night","sea","space","festival","paper"];const f=["repeating-conic-gradient(from 0deg at 50% 50%, #3b6bff 0 9deg, #ff7ab6 9deg 18deg)","repeating-conic-gradient(from 0deg at 50% 50%, #1b1d4d 0 9deg, #3b2f7a 9deg 18deg)","repeating-conic-gradient(from 0deg at 50% 50%, #3aa7d8 0 9deg, #8fe3ef 9deg 18deg)","repeating-conic-gradient(from 0deg at 50% 50%, #14082e 0 9deg, #4a1f6e 9deg 18deg)","repeating-conic-gradient(from 0deg at 50% 50%, #ff4f5e 0 9deg, #fff1e0 9deg 18deg)","repeating-conic-gradient(from 0deg at 50% 50%, #ffb8d4 0 9deg, #c4d6ff 9deg 18deg)"];export class Backdrop{constructor(t,o){this.canvas=t,this.fallback=o,this.state={E:0,kick:0,flash:0,reach:0,hue:0,cx:0,cy:0,theme:0},this.gl=null;try{this.init()}catch(e){console.warn("webgl off",e),this.gl=null}this.gl||(t.style.display="none",o.style.display="block")}init(){const t=this.canvas.getContext("webgl",{antialias:!1,premultipliedAlpha:!0,alpha:!0,powerPreference:"high-performance"});if(!t)return;const o=(a,r)=>{const s=t.createShader(a);if(t.shaderSource(s,r),t.compileShader(s),!t.getShaderParameter(s,t.COMPILE_STATUS))throw new Error(t.getShaderInfoLog(s));return s},e=t.createProgram();if(t.attachShader(e,o(t.VERTEX_SHADER,i)),t.attachShader(e,o(t.FRAGMENT_SHADER,h)),t.linkProgram(e),!t.getProgramParameter(e,t.LINK_STATUS))throw new Error(t.getProgramInfoLog(e));t.useProgram(e);const c=t.createBuffer();t.bindBuffer(t.ARRAY_BUFFER,c),t.bufferData(t.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),t.STATIC_DRAW);const l=t.getAttribLocation(e,"p");t.enableVertexAttribArray(l),t.vertexAttribPointer(l,2,t.FLOAT,!1,0,0),this.u={};for(const a of["uRes","uCenter","uTime","uE","uKick","uFlash","uReach","uHue","uTheme"])this.u[a]=t.getUniformLocation(e,a);this.gl=t,this.canvas.addEventListener("webglcontextlost",a=>{a.preventDefault(),this.gl=null,this.canvas.style.display="none",this.fallback.style.display="block"})}resize(){const t=Math.min(1.25,window.devicePixelRatio||1),o=Math.round(innerWidth*t),e=Math.round(innerHeight*t);(this.canvas.width!==o||this.canvas.height!==e)&&(this.canvas.width=o,this.canvas.height=e),this.dpr=t}setTheme(t){const o=Math.max(0,THEMES.indexOf(t));this.state.theme=o,this.fallback.style.background=f[o]}render(t){const o=this.state;if(!this.gl){const c=this.fallback;c.style.opacity=String(Math.min(1,Math.max(o.reach*.8,(o.E-.12)*2))),c.style.transform=`rotate(${t/1e3*(8+40*o.E)}deg) scale(${1+o.kick*.04})`,c.style.filter=o.E>.6?`hue-rotate(${t/20%360}deg)`:"none";return}this.resize();const e=this.gl;e.viewport(0,0,this.canvas.width,this.canvas.height),e.uniform2f(this.u.uRes,this.canvas.width,this.canvas.height),e.uniform2f(this.u.uCenter,o.cx*this.dpr,o.cy*this.dpr),e.uniform1f(this.u.uTime,t/1e3),e.uniform1f(this.u.uE,o.E),e.uniform1f(this.u.uKick,o.kick),e.uniform1f(this.u.uFlash,o.flash),e.uniform1f(this.u.uReach,o.reach),e.uniform1f(this.u.uHue,o.hue),e.uniform1f(this.u.uTheme,o.theme),e.drawArrays(e.TRIANGLES,0,3)}}
