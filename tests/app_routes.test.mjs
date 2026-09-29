@@ -10,6 +10,7 @@ const redirect = root.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 
 test('root opens the saved language, with an explicit override and preserved URL state', () => {
   assert.ok(redirect);
+  const nav = { languages: ['en-US'], language: 'en-US' };
   for (const [search, saved, hash, expected] of [
     ['', null, '', 'en/'],
     ['', 'ja', '', 'ja/'],
@@ -25,6 +26,7 @@ test('root opens the saved language, with an explicit override and preserved URL
       URLSearchParams,
       location: { search, hash, replace: (url) => { destination = url; } },
       localStorage: { getItem: () => saved },
+      navigator: nav,
     });
     assert.equal(destination, expected);
   }
@@ -36,8 +38,30 @@ test('root defaults to English when browser storage is unavailable', () => {
     URLSearchParams,
     location: { search: '', hash: '', replace: (url) => { destination = url; } },
     localStorage: { getItem: () => { throw new Error('blocked'); } },
+    navigator: { languages: ['en-US'], language: 'en-US' },
   });
   assert.equal(destination, 'en/');
+});
+
+test('root auto-detects browser language when no saved preference', () => {
+  for (const [langs, expected] of [
+    [['zh-TW', 'zh'], 'zh-TW/'],
+    [['zh-HK'], 'zh-TW/'],
+    [['zh-CN', 'zh'], 'zh-CN/'],
+    [['zh'], 'zh-CN/'],
+    [['ja-JP'], 'ja/'],
+    [['fr-FR', 'en-US'], 'en/'],
+    [['de-DE'], 'en/'],
+  ]) {
+    let destination;
+    runInNewContext(redirect, {
+      URLSearchParams,
+      location: { search: '', hash: '', replace: (url) => { destination = url; } },
+      localStorage: { getItem: () => null },
+      navigator: { languages: langs, language: langs[0] },
+    });
+    assert.equal(destination, expected, `browser langs ${langs} → ${expected}`);
+  }
 });
 
 test('all language routes include their own game assets', () => {

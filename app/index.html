@@ -11,6 +11,19 @@
     if (!supported.includes(lang)) {
       try { lang = localStorage.getItem('japanese-math-drill:lang'); } catch { /* storage blocked */ }
     }
+    if (!supported.includes(lang)) {
+      // Auto-detect from browser language
+      try {
+        const browserLangs = navigator.languages || [navigator.language || ''];
+        for (const bl of browserLangs) {
+          const l = bl.toLowerCase();
+          if (l === 'zh-tw' || l === 'zh-hant' || l.startsWith('zh-hant') || l === 'zh-hk' || l === 'zh-mo') { lang = 'zh-TW'; break; }
+          if (l === 'zh-cn' || l === 'zh-hans' || l.startsWith('zh')) { lang = 'zh-CN'; break; }
+          if (l.startsWith('ja')) { lang = 'ja'; break; }
+          if (l.startsWith('en')) { lang = 'en'; break; }
+        }
+      } catch { /* navigator unavailable */ }
+    }
     if (!supported.includes(lang)) lang = 'en';
     params.delete('lang');
     location.replace(`${lang}/` + (String(params) ? `?${params}` : '') + location.hash);
