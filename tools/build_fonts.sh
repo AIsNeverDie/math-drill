@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 # Rebuild the subset WOFF2 fonts used by the game from the Google Fonts (OFL) sources.
-# The English game (app/en/) and the original Japanese game (app/ja/) each get
-# fonts with just the characters their own files use.
-# Requires: curl, uv. Usage: bash tools/build_fonts.sh
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="$(mktemp -d)"
@@ -10,7 +7,9 @@ BASE=https://raw.githubusercontent.com/google/fonts/main/ofl
 curl -sSfo "$WORK/dela.ttf" "$BASE/delagothicone/DelaGothicOne-Regular.ttf"
 curl -sSfo "$WORK/zen-bold.ttf" "$BASE/zenmarugothic/ZenMaruGothic-Bold.ttf"
 curl -sSfo "$WORK/zen-black.ttf" "$BASE/zenmarugothic/ZenMaruGothic-Black.ttf"
-for GAME in "$ROOT/app/en" "$ROOT/app/ja"; do
+curl -sSfo "$WORK/zcool.ttf" "$BASE/zcoolkuaile/ZCOOLKuaiLe-Regular.ttf"
+
+for GAME in "$ROOT/app/en" "$ROOT/app/ja" "$ROOT/app/zh-CN" "$ROOT/app/zh-TW"; do
 python3 - "$GAME" "$WORK/chars.txt" <<'PY'
 import sys, pathlib
 game = pathlib.Path(sys.argv[1])
@@ -24,6 +23,12 @@ for pair in "dela dela-gothic-one" "zen-bold zen-maru-gothic-bold" "zen-black ze
   set -- $pair
   uv run --no-project --with fonttools --with brotli pyftsubset "$WORK/$1.ttf" --text-file="$WORK/chars.txt" --flavor=woff2 --layout-features='*' --output-file="$GAME/fonts/$2.woff2"
 done
+
+# If Chinese, build chunky-fallback using ZCOOL KuaiLe
+if [[ "$GAME" == *"zh-CN"* || "$GAME" == *"zh-TW"* ]]; then
+  uv run --no-project --with fonttools --with brotli pyftsubset "$WORK/zcool.ttf" --text-file="$WORK/chars.txt" --flavor=woff2 --layout-features='*' --output-file="$GAME/fonts/chunky-fallback.woff2"
+fi
+
 echo "fonts rebuilt in $GAME/fonts"
 done
 rm -rf "$WORK"

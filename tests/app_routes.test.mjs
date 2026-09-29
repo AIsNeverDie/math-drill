@@ -13,8 +13,12 @@ test('root opens the saved language, with an explicit override and preserved URL
   for (const [search, saved, hash, expected] of [
     ['', null, '', 'en/'],
     ['', 'ja', '', 'ja/'],
+    ['', 'zh-CN', '', 'zh-CN/'],
+    ['', 'zh-TW', '', 'zh-TW/'],
     ['?lang=en&from=home', 'ja', '#play', 'en/?from=home#play'],
     ['?lang=ja', 'en', '', 'ja/'],
+    ['?lang=zh-CN', 'en', '', 'zh-CN/'],
+    ['?lang=zh-TW', 'en', '', 'zh-TW/'],
   ]) {
     let destination;
     runInNewContext(redirect, {
@@ -36,8 +40,8 @@ test('root defaults to English when browser storage is unavailable', () => {
   assert.equal(destination, 'en/');
 });
 
-test('both language routes include their own game assets', () => {
-  for (const lang of ['en', 'ja']) {
+test('all language routes include their own game assets', () => {
+  for (const lang of ['en', 'ja', 'zh-CN', 'zh-TW']) {
     const html = readFileSync(`${app}${lang}/index.html`, 'utf8');
     for (const [, asset] of html.matchAll(/(?:href|src)="(icon\.svg|style\.css|js\/main\.js)"/g)) {
       assert.ok(existsSync(`${app}${lang}/${asset}`), `${lang}/${asset}`);

@@ -2543,12 +2543,13 @@ $('#f-tree').addEventListener('click', () => openTree(S.newUnlocks, Object.keys(
 $('#tree-back').addEventListener('click', () => { audio.play('blip', audio.now(), { m: 72, v: 0.08 }); toTitle(); });
 // Back to the title from a play, through the same confirmation as Escape.
 $('#play-back').addEventListener('click', () => { if (S.screen !== 'play' || S.demo) return; audio.play('blip', audio.now(), { m: 72, v: 0.08 }); askToTitle(); });
-// Japanese lives in the sibling ja/ folder. The choice is kept apart
+// Sibling language folders: ja/, zh-CN/, zh-TW/. The choice is kept apart
 // from the game data so that a full reset does not switch the language.
 $('#lang').addEventListener('change', (e) => {
-  if (e.target.value !== 'ja') return;
-  try { localStorage.setItem('japanese-math-drill:lang', 'ja'); } catch { /* storage blocked: Japanese just for now */ }
-  location.replace('../ja/');
+  const target = e.target.value;
+  if (!target || target === 'en') return;
+  try { localStorage.setItem('japanese-math-drill:lang', target); } catch { /* storage blocked */ }
+  location.replace(`../${target}/`);
 });
 
 for (const [key, b] of Object.entries(padButtons)) {

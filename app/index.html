@@ -7,14 +7,16 @@
   <script>
     const params = new URLSearchParams(location.search);
     let lang = params.get('lang');
-    if (lang !== 'en' && lang !== 'ja') {
+    const supported = ['en', 'ja', 'zh-CN', 'zh-TW'];
+    if (!supported.includes(lang)) {
       try { lang = localStorage.getItem('japanese-math-drill:lang'); } catch { /* storage blocked */ }
     }
+    if (!supported.includes(lang)) lang = 'en';
     params.delete('lang');
-    location.replace(`${lang === 'ja' ? 'ja/' : 'en/'}${String(params) ? `?${params}` : ''}${location.hash}`);
+    location.replace(`${lang}/` + (String(params) ? `?${params}` : '') + location.hash);
   </script>
 </head>
 <body>
-  <p><a href="en/">English</a> · <a href="ja/" lang="ja">日本語</a></p>
+  <p><a href="en/">English</a> · <a href="ja/" lang="ja">日本語</a> · <a href="zh-CN/" lang="zh-CN">简体中文</a> · <a href="zh-TW/" lang="zh-TW">繁體中文</a></p>
 </body>
 </html>

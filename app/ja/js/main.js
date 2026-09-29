@@ -2487,12 +2487,13 @@ $('#motion').addEventListener('input', (e) => { const v = e.target.value / 100; 
 $('#motion').addEventListener('change', () => { S.previewE = 0.04 + 0.3 * S.motion; });
 $('#mute').addEventListener('click', () => setMuted(!S.muted));
 $('#play-back').addEventListener('click', () => { if (S.screen !== 'play' || S.demo) return; audio.play('blip', audio.now(), { m: 72, v: 0.08 }); askToTitle(); });
-// The English version lives in the sibling en/ folder. The choice is kept apart from the
+// Sibling language folders: en/, zh-CN/, zh-TW/. The choice is kept apart from the
 // game data so that a full reset does not switch the language.
 $('#lang').addEventListener('change', (e) => {
-  if (e.target.value !== 'en') return;
-  try { localStorage.setItem('japanese-math-drill:lang', 'en'); } catch { /* storage blocked: English just for now */ }
-  location.replace('../en/');
+  const target = e.target.value;
+  if (!target || target === 'ja') return;
+  try { localStorage.setItem('japanese-math-drill:lang', target); } catch { /* storage blocked */ }
+  location.replace(`../${target}/`);
 });
 $('#go-extra').addEventListener('click', startExtra);
 $('#go-title').addEventListener('click', toTitle);

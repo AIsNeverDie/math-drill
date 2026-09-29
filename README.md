@@ -1,98 +1,138 @@
-# Japanese Math Drill
+# 🧮 Math Drill
 
-An unofficial English localization of [Dopa Drill (ドパドリル)](https://github.com/grmchn/dopa-drill) by gear_machine.
+> An exciting math trainer for kids — combos, trophies, streaks & time capsules. Beat the clock in Extra mode.
 
-A math drill where every problem you solve makes the show and the music build up a little more. It runs entirely in the browser.
+**🇺🇸 English · 🇯🇵 [日本語](README.ja.md) · 🇨🇳 [简体中文](README.zh-CN.md) · 🇹🇼 [繁體中文](README.zh-TW.md)**
 
-The mascot, Dopakichi, carries each digit you type into place and celebrates when you get it right. The further you go, the more the screen and the sound pile on, until it turns into a full-blown festival. Mistakes never kill the momentum, and there is no game over.
+---
+
+## What is this?
+
+A browser-based math practice game for Grade 1–6 elementary school students. It looks like a game, plays like a game, and somehow also teaches arithmetic.
+
+Kids work through a **skill tree** of 58 math skills — from single-digit addition all the way to fractions, ratios, and long division. The system tracks what they know, what they're rusty on, and what they're ready to learn next.
+
+---
 
 ## Features
 
-- 58 calculation skills for grades 1–6, based on Japan's national curriculum guidelines: addition, subtraction, multiplication and division, entering the working of column methods and long division, decimals, fractions, percentages and more
-- "My Level" mode: it starts from a skill check and unlocks the next skills as you master them
-- Grade drills, Practice, Review and a Skill Tree
-- Solving every problem scores 100 points. With a first-try rate of 80% or more, a timed Extra round lets you go past 100
-- All music and sound effects are synthesized with the Web Audio API (no audio files)
-- Works on phones in portrait and on PCs. On a PC you can also play with the number keys and Backspace
-- The strength of the motion effects can be adjusted in Settings, and sound can be muted
-- A round back button at the top left of the play screen returns to the title (after a confirmation)
-- English by default, with the original Japanese one tap away in Settings
-- Everything is saved on the device (localStorage); nothing is sent anywhere
+| Feature | Description |
+|:--------|:------------|
+| 🌳 **Skill Tree** | 58 skills across 6 grades, with prerequisite chains |
+| 📅 **Daily Quests** | 3 goals per day, matched to the child's current level |
+| 🔥 **Combo System** | Answer fast and correctly to build a multiplier up to ×2 |
+| ⏱️ **Extra Mode (加时赛)** | 90-second bonus round unlocked by ≥80% first-try accuracy |
+| 🏆 **300+ Trophies** | Achievements for speed, accuracy, streaks, and milestones |
+| 🎒 **Collectibles** | Unlock avatar costumes by earning trophies |
+| 📦 **Time Capsule** | Revisit a problem from your very first day, after 30 days |
+| 📈 **Growth Tracking** | Stars, speed records, and retention metrics per skill |
+| 🔐 **Offline-first** | No account needed — all data lives in `localStorage` |
 
-## Languages
+---
 
-English is the default. The globe menu at the top of **Settings** switches to Japanese (日本語) and back. The choice is remembered on the device, so `/` opens the last language picked.
+## Gameplay Loop
 
-The Japanese version is the original Dopa Drill (ドパドリル) itself, kept in `app/ja/` exactly as it is in the original repository. The only additions are:
+```
+Home → Start a session → Answer 10 problems (Basic)
+     → Result screen → Extra mode unlocked? → 90-sec sprint
+     → Final score → Trophies & skill news → Home
+```
 
-- the language menu
-- the back button on the play screen, with slightly tighter spacing in that header row
-- fonts rebuilt with the two characters of 言語 added (every other glyph is unchanged)
+Each problem is chosen by an **adaptive engine**: it weighs spaced repetition, recent errors, skill prerequisites, and combo state to pick the right challenge at the right moment.
 
-Both versions share the same save data, so progress carries over when you switch. The language choice is stored apart from the game data, so **Reset everything** leaves it as it is.
+---
 
-`/en/` always opens the English version and `/ja/` always opens the Japanese version. `/?lang=en` and `/?lang=ja` override the saved choice when opening `/`.
+## Tech Stack
 
-## About this localization
+- **Pure vanilla JS** — zero frameworks, zero build step
+- **ES modules** — native browser imports, no bundler
+- **CSS custom properties** — theme and font vars per language
+- **`localStorage`** — all progress stored client-side
+- **Node.js test runner** — 66 unit tests, no test framework needed
 
-- In English mode, all on-screen text, problems, hints, trophies and collection items are in US English, and so are `docs/SPEC.md` and `docs/curriculum.md`.
-- Grades follow Japan's curriculum, which does not always match other countries (for example, the times tables are Grade 2).
-- Some things were adapted rather than translated word for word:
-  - Problems read in English order: "10 is 3 and 7", "1/4 of 12 = 3", "25% of 200 = 50", "GCF of 12 and 18 = 6", "Round 34567 to the nearest 100".
-  - Remainders are written "R" (17 ÷ 5 = 3 R 2), and mixed numbers "2 1/3".
-  - The Dopa counter counts up with English number names (thousand, million, billion…) instead of the Japanese units 万 and 億.
-  - The logo reads "Japanese Math Drill".
-  - Big one-line banners shrink to fit narrow screens.
-  - The English version has its own font subsets, about a quarter of the size of the Japanese ones.
-- The original repository is configured as the `upstream` remote, so later changes can be fetched with `git fetch upstream`.
+```
+app/
+├── index.html          # Language router
+├── en/                 # English version (self-contained)
+├── ja/                 # Japanese version
+├── zh-CN/              # Simplified Chinese version
+├── zh-TW/              # Traditional Chinese version
+│   ├── index.html
+│   ├── style.css
+│   ├── fonts/          # Language-specific WOFF2 subsets
+│   └── js/
+│       ├── main.js     # UI & game loop
+│       ├── problems.js # Problem generators (all skill types)
+│       ├── skills.js   # Skill tree & mastery logic
+│       ├── scoring.js  # Dopa & combo math
+│       ├── trophies.js # Achievement catalogue
+│       ├── quests.js   # Daily quest engine
+│       └── store.js    # localStorage persistence
+tests/                  # 66 unit tests (Node built-in runner)
+tools/                  # Font subsetting scripts
+```
 
-## Playing locally
+---
 
-No build step is needed. Serve `app/` as static files:
+## Languages & Fonts
+
+Each language ships its own font subset — no cross-language font mixing:
+
+| Language | Chunky font | Body font |
+|:---------|:------------|:----------|
+| English  | Dela Gothic One | Zen Maru Gothic |
+| Japanese | Dela Gothic One | Zen Maru Gothic |
+| 简体中文  | ZCOOL KuaiLe | PingFang SC / Microsoft YaHei |
+| 繁體中文  | ZCOOL KuaiLe | PingFang TC / Microsoft JhengHei |
+
+Font subsets are built per-language from actual game text — only the glyphs that appear in the game are shipped.
+
+---
+
+## Run Locally
+
+No install, no build:
 
 ```bash
 python3 -m http.server 8000 -d app
+# → open http://localhost:8000
 ```
 
-Then open `http://localhost:8000/en/` in a browser (`http://localhost:8000/ja/` for the Japanese version). The root URL redirects to the saved language, or English by default. The game uses ES modules, so opening the file directly with `file://` does not work.
+---
 
-## Tests
-
-Requires Node.js 20 or later.
+## Run Tests
 
 ```bash
 node --test tests/*.test.mjs
+# 66 tests, ~400ms
 ```
 
-## Layout
+---
 
-| Path | Contents |
-| --- | --- |
-| `app/en/` | The game in English (ES modules, no dependencies) |
-| `app/ja/` | The original Japanese game, with the language menu and the back button added |
-| `docs/SPEC.md` | Specification |
-| `docs/curriculum.md` | Skills by grade and the design of the skill tree |
-| `docs/dopakichi.svg` | The master drawing of Dopakichi |
-| `tests/` | Unit tests |
-| `tools/build_fonts.sh` | Regenerates the font subsets of both versions (run it after changing on-screen text) |
+## Credits
+
+This is an unofficial Simplified/Traditional Chinese localization.
+
+| | |
+|:--|:--|
+| 🎮 **Original game** | [ドパドリル (Dopa Drill)](https://github.com/grmchn/dopa-drill) by **gear_machine** |
+| 🌏 **English localization** | [math-drill](https://github.com/elatd/math-drill) by **elatd** |
+| 🇨🇳 🇹🇼 **Chinese localization** | This repository |
+
+---
 
 ## License
 
-- Source code: MIT License
-- The character "Dopakichi" and the "Dopa Drill" name and logo are not covered by the MIT License. They may be used freely in non-commercial fan works (see below).
-- Fonts (`app/en/fonts/` and `app/ja/fonts/`): SIL Open Font License 1.1
+**Source code:** MIT License
 
-See [LICENSE](LICENSE) for details.
+**Fonts:** [SIL Open Font License 1.1](https://openfontlicense.org) — see `app/*/fonts/OFL-*.txt`
 
-### Fan works with Dopakichi and Dopa Drill
+**Character & branding — Dopakichi (ドパキチ) and the Dopa Drill name/logo:**  
+These are **not** covered by the MIT License and belong to the original author (gear_machine).  
+- ✅ Non-commercial fan works, forks, and modifications are freely allowed without prior permission  
+- ✅ Gameplay videos and streams are allowed (ad revenue / donations OK)  
+- ❌ Commercial use, merchandise, paid products, or official branding requires permission from the original author  
+- ❌ Content that harms the character's or project's reputation is prohibited  
 
-This summarizes the original author's terms. If it differs from the English text in [LICENSE](LICENSE), LICENSE prevails.
-
-For non-commercial purposes, you may use them freely without asking.
-
-- Allowed: fan art, comics, stories, animation, videos, social media posts, and publishing non-commercial forks or modified versions of this game
-- Gameplay videos and live streams: free, including on platforms with ad revenue or tipping
-- Needs permission first: commercial use, such as selling goods or works or using them in paid products, services or advertising; using them as the name, mascot or brand of another product or service; presenting your work as official
-- Not allowed: offensive uses, or uses that harm the reputation of the characters or of this project
-
-When you publish something, make it clear that it is unofficial.
+Please make clear that any derivative work is **unofficial**.  
+See the [original LICENSE](https://github.com/grmchn/dopa-drill/blob/main/LICENSE) for the authoritative terms (English text takes precedence).
