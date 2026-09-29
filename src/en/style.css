@@ -71,8 +71,8 @@ button:focus-visible { outline: 4px solid var(--yellow); outline-offset: 3px; }
 /* Logo: layered paper cut-outs. A spinning burst sits behind "MATH" with a
    "JAPANESE" tag pinned on top, "DRILL" rides on a folded ribbon, operator scraps float around. */
 .logo { position: relative; margin: calc(var(--fs) * 0.75) 0 calc(var(--fs) * 0.2); display: grid; justify-items: center; font-family: var(--chunky); font-weight: 400; line-height: 1; --fs: clamp(52px, 17vw, 78px); }
-.logo-burst { position: absolute; left: 50%; top: calc(var(--fs) * 0.52); width: calc(var(--fs) * 3.4); height: calc(var(--fs) * 3.4); transform: translate(-50%, -50%) scale(1.3); transform-origin: center center; transform-origin: center center; z-index: -1; filter: drop-shadow(0 6px 0 rgba(27, 29, 77, .9)); animation: logo-spin 36s linear infinite; }
-@keyframes logo-spin { from { transform: translate(-50%, -50%) scale(1.3) rotate(0deg); } to { transform: translate(-50%, -50%) scale(1.3) rotate(360deg); } }
+.logo-burst { position: absolute; left: 50%; top: calc(var(--fs) * 0.52); width: calc(var(--fs) * 3.4); height: calc(var(--fs) * 3.4); transform: translate(-50%, -50%) scale(1.17); transform-origin: center center; transform-origin: center center; z-index: -1; filter: drop-shadow(0 6px 0 rgba(27, 29, 77, .9)); animation: logo-spin 36s linear infinite; }
+@keyframes logo-spin { from { transform: translate(-50%, -50%) scale(1.17) rotate(0deg); } to { transform: translate(-50%, -50%) scale(1.17) rotate(360deg); } }
 .logo-top { display: flex; gap: .02em; font-size: var(--fs); letter-spacing: -.04em; }
 .logo i { font-style: normal; display: inline-block; position: relative; }
 .logo-top i {
@@ -143,7 +143,7 @@ body.reduced .logo *, body.reduced .logo-burst { animation: none !important; }
 .slider::-moz-range-thumb { width: 26px; height: 26px; border: 3px solid var(--ink); border-radius: 50%; background: var(--yellow); box-shadow: 0 3px 0 var(--ink); }
 .slider.motion::-webkit-slider-runnable-track { background: linear-gradient(90deg, var(--blue-soft), var(--pink) 50%, var(--yellow)) 0 0 / calc(var(--v) * 100%) 100% no-repeat, #fff; }
 .title-stage { position: relative; width: 100%; height: min(26vh, 200px); display: flex; align-items: flex-end; justify-content: center; }
-.hero-preview { height: calc(100% - 12px); max-height: 235px; width: auto; pointer-events: none; transform: scale(1.3); transform-origin: bottom center; }
+.hero-preview { height: calc(100% - 12px); max-height: 235px; width: auto; pointer-events: none; transform: scale(1.17); transform-origin: bottom center; }
 body.hydrated .hero-preview { display: none !important; }
 .pick { display: flex; gap: 10px; }
 .pick button {
@@ -182,7 +182,7 @@ body.hydrated .hero-preview { display: none !important; }
   .pip { width: 10px; height: 10px; border-width: 2px; }
   .pips.many .pip { width: 8px; height: 8px; border-width: 1.5px; }
 }
-@keyframes pip { 50% { transform: scale(1.3); } }
+@keyframes pip { 50% { transform: scale(1.17); } }
 .clock { display: flex; align-items: baseline; gap: 8px; padding: 4px 12px; border: 2.5px solid var(--ink); border-radius: 999px; background: #fff; font-size: 12px; white-space: nowrap; }
 .clock b { font-family: var(--chunky); font-weight: 400; font-size: 18px; font-variant-numeric: tabular-nums; }
 .clock.over #clock-label { color: var(--red); }
