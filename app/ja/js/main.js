@@ -2604,6 +2604,7 @@ checkLoginBonus();
 applyLevel(0.02);
 startClock();
 layoutActors();
+document.body.classList.add('hydrated');
 requestAnimationFrame(layoutActors);
 setTimeout(layoutActors, 60);
 document.fonts.ready.then(layoutActors);
