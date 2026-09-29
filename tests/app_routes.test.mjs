@@ -67,7 +67,7 @@ test('root auto-detects browser language when no saved preference', () => {
 test('all language routes include their own game assets', () => {
   for (const lang of ['en', 'ja', 'zh-CN', 'zh-TW']) {
     const html = readFileSync(`${app}${lang}/index.html`, 'utf8');
-    for (const [, asset] of html.matchAll(/(?:href|src)="(icon\.svg|style\.css|js\/main\.js)"/g)) {
+    for (const [, asset] of html.matchAll(/(?:href|src)="(icon\.svg|style\.css|js\/main\.js)(?:\?[^"]*)?"/g)) {
       assert.ok(existsSync(`${app}${lang}/${asset}`), `${lang}/${asset}`);
     }
   }
