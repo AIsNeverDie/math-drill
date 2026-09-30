@@ -44,32 +44,30 @@ Each problem is chosen by an **adaptive engine**: it weighs spaced repetition, r
 
 ## Tech Stack
 
-- **Pure vanilla JS** — zero frameworks, zero build step
-- **ES modules** — native browser imports, no bundler
-- **CSS custom properties** — theme and font vars per language
-- **`localStorage`** — all progress stored client-side
-- **Node.js test runner** — 66 unit tests, no test framework needed
+- **Vanilla JS & Modular Core Architecture** — Single source of truth under `src/core/`, unified i18n key extraction.
+- **Fast Build & Minification** — `esbuild` for minifying output to `app/`.
+- **CSS Custom Properties** — Dynamic theme and typography per language.
+- **`localStorage`** — Client-side offline progress persistence.
+- **Node.js Built-in Test Runner** — 67 unit tests covering generators, placement, scoring, streaks, and i18n integrity.
 
 ```
-app/
-├── index.html          # Language router
-├── en/                 # English version (self-contained)
-├── ja/                 # Japanese version
-├── zh-CN/              # Simplified Chinese version
-├── zh-TW/              # Traditional Chinese version
-│   ├── index.html
-│   ├── style.css
-│   ├── fonts/          # Language-specific WOFF2 subsets
-│   └── js/
-│       ├── main.js     # UI & game loop
-│       ├── problems.js # Problem generators (all skill types)
-│       ├── skills.js   # Skill tree & mastery logic
-│       ├── scoring.js  # Dopa & combo math
-│       ├── trophies.js # Achievement catalogue
-│       ├── quests.js   # Daily quest engine
-│       └── store.js    # localStorage persistence
-tests/                  # 66 unit tests (Node built-in runner)
-tools/                  # Font subsetting scripts
+math-drill/
+├── src/
+│   ├── core/           # Core game source of truth (HTML, CSS, JS)
+│   │   ├── index.html
+│   │   ├── css/
+│   │   └── js/
+│   └── locales/        # Pure i18n dictionaries (en, ja, zh-CN, zh-TW)
+├── app/                # Production build targets (ready to deploy)
+│   ├── index.html      # Language router
+│   ├── en/             # English build
+│   ├── ja/             # Japanese build
+│   ├── zh-CN/          # Simplified Chinese build
+│   └── zh-TW/          # Traditional Chinese build
+├── tests/              # 67 automated unit tests
+└── tools/              # Build & font processing scripts
+    ├── build.mjs       # Multi-locale compiler with esbuild
+    └── dev_server.mjs  # Local dev server
 ```
 
 ---
@@ -82,8 +80,8 @@ Each language ships its own font subset — no cross-language font mixing:
 |:---------|:------------|:----------|
 | English  | Dela Gothic One | Zen Maru Gothic |
 | Japanese | Dela Gothic One | Zen Maru Gothic |
-| 简体中文  | ZCOOL KuaiLe | PingFang SC / Microsoft YaHei |
-| 繁體中文  | ZCOOL KuaiLe | PingFang TC / Microsoft JhengHei |
+| 简体中文  | Dela Gothic One / ZCOOL KuaiLe | PingFang SC / Microsoft YaHei |
+| 繁體中文  | Dela Gothic One / ZCOOL KuaiLe | PingFang TC / Microsoft JhengHei |
 
 Font subsets are built per-language from actual game text — only the glyphs that appear in the game are shipped.
 
@@ -91,10 +89,16 @@ Font subsets are built per-language from actual game text — only the glyphs th
 
 ## Run Locally
 
-No install, no build:
-
 ```bash
-python3 -m http.server 8000 -d app
+# 1. Install dependencies (esbuild)
+npm install
+
+# 2. Build production assets
+npm run build
+
+# 3. Start local development server
+npm run dev
+# or: python3 -m http.server 8000 -d app
 # → open http://localhost:8000
 ```
 
@@ -103,8 +107,8 @@ python3 -m http.server 8000 -d app
 ## Run Tests
 
 ```bash
-node --test tests/*.test.mjs
-# 66 tests, ~400ms
+npm test
+# 67 tests, ~200ms
 ```
 
 ---

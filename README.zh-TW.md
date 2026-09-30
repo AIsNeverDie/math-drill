@@ -44,32 +44,30 @@
 
 ## 技術棧
 
-- **純原生 JavaScript** —— 零框架、零建置步驟
-- **ES 模組** —— 瀏覽器原生 import，無需打包器
-- **CSS 自訂屬性** —— 按語言管理主題與字型變數
-- **`localStorage`** —— 所有進度儲存在用戶端本機
-- **Node.js 內建測試執行器** —— 66 個單元測試，無需額外測試框架
+- **原生 JavaScript 與模組化架構** —— `src/core/` 統一單源維護，純淨鍵值對多語言國際化系統。
+- **極速建置與輕量壓縮** —— 基於 `esbuild` 自動壓縮生成最終部署檔案至 `app/`。
+- **CSS 自訂屬性** —— 按語言動態管理主題與排版字型變數。
+- **`localStorage`** —— 用戶端完全離線，所有遊戲進度儲存在本機。
+- **Node.js 內建測試執行器** —— 67 個自動化單元測試，涵蓋算術生成、分級測試、積分連擊與 i18n 完整性。
 
 ```
-app/
-├── index.html          # 語言路由入口
-├── en/                 # 英語版（獨立完整）
-├── ja/                 # 日語版
-├── zh-CN/              # 簡體中文版
-├── zh-TW/              # 繁體中文版
-│   ├── index.html
-│   ├── style.css
-│   ├── fonts/          # 按語言單獨生成的 WOFF2 字型子集
-│   └── js/
-│       ├── main.js     # UI 與遊戲主迴圈
-│       ├── problems.js # 題目生成器（涵蓋全部技能類型）
-│       ├── skills.js   # 技能樹與掌握度邏輯
-│       ├── scoring.js  # 多帕與連擊計算
-│       ├── trophies.js # 成就目錄
-│       ├── quests.js   # 每日任務引擎
-│       └── store.js    # localStorage 持久化
-tests/                  # 66 個單元測試（Node 內建執行器）
-tools/                  # 字型子集生成腳本
+math-drill/
+├── src/
+│   ├── core/           # 核心程式碼唯一真實來源（HTML、CSS、JS）
+│   │   ├── index.html
+│   │   ├── css/
+│   │   └── js/
+│   └── locales/        # 純淨多語言詞庫（en, ja, zh-CN, zh-TW）
+├── app/                # 建置輸出目錄（用於靜態部署）
+│   ├── index.html      # 語言路由入口
+│   ├── en/             # 英文版
+│   ├── ja/             # 日文版
+│   ├── zh-CN/          # 簡體中文版
+│   └── zh-TW/          # 繁體中文版
+├── tests/              # 67 個單元測試（Node 內建執行器）
+└── tools/              # 建置與字型指令碼
+    ├── build.mjs       # 多語言 esbuild 編譯腳本
+    └── dev_server.mjs  # 本機開發服務
 ```
 
 ---
@@ -82,8 +80,8 @@ tools/                  # 字型子集生成腳本
 |:-----|:---------|:---------|
 | English  | Dela Gothic One | Zen Maru Gothic |
 | 日本語   | Dela Gothic One | Zen Maru Gothic |
-| 簡體中文 | ZCOOL KuaiLe | PingFang SC / 微軟雅黑 |
-| 繁體中文 | ZCOOL KuaiLe | PingFang TC / 微軟正黑體 |
+| 簡體中文 | Dela Gothic One / ZCOOL KuaiLe | PingFang SC / 微軟雅黑 |
+| 繁體中文 | Dela Gothic One / ZCOOL KuaiLe | PingFang TC / 微軟正黑體 |
 
 字型子集按語言從遊戲實際文字生成，只打包遊戲中真正出現的字符。
 
@@ -91,10 +89,16 @@ tools/                  # 字型子集生成腳本
 
 ## 本機執行
 
-無需安裝，無需建置：
-
 ```bash
-python3 -m http.server 8000 -d app
+# 1. 安裝開發依賴 (esbuild)
+npm install
+
+# 2. 編譯生成靜態應用
+npm run build
+
+# 3. 啟動本機開發服務
+npm run dev
+# 或使用靜態伺服器: python3 -m http.server 8000 -d app
 # → 開啟 http://localhost:8000
 ```
 
@@ -103,8 +107,8 @@ python3 -m http.server 8000 -d app
 ## 執行測試
 
 ```bash
-node --test tests/*.test.mjs
-# 66 個測試，約 400ms
+npm test
+# 67 個測試，約 200ms
 ```
 
 ---

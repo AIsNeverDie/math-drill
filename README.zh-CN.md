@@ -44,32 +44,30 @@
 
 ## 技术栈
 
-- **纯原生 JavaScript** —— 零框架、零构建步骤
-- **ES 模块** —— 浏览器原生 import，无需打包器
-- **CSS 自定义属性** —— 按语言管理主题与字体变量
-- **`localStorage`** —— 所有进度存储在客户端本地
-- **Node.js 内置测试运行器** —— 66 个单元测试，无需额外测试框架
+- **原生 JavaScript 与模块化架构** —— `src/core/` 统一单源维护，纯净键值对多语言国际化系统。
+- **极速构建与轻量压缩** —— 基于 `esbuild` 自动压缩生成最终部署文件至 `app/`。
+- **CSS 自定义属性** —— 按语言动态管理主题与排版字体变量。
+- **`localStorage`** —— 客户端完全离线，所有游戏进度保存在本地。
+- **Node.js 内置测试运行器** —— 67 个自动化单元测试，覆盖算术生成、分级测试、积分连击与 i18n 完整性。
 
 ```
-app/
-├── index.html          # 语言路由入口
-├── en/                 # 英语版（独立完整）
-├── ja/                 # 日语版
-├── zh-CN/              # 简体中文版
-├── zh-TW/              # 繁体中文版
-│   ├── index.html
-│   ├── style.css
-│   ├── fonts/          # 按语言单独生成的 WOFF2 字体子集
-│   └── js/
-│       ├── main.js     # UI 与游戏主循环
-│       ├── problems.js # 题目生成器（覆盖全部技能类型）
-│       ├── skills.js   # 技能树与掌握度逻辑
-│       ├── scoring.js  # 多帕与连击计算
-│       ├── trophies.js # 成就目录
-│       ├── quests.js   # 每日任务引擎
-│       └── store.js    # localStorage 持久化
-tests/                  # 66 个单元测试（Node 内置运行器）
-tools/                  # 字体子集生成脚本
+math-drill/
+├── src/
+│   ├── core/           # 核心代码唯一真实来源（HTML、CSS、JS）
+│   │   ├── index.html
+│   │   ├── css/
+│   │   └── js/
+│   └── locales/        # 纯净多语言词库（en, ja, zh-CN, zh-TW）
+├── app/                # 构建输出目录（用于静态部署）
+│   ├── index.html      # 语言路由入口
+│   ├── en/             # 英文版
+│   ├── ja/             # 日文版
+│   ├── zh-CN/          # 简体中文版
+│   └── zh-TW/          # 繁体中文版
+├── tests/              # 67 个单元测试（Node 内置运行器）
+└── tools/              # 构建与字体脚本
+    ├── build.mjs       # 多语言 esbuild 编译脚本
+    └── dev_server.mjs  # 本地开发服务
 ```
 
 ---
@@ -82,8 +80,8 @@ tools/                  # 字体子集生成脚本
 |:-----|:---------|:---------|
 | English  | Dela Gothic One | Zen Maru Gothic |
 | 日本語   | Dela Gothic One | Zen Maru Gothic |
-| 简体中文 | ZCOOL KuaiLe | PingFang SC / 微软雅黑 |
-| 繁體中文 | ZCOOL KuaiLe | PingFang TC / 微軟正黑體 |
+| 简体中文 | Dela Gothic One / ZCOOL KuaiLe | PingFang SC / 微软雅黑 |
+| 繁體中文 | Dela Gothic One / ZCOOL KuaiLe | PingFang TC / 微軟正黑體 |
 
 字体子集按语言从游戏实际文本生成，只打包游戏中真正出现的字形。
 
@@ -91,10 +89,16 @@ tools/                  # 字体子集生成脚本
 
 ## 本地运行
 
-无需安装，无需构建：
-
 ```bash
-python3 -m http.server 8000 -d app
+# 1. 安装开发依赖 (esbuild)
+npm install
+
+# 2. 编译生成静态应用
+npm run build
+
+# 3. 启动本地开发服务
+npm run dev
+# 或使用静态服务器: python3 -m http.server 8000 -d app
 # → 打开 http://localhost:8000
 ```
 
@@ -103,8 +107,8 @@ python3 -m http.server 8000 -d app
 ## 运行测试
 
 ```bash
-node --test tests/*.test.mjs
-# 66 个测试，约 400ms
+npm test
+# 67 个测试，约 200ms
 ```
 
 ---
