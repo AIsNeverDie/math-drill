@@ -6,6 +6,17 @@
 
 ---
 
+## Architecture Refactoring (i18n Overhaul)
+
+The original upstream project maintained separate, duplicate directories for each locale (`src/en/`, `src/ja/`, `src/zh-CN/`, etc.), copying entire copies of dozens of JS scripts. This duplicate-code approach made iterative updates fragile: bug fixes or math engine changes had to be manually synced across four separate files, leading to frequent desynchronization and untranslated leaks.
+
+In this edition, we transitioned to a **modern, single-source i18n architecture**:
+1. **Single Source of Truth (`src/core/`):** All game engine logic, problem generators, state machines, sound drivers, and animations now live exclusively in `src/core/`.
+2. **Pure Key-Value Locales (`src/locales/*.json`):** Locales are clean JSON dictionaries containing only translation keys and values, fully decoupling engineering from localization.
+3. **Automated Compiler (`tools/build.mjs`):** Built with `esbuild`, our compiler automatically substitutes locale strings, injects translations, and minifies the output into self-contained deployment packages under `app/`.
+
+---
+
 ## What is this?
 
 A browser-based math practice game for Grade 1–6 elementary school students. It looks like a game, plays like a game, and somehow also teaches arithmetic.

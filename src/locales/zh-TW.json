@@ -685,7 +685,10 @@
     "{a} and ? make {total}": "{a} 加幾等於 {total}",
     "You got a Streak Hammer!": "獲得了一把補簽槌！",
     "Your hammers are full! Let's just celebrate.": "補簽槌已滿！盡情享受勝利吧！",
-    "rust": "生鏽"
+    "rust": "生鏽",
+    "Day <b>{n}</b> in a row!": "連續打卡第 <b>{n}</b> 天！",
+    "Special sticker! It's on your calendar.": "獲得特別紀念印章！已蓋在你的日曆上。",
+    "{n} more days to a special sticker": "再連續簽到 {n} 天即可獲得特別紀念印章"
   },
   "months": [
     "1月",

@@ -2064,7 +2064,7 @@ function openBonus(res) {
   S.bonusOpen = true;
   const m = $('#bonus');
   m.hidden = false;
-  $('#bonus-run').innerHTML = res.run >= 2 ? `Day<b>${res.run}</b>in a row!` : t("Today's bonus");
+  $('#bonus-run').innerHTML = res.run >= 2 ? t('Day <b>{n}</b> in a row!', { n: res.run }) : t("Today's bonus");
   const slots = [];
   for (let i = 1; i <= 7; i++) {
     const got = i <= res.slot;
@@ -2072,7 +2072,7 @@ function openBonus(res) {
     slots.push(`<div class="bonus-slot${got ? ' got' : ''}${i === res.slot ? ' today stamping' : ''}${i === 7 ? ' big' : ''}"><span class="d">${t('Day {i}', { i })}</span>${got ? stickerSvg(type) : i === 7 ? '?' : i}</div>`);
   }
   $('#bonus-grid').innerHTML = slots.join('');
-  $('#bonus-note').textContent = res.slot === 7 ? "Special sticker! It's on your calendar." : `${nOf(7 - res.slot, 'more day')} to a special sticker`;
+  $('#bonus-note').textContent = res.slot === 7 ? t("Special sticker! It's on your calendar.") : t('{n} more days to a special sticker', { n: 7 - res.slot });
   audio.unlock();
   requestAnimationFrame(() => {
     layoutActors();

@@ -1,8 +1,21 @@
 # 🧮 数学特训
 
 > 让孩子越玩越开心的小学数学练习游戏 —— 连击、奖杯、打卡、时光胶囊，加时赛限时冲分。
+> 
+> 📲 **微信直接访问/分享链接：** [https://math-drill-fkz6ydkx.edgeone.cool/](https://math-drill-fkz6ydkx.edgeone.cool/) （针对微信内置浏览器与国内网络加速优化）
 
 **🇺🇸 [English](README.md) · 🇯🇵 [日本語](README.ja.md) · 🇨🇳 简体中文 · 🇹🇼 [繁體中文](README.zh-TW.md)**
+
+---
+
+## 架构重构说明 (i18n Architecture Refactor)
+
+原版项目为每种语言单独维护了一整套完全重复的 HTML/CSS/JS 代码（例如 `src/en/`、`src/ja/`、`src/zh-CN/` 等目录下各自包含完整的数十个 JS 脚本）。这种多分支复制粘贴模式导致业务逻辑迭代极为困难，修一个 Bug 或改动一个公式需要手动同步四份代码，且极易出现国际化遗漏。
+
+我们在本次版本中对其进行了**现代单源 i18n 架构重构**：
+1. **单一核心源码 (Single Source of Truth)：** 将全部游戏主循环、逻辑判定、音效与生成算法统一收敛到 `src/core/js/`，核心代码只维护一份。
+2. **纯净字典分离 (Key-Value Locales)：** 各语言（`en`, `ja`, `zh-CN`, `zh-TW`）仅维护纯净的 `src/locales/*.json` 键值对翻译字典，彻底将「业务逻辑」与「文案本地化」解耦。
+3. **极速自动化编译 (Automated Build & Minify)：** 引入轻量级 `tools/build.mjs`（基于 esbuild），在构建时自动将对应语言词库注入核心代码并压缩，一键输出开箱即用的静态应用到 `app/`。
 
 ---
 

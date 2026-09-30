@@ -685,7 +685,10 @@
     "{a} and ? make {total}": "{a} と 何で {total}",
     "You got a Streak Hammer!": "ノーカンハンマーを ゲット！",
     "Your hammers are full! Let's just celebrate.": "ハンマーはいっぱいです！お祝いしましょう！",
-    "rust": "サビ"
+    "rust": "サビ",
+    "Day <b>{n}</b> in a row!": "れんぞく<b>{n}</b>日め",
+    "Special sticker! It's on your calendar.": "とくべつシール！ カレンダーに はったよ",
+    "{n} more days to a special sticker": "あと{n}日で とくべつシール"
   },
   "months": [
     "1月",

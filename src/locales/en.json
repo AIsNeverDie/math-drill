@@ -481,6 +481,9 @@
     "{a} and ? make {total}": "{a} and ? make {total}",
     "You got a Streak Hammer!": "You got a Streak Hammer!",
     "Your hammers are full! Let's just celebrate.": "Your hammers are full! Let's just celebrate.",
-    "rust": "rust"
+    "rust": "rust",
+    "Day <b>{n}</b> in a row!": "Day <b>{n}</b> in a row!",
+    "Special sticker! It's on your calendar.": "Special sticker! It's on your calendar.",
+    "{n} more days to a special sticker": "{n} more days to a special sticker"
   }
 }
