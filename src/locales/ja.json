@@ -688,7 +688,10 @@
     "rust": "サビ",
     "Day <b>{n}</b> in a row!": "れんぞく<b>{n}</b>日め",
     "Special sticker! It's on your calendar.": "とくべつシール！ カレンダーに はったよ",
-    "{n} more days to a special sticker": "あと{n}日で とくべつシール"
+    "{n} more days to a special sticker": "あと{n}日で とくべつシール",
+    "<b>{n}</b> earned from your past play!": "これまでの きろくで <b>{n}</b>こ ゲット！",
+    "You earned <b>{n}</b>!": "<b>{n}</b>こ ゲット！",
+    "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>": "<b>{cat}「{name}」を てにいれた！</b><small>コレクションで えらべるよ</small>"
   },
   "months": [
     "1月",

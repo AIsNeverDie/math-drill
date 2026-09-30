@@ -484,6 +484,9 @@
     "rust": "rust",
     "Day <b>{n}</b> in a row!": "Day <b>{n}</b> in a row!",
     "Special sticker! It's on your calendar.": "Special sticker! It's on your calendar.",
-    "{n} more days to a special sticker": "{n} more days to a special sticker"
+    "{n} more days to a special sticker": "{n} more days to a special sticker",
+    "<b>{n}</b> earned from your past play!": "<b>{n}</b> earned from your past play!",
+    "You earned <b>{n}</b>!": "You earned <b>{n}</b>!",
+    "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>": "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>"
   }
 }

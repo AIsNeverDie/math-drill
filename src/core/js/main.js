@@ -2172,11 +2172,11 @@ function openTrophies() {
   if (!list.length) return;
   S.trophyOpen = true;
   $('#tg-title').textContent = t('New trophy!');
-  $('#tg-sub').innerHTML = batch.length ? `<b>${batch.length}</b> earned from your past play!` : list.length > 1 ? `You earned <b>${list.length}</b>!` : '';
+  $('#tg-sub').innerHTML = batch.length ? t('<b>{n}</b> earned from your past play!', { n: batch.length }) : list.length > 1 ? t('You earned <b>{n}</b>!', { n: list.length }) : '';
   const MAX = 6;
   const rewards = list.map((x) => x.reward && ul.ITEM[x.reward]).filter(Boolean);
   $('#tg-list').innerHTML = list.slice(0, MAX).map((x) => `<li class="r-${x.rank}"><i>${trophySvg(x.rank)}</i><span><b>${x.name}</b><small>${x.desc}</small></span></li>`).join('') + (list.length > MAX ? `<li class="more">${t('+{n} more', { n: list.length - MAX })}</li>` : '')
-    + rewards.map((it) => `<li class="reward"><i>${itemThumb(it)}</i><span>${`<b>You got "${it.name}" (${catName(it.cat)})!</b><small>Pick it in the Collection</small>`}</span></li>`).join('');
+    + rewards.map((it) => `<li class="reward"><i>${itemThumb(it)}</i><span>${t('<b>You got "{name}" ({cat})!</b><small>Pick it in the Collection</small>', { name: it.name, cat: catName(it.cat) })}</span></li>`).join('');
   $('#trophy-got').hidden = false;
   audio.unlock();
   audio.unit(Math.min(1, 0.4 + list.length * 0.1));

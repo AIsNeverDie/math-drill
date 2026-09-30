@@ -688,7 +688,10 @@
     "rust": "生锈",
     "Day <b>{n}</b> in a row!": "连续打卡第 <b>{n}</b> 天！",
     "Special sticker! It's on your calendar.": "获得特别纪念印章！已盖在你的日历上。",
-    "{n} more days to a special sticker": "再连续签到 {n} 天即可获得特别纪念印章"
+    "{n} more days to a special sticker": "再连续签到 {n} 天即可获得特别纪念印章",
+    "<b>{n}</b> earned from your past play!": "根据过往练习直接获得 <b>{n}</b> 项成就！",
+    "You earned <b>{n}</b>!": "获得了 <b>{n}</b> 项新成就！",
+    "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>": "<b>获得了特效「{name}」({cat})！</b><small>可前往图鉴收藏中选用</small>"
   },
   "months": [
     "1月",
