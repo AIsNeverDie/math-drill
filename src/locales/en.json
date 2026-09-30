@@ -487,6 +487,7 @@
     "{n} more days to a special sticker": "{n} more days to a special sticker",
     "<b>{n}</b> earned from your past play!": "<b>{n}</b> earned from your past play!",
     "You earned <b>{n}</b>!": "You earned <b>{n}</b>!",
-    "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>": "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>"
+    "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>": "<b>You got \"{name}\" ({cat})!</b><small>Pick it in the Collection</small>",
+    "Skip": "Skip"
   }
 }

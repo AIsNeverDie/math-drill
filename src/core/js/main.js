@@ -475,6 +475,8 @@ async function setupProblem() {
   $$('.pip').forEach((pp, i) => pp.classList.toggle('now', !extra && i === S.qi));
   $('#qtitle').textContent = t(p.title);
   $('#qno').textContent = extra ? `EX ${S.extra.solved + 1}` : `Q${S.qi + 1}`;
+  const skipBtn = $('#skip-btn');
+  if (skipBtn) skipBtn.textContent = t('Skip');
   renderSheet(p);
   $('#step-label').innerHTML = '&nbsp;';
   const last = !extra && S.qi === S.N - 1;
@@ -573,6 +575,30 @@ function erase() {
   const c = centerOf(cell);
   fx.puff(c.x, c.y, 6);
   if (!S.reduced) hero.swipe(c);
+}
+
+function skipProblem() {
+  if (S.screen !== 'play' || !S.ready || S.confirm || !S.problem) return;
+  S.ready = false;
+  S.wrongInQ = true;
+  S.stepMisses = (S.stepMisses || 0) + 1;
+  S.qMisses = (S.qMisses || 0) + 1;
+  if (S.mode === 'extra') S.extra.misses += 1; else S.misses += 1;
+  updateTally();
+  breakCombo();
+  audio.play('boing', audio.now(), { v: 0.1 });
+  // Reveal the answers in remaining steps so player sees them
+  for (let i = S.step; i < S.problem.steps.length; i++) {
+    const st = S.problem.steps[i];
+    const cell = S.cells[st.cell];
+    if (cell) {
+      cell.textContent = st.digit;
+      cell.classList.remove('active', 'bad', 'has', 'pending');
+      cell.classList.add('ok');
+    }
+    reveal(st.after || [], cell);
+  }
+  clearProblem();
 }
 
 // ---------------------------------------------------------------- director
@@ -1962,7 +1988,7 @@ function askToTitle() {
     msg: playing ? t('This play will end here.') : t("You'll go back to the title screen."),
     yes: t('Go back'), no: playing ? t('Keep playing') : t('Stay here'), danger: playing,
     onYes: () => { audio.play('blip', audio.now(), { m: 72, v: 0.08 }); toTitle(); },
-    focusBack: document.activeElement && document.activeElement !== document.body ? document.activeElement : null,
+    focusBack: playing ? null : (document.activeElement && document.activeElement !== document.body ? document.activeElement : null),
   });
 }
 
@@ -2703,6 +2729,7 @@ $('#f-tree').addEventListener('click', () => openTree(S.newUnlocks, Object.keys(
 $('#tree-back').addEventListener('click', () => { audio.play('blip', audio.now(), { m: 72, v: 0.08 }); toTitle(); });
 // Back to the title from a play, through the same confirmation as Escape.
 $('#play-back').addEventListener('click', () => { if (S.screen !== 'play' || S.demo) return; audio.play('blip', audio.now(), { m: 72, v: 0.08 }); askToTitle(); });
+$('#skip-btn').addEventListener('click', skipProblem);
 // Sibling language folders: ja/, zh-CN/, zh-TW/. The choice is kept apart
 // from the game data so that a full reset does not switch the language.
 $('#lang').addEventListener('change', (e) => {
