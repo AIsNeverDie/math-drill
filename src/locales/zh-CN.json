@@ -67,926 +67,6 @@
     "g6-letter": "解未知数 x"
   },
   "trophies": {
-    "streak-3": {
-      "name": "连续 3 天",
-      "desc": "连续 3 天坚持练习"
-    },
-    "streak-5": {
-      "name": "连续 5 天",
-      "desc": "连续 5 天坚持练习"
-    },
-    "streak-7": {
-      "name": "连续 7 天",
-      "desc": "连续 7 天坚持练习"
-    },
-    "streak-10": {
-      "name": "连续 10 天",
-      "desc": "连续 10 天坚持练习"
-    },
-    "streak-14": {
-      "name": "连续 14 天",
-      "desc": "连续 14 天坚持练习"
-    },
-    "streak-21": {
-      "name": "连续 21 天",
-      "desc": "连续 21 天坚持练习"
-    },
-    "streak-30": {
-      "name": "连续 30 天",
-      "desc": "连续 30 天坚持练习"
-    },
-    "streak-50": {
-      "name": "连续 50 天",
-      "desc": "连续 50 天坚持练习"
-    },
-    "streak-75": {
-      "name": "连续 75 天",
-      "desc": "连续 75 天坚持练习"
-    },
-    "streak-100": {
-      "name": "连续 100 天",
-      "desc": "连续 100 天坚持练习"
-    },
-    "streak-150": {
-      "name": "连续 150 天",
-      "desc": "连续 150 天坚持练习"
-    },
-    "streak-200": {
-      "name": "连续 200 天",
-      "desc": "连续 200 天坚持练习"
-    },
-    "streak-365": {
-      "name": "连续 365 天",
-      "desc": "连续 365 天坚持练习"
-    },
-    "days-1": {
-      "name": "打卡 1 天",
-      "desc": "累计练习达到 1 天"
-    },
-    "days-3": {
-      "name": "打卡 3 天",
-      "desc": "累计练习达到 3 天"
-    },
-    "days-5": {
-      "name": "打卡 5 天",
-      "desc": "累计练习达到 5 天"
-    },
-    "days-7": {
-      "name": "打卡 7 天",
-      "desc": "累计练习达到 7 天"
-    },
-    "days-10": {
-      "name": "打卡 10 天",
-      "desc": "累计练习达到 10 天"
-    },
-    "days-15": {
-      "name": "打卡 15 天",
-      "desc": "累计练习达到 15 天"
-    },
-    "days-20": {
-      "name": "打卡 20 天",
-      "desc": "累计练习达到 20 天"
-    },
-    "days-30": {
-      "name": "打卡 30 天",
-      "desc": "累计练习达到 30 天"
-    },
-    "days-40": {
-      "name": "打卡 40 天",
-      "desc": "累计练习达到 40 天"
-    },
-    "days-50": {
-      "name": "打卡 50 天",
-      "desc": "累计练习达到 50 天"
-    },
-    "days-75": {
-      "name": "打卡 75 天",
-      "desc": "累计练习达到 75 天"
-    },
-    "days-100": {
-      "name": "打卡 100 天",
-      "desc": "累计练习达到 100 天"
-    },
-    "days-150": {
-      "name": "打卡 150 天",
-      "desc": "累计练习达到 150 天"
-    },
-    "days-200": {
-      "name": "打卡 200 天",
-      "desc": "累计练习达到 200 天"
-    },
-    "days-300": {
-      "name": "打卡 300 天",
-      "desc": "累计练习达到 300 天"
-    },
-    "days-365": {
-      "name": "打卡 365 天",
-      "desc": "累计练习达到 365 天"
-    },
-    "days-500": {
-      "name": "打卡 500 天",
-      "desc": "累计练习达到 500 天"
-    },
-    "days-730": {
-      "name": "打卡 730 天",
-      "desc": "累计练习达到 730 天"
-    },
-    "days-1000": {
-      "name": "打卡 1,000 天",
-      "desc": "累计练习达到 1,000 天"
-    },
-    "stickers-1": {
-      "name": "印章 1 枚",
-      "desc": "累计收集 1 枚登录签到印章"
-    },
-    "stickers-7": {
-      "name": "印章 7 枚",
-      "desc": "累计收集 7 枚登录签到印章"
-    },
-    "stickers-14": {
-      "name": "印章 14 枚",
-      "desc": "累计收集 14 枚登录签到印章"
-    },
-    "stickers-30": {
-      "name": "印章 30 枚",
-      "desc": "累计收集 30 枚登录签到印章"
-    },
-    "stickers-50": {
-      "name": "印章 50 枚",
-      "desc": "累计收集 50 枚登录签到印章"
-    },
-    "stickers-100": {
-      "name": "印章 100 枚",
-      "desc": "累计收集 100 枚登录签到印章"
-    },
-    "stickers-200": {
-      "name": "印章 200 枚",
-      "desc": "累计收集 200 枚登录签到印章"
-    },
-    "stickers-365": {
-      "name": "印章 365 枚",
-      "desc": "累计收集 365 枚登录签到印章"
-    },
-    "crowns-1": {
-      "name": "皇冠 1 枚",
-      "desc": "累计获得第 7 天的皇冠印章 1 枚"
-    },
-    "crowns-3": {
-      "name": "皇冠 3 枚",
-      "desc": "累计获得第 7 天的皇冠印章 3 枚"
-    },
-    "crowns-5": {
-      "name": "皇冠 5 枚",
-      "desc": "累计获得第 7 天的皇冠印章 5 枚"
-    },
-    "crowns-10": {
-      "name": "皇冠 10 枚",
-      "desc": "累计获得第 7 天的皇冠印章 10 枚"
-    },
-    "crowns-20": {
-      "name": "皇冠 20 枚",
-      "desc": "累计获得第 7 天的皇冠印章 20 枚"
-    },
-    "crowns-52": {
-      "name": "皇冠 52 枚",
-      "desc": "累计获得第 7 天的皇冠印章 52 枚"
-    },
-    "problems-10": {
-      "name": "做对 10 题",
-      "desc": "累计做对 10 道算术题"
-    },
-    "problems-30": {
-      "name": "做对 30 题",
-      "desc": "累计做对 30 道算术题"
-    },
-    "problems-50": {
-      "name": "做对 50 题",
-      "desc": "累计做对 50 道算术题"
-    },
-    "problems-100": {
-      "name": "做对 100 题",
-      "desc": "累计做对 100 道算术题"
-    },
-    "problems-200": {
-      "name": "做对 200 题",
-      "desc": "累计做对 200 道算术题"
-    },
-    "problems-300": {
-      "name": "做对 300 题",
-      "desc": "累计做对 300 道算术题"
-    },
-    "problems-500": {
-      "name": "做对 500 题",
-      "desc": "累计做对 500 道算术题"
-    },
-    "problems-750": {
-      "name": "做对 750 题",
-      "desc": "累计做对 750 道算术题"
-    },
-    "problems-1000": {
-      "name": "做对 1,000 题",
-      "desc": "累计做对 1,000 道算术题"
-    },
-    "problems-1500": {
-      "name": "做对 1,500 题",
-      "desc": "累计做对 1,500 道算术题"
-    },
-    "problems-2000": {
-      "name": "做对 2,000 题",
-      "desc": "累计做对 2,000 道算术题"
-    },
-    "problems-3000": {
-      "name": "做对 3,000 题",
-      "desc": "累计做对 3,000 道算术题"
-    },
-    "problems-5000": {
-      "name": "做对 5,000 题",
-      "desc": "累计做对 5,000 道算术题"
-    },
-    "problems-7500": {
-      "name": "做对 7,500 题",
-      "desc": "累计做对 7,500 道算术题"
-    },
-    "problems-10000": {
-      "name": "做对 1万 题",
-      "desc": "累计做对 1万 道算术题"
-    },
-    "problems-20000": {
-      "name": "做对 2万 题",
-      "desc": "累计做对 2万 道算术题"
-    },
-    "problems-30000": {
-      "name": "做对 3万 题",
-      "desc": "累计做对 3万 道算术题"
-    },
-    "problems-50000": {
-      "name": "做对 5万 题",
-      "desc": "累计做对 5万 道算术题"
-    },
-    "problems-100000": {
-      "name": "做对 10万 题",
-      "desc": "累计做对 10万 道算术题"
-    },
-    "cells-100": {
-      "name": "输入 100 位数",
-      "desc": "累计填入 100 位正确数字"
-    },
-    "cells-500": {
-      "name": "输入 500 位数",
-      "desc": "累计填入 500 位正确数字"
-    },
-    "cells-1000": {
-      "name": "输入 1,000 位数",
-      "desc": "累计填入 1,000 位正确数字"
-    },
-    "cells-3000": {
-      "name": "输入 3,000 位数",
-      "desc": "累计填入 3,000 位正确数字"
-    },
-    "cells-5000": {
-      "name": "输入 5,000 位数",
-      "desc": "累计填入 5,000 位正确数字"
-    },
-    "cells-10000": {
-      "name": "输入 1万 位数",
-      "desc": "累计填入 1万 位正确数字"
-    },
-    "cells-30000": {
-      "name": "输入 3万 位数",
-      "desc": "累计填入 3万 位正确数字"
-    },
-    "cells-50000": {
-      "name": "输入 5万 位数",
-      "desc": "累计填入 5万 位正确数字"
-    },
-    "cells-100000": {
-      "name": "输入 10万 位数",
-      "desc": "累计填入 10万 位正确数字"
-    },
-    "cells-300000": {
-      "name": "输入 30万 位数",
-      "desc": "累计填入 30万 位正确数字"
-    },
-    "plays-1": {
-      "name": "完成 1 轮",
-      "desc": "累计完成 1 轮练习"
-    },
-    "plays-3": {
-      "name": "完成 3 轮",
-      "desc": "累计完成 3 轮练习"
-    },
-    "plays-5": {
-      "name": "完成 5 轮",
-      "desc": "累计完成 5 轮练习"
-    },
-    "plays-10": {
-      "name": "完成 10 轮",
-      "desc": "累计完成 10 轮练习"
-    },
-    "plays-20": {
-      "name": "完成 20 轮",
-      "desc": "累计完成 20 轮练习"
-    },
-    "plays-30": {
-      "name": "完成 30 轮",
-      "desc": "累计完成 30 轮练习"
-    },
-    "plays-50": {
-      "name": "完成 50 轮",
-      "desc": "累计完成 50 轮练习"
-    },
-    "plays-100": {
-      "name": "完成 100 轮",
-      "desc": "累计完成 100 轮练习"
-    },
-    "plays-200": {
-      "name": "完成 200 轮",
-      "desc": "累计完成 200 轮练习"
-    },
-    "plays-300": {
-      "name": "完成 300 轮",
-      "desc": "累计完成 300 轮练习"
-    },
-    "plays-500": {
-      "name": "完成 500 轮",
-      "desc": "累计完成 500 轮练习"
-    },
-    "plays-1000": {
-      "name": "完成 1,000 轮",
-      "desc": "累计完成 1,000 轮练习"
-    },
-    "plays-2000": {
-      "name": "完成 2,000 轮",
-      "desc": "累计完成 2,000 轮练习"
-    },
-    "minutes-10": {
-      "name": "累计 10 分钟",
-      "desc": "累计专注练习 10 分钟"
-    },
-    "minutes-30": {
-      "name": "累计 30 分钟",
-      "desc": "累计专注练习 30 分钟"
-    },
-    "minutes-60": {
-      "name": "累计 1 小时",
-      "desc": "累计专注练习 1 小时"
-    },
-    "minutes-120": {
-      "name": "累计 2 小时",
-      "desc": "累计专注练习 2 小时"
-    },
-    "minutes-300": {
-      "name": "累计 5 小时",
-      "desc": "累计专注练习 5 小时"
-    },
-    "minutes-600": {
-      "name": "累计 10 小时",
-      "desc": "累计专注练习 10 小时"
-    },
-    "minutes-1200": {
-      "name": "累计 20 小时",
-      "desc": "累计专注练习 20 小时"
-    },
-    "minutes-3000": {
-      "name": "累计 50 小时",
-      "desc": "累计专注练习 50 小时"
-    },
-    "unlocked-3": {
-      "name": "解锁 3 项",
-      "desc": "在技能树中解锁 3 项技能"
-    },
-    "unlocked-5": {
-      "name": "解锁 5 项",
-      "desc": "在技能树中解锁 5 项技能"
-    },
-    "unlocked-10": {
-      "name": "解锁 10 项",
-      "desc": "在技能树中解锁 10 项技能"
-    },
-    "unlocked-15": {
-      "name": "解锁 15 项",
-      "desc": "在技能树中解锁 15 项技能"
-    },
-    "unlocked-20": {
-      "name": "解锁 20 项",
-      "desc": "在技能树中解锁 20 项技能"
-    },
-    "unlocked-25": {
-      "name": "解锁 25 项",
-      "desc": "在技能树中解锁 25 项技能"
-    },
-    "unlocked-30": {
-      "name": "解锁 30 项",
-      "desc": "在技能树中解锁 30 项技能"
-    },
-    "unlocked-35": {
-      "name": "解锁 35 项",
-      "desc": "在技能树中解锁 35 项技能"
-    },
-    "unlocked-40": {
-      "name": "解锁 40 项",
-      "desc": "在技能树中解锁 40 项技能"
-    },
-    "unlocked-45": {
-      "name": "解锁 45 项",
-      "desc": "在技能树中解锁 45 项技能"
-    },
-    "unlocked-50": {
-      "name": "解锁 50 项",
-      "desc": "在技能树中解锁 50 项技能"
-    },
-    "unlocked-55": {
-      "name": "解锁 55 项",
-      "desc": "在技能树中解锁 55 项技能"
-    },
-    "unlocked-58": {
-      "name": "解锁 58 项",
-      "desc": "在技能树中解锁 58 项技能"
-    },
-    "mastered-1": {
-      "name": "精通 1 项",
-      "desc": "掌握并精通 1 项数学技能"
-    },
-    "mastered-3": {
-      "name": "精通 3 项",
-      "desc": "掌握并精通 3 项数学技能"
-    },
-    "mastered-5": {
-      "name": "精通 5 项",
-      "desc": "掌握并精通 5 项数学技能"
-    },
-    "mastered-10": {
-      "name": "精通 10 项",
-      "desc": "掌握并精通 10 项数学技能"
-    },
-    "mastered-15": {
-      "name": "精通 15 项",
-      "desc": "掌握并精通 15 项数学技能"
-    },
-    "mastered-20": {
-      "name": "精通 20 项",
-      "desc": "掌握并精通 20 项数学技能"
-    },
-    "mastered-25": {
-      "name": "精通 25 项",
-      "desc": "掌握并精通 25 项数学技能"
-    },
-    "mastered-30": {
-      "name": "精通 30 项",
-      "desc": "掌握并精通 30 项数学技能"
-    },
-    "mastered-35": {
-      "name": "精通 35 项",
-      "desc": "掌握并精通 35 项数学技能"
-    },
-    "mastered-40": {
-      "name": "精通 40 项",
-      "desc": "掌握并精通 40 项数学技能"
-    },
-    "mastered-45": {
-      "name": "精通 45 项",
-      "desc": "掌握并精通 45 项数学技能"
-    },
-    "mastered-50": {
-      "name": "精通 50 项",
-      "desc": "掌握并精通 50 项数学技能"
-    },
-    "mastered-55": {
-      "name": "精通 55 项",
-      "desc": "掌握并精通 55 项数学技能"
-    },
-    "mastered-58": {
-      "name": "精通 58 项",
-      "desc": "掌握并精通 58 项数学技能"
-    },
-    "gradeDone-1": {
-      "name": "1年级全部掌握",
-      "desc": "掌握 1 年级的所有计算技能"
-    },
-    "gradeDone-2": {
-      "name": "2年级全部掌握",
-      "desc": "掌握 2 年级的所有计算技能"
-    },
-    "gradeDone-3": {
-      "name": "3年级全部掌握",
-      "desc": "掌握 3 年级的所有计算技能"
-    },
-    "gradeDone-4": {
-      "name": "4年级全部掌握",
-      "desc": "掌握 4 年级的所有计算技能"
-    },
-    "gradeDone-5": {
-      "name": "5年级全部掌握",
-      "desc": "掌握 5 年级的所有计算技能"
-    },
-    "gradeDone-6": {
-      "name": "6年级全部掌握",
-      "desc": "掌握 6 年级的所有计算技能"
-    },
-    "laneDone-0": {
-      "name": "加法与减法 全部掌握",
-      "desc": "掌握「加法与减法」分支下的全部技能"
-    },
-    "laneDone-1": {
-      "name": "乘法与除法 全部掌握",
-      "desc": "掌握「乘法与除法」分支下的全部技能"
-    },
-    "laneDone-2": {
-      "name": "小数与分数 全部掌握",
-      "desc": "掌握「小数与分数」分支下的全部技能"
-    },
-    "laneDone-3": {
-      "name": "其他技巧 全部掌握",
-      "desc": "掌握「其他技巧」分支下的全部技能"
-    },
-    "extras-1": {
-      "name": "加时赛 1 次",
-      "desc": "成功进入加时赛 1 次"
-    },
-    "extras-3": {
-      "name": "加时赛 3 次",
-      "desc": "成功进入加时赛 3 次"
-    },
-    "extras-5": {
-      "name": "加时赛 5 次",
-      "desc": "成功进入加时赛 5 次"
-    },
-    "extras-10": {
-      "name": "加时赛 10 次",
-      "desc": "成功进入加时赛 10 次"
-    },
-    "extras-20": {
-      "name": "加时赛 20 次",
-      "desc": "成功进入加时赛 20 次"
-    },
-    "extras-30": {
-      "name": "加时赛 30 次",
-      "desc": "成功进入加时赛 30 次"
-    },
-    "extras-50": {
-      "name": "加时赛 50 次",
-      "desc": "成功进入加时赛 50 次"
-    },
-    "extras-100": {
-      "name": "加时赛 100 次",
-      "desc": "成功进入加时赛 100 次"
-    },
-    "extras-200": {
-      "name": "加时赛 200 次",
-      "desc": "成功进入加时赛 200 次"
-    },
-    "extras-300": {
-      "name": "加时赛 300 次",
-      "desc": "成功进入加时赛 300 次"
-    },
-    "extraBest-3": {
-      "name": "单次 3 题",
-      "desc": "在单次加时赛中答对 3 题"
-    },
-    "extraBest-5": {
-      "name": "单次 5 题",
-      "desc": "在单次加时赛中答对 5 题"
-    },
-    "extraBest-7": {
-      "name": "单次 7 题",
-      "desc": "在单次加时赛中答对 7 题"
-    },
-    "extraBest-10": {
-      "name": "单次 10 题",
-      "desc": "在单次加时赛中答对 10 题"
-    },
-    "extraBest-12": {
-      "name": "单次 12 题",
-      "desc": "在单次加时赛中答对 12 题"
-    },
-    "extraBest-15": {
-      "name": "单次 15 题",
-      "desc": "在单次加时赛中答对 15 题"
-    },
-    "extraBest-18": {
-      "name": "单次 18 题",
-      "desc": "在单次加时赛中答对 18 题"
-    },
-    "extraBest-20": {
-      "name": "单次 20 题",
-      "desc": "在单次加时赛中答对 20 题"
-    },
-    "extraBest-23": {
-      "name": "单次 23 题",
-      "desc": "在单次加时赛中答对 23 题"
-    },
-    "extraBest-25": {
-      "name": "单次 25 题",
-      "desc": "在单次加时赛中答对 25 题"
-    },
-    "extraBest-30": {
-      "name": "单次 30 题",
-      "desc": "在单次加时赛中答对 30 题"
-    },
-    "extraSolved-10": {
-      "name": "加时赛答对 10 题",
-      "desc": "在加时赛中累计答对 10 题"
-    },
-    "extraSolved-30": {
-      "name": "加时赛答对 30 题",
-      "desc": "在加时赛中累计答对 30 题"
-    },
-    "extraSolved-50": {
-      "name": "加时赛答对 50 题",
-      "desc": "在加时赛中累计答对 50 题"
-    },
-    "extraSolved-100": {
-      "name": "加时赛答对 100 题",
-      "desc": "在加时赛中累计答对 100 题"
-    },
-    "extraSolved-200": {
-      "name": "加时赛答对 200 题",
-      "desc": "在加时赛中累计答对 200 题"
-    },
-    "extraSolved-300": {
-      "name": "加时赛答对 300 题",
-      "desc": "在加时赛中累计答对 300 题"
-    },
-    "extraSolved-500": {
-      "name": "加时赛答对 500 题",
-      "desc": "在加时赛中累计答对 500 题"
-    },
-    "extraSolved-1000": {
-      "name": "加时赛答对 1,000 题",
-      "desc": "在加时赛中累计答对 1,000 题"
-    },
-    "extraSolved-2000": {
-      "name": "加时赛答对 2,000 题",
-      "desc": "在加时赛中累计答对 2,000 题"
-    },
-    "extraSolved-3000": {
-      "name": "加时赛答对 3,000 题",
-      "desc": "在加时赛中累计答对 3,000 题"
-    },
-    "combo-5": {
-      "name": "5 连对",
-      "desc": "达成 5 连对"
-    },
-    "combo-10": {
-      "name": "10 连对",
-      "desc": "达成 10 连对"
-    },
-    "combo-15": {
-      "name": "15 连对",
-      "desc": "达成 15 连对"
-    },
-    "combo-20": {
-      "name": "20 连对",
-      "desc": "达成 20 连对"
-    },
-    "combo-30": {
-      "name": "30 连对",
-      "desc": "达成 30 连对"
-    },
-    "combo-40": {
-      "name": "40 连对",
-      "desc": "达成 40 连对"
-    },
-    "combo-50": {
-      "name": "50 连对",
-      "desc": "达成 50 连对"
-    },
-    "combo-75": {
-      "name": "75 连对",
-      "desc": "达成 75 连对"
-    },
-    "combo-100": {
-      "name": "100 连对",
-      "desc": "达成 100 连对"
-    },
-    "combo-150": {
-      "name": "150 连对",
-      "desc": "达成 150 连对"
-    },
-    "combo-200": {
-      "name": "200 连对",
-      "desc": "达成 200 连对"
-    },
-    "combo-300": {
-      "name": "300 连对",
-      "desc": "达成 300 连对"
-    },
-    "perfects-1": {
-      "name": "完美通关 1 次",
-      "desc": "以 100% 首次正确率完成 1 轮练习"
-    },
-    "perfects-3": {
-      "name": "完美通关 3 次",
-      "desc": "以 100% 首次正确率完成 3 轮练习"
-    },
-    "perfects-5": {
-      "name": "完美通关 5 次",
-      "desc": "以 100% 首次正确率完成 5 轮练习"
-    },
-    "perfects-10": {
-      "name": "完美通关 10 次",
-      "desc": "以 100% 首次正确率完成 10 轮练习"
-    },
-    "perfects-20": {
-      "name": "完美通关 20 次",
-      "desc": "以 100% 首次正确率完成 20 轮练习"
-    },
-    "perfects-30": {
-      "name": "完美通关 30 次",
-      "desc": "以 100% 首次正确率完成 30 轮练习"
-    },
-    "perfects-50": {
-      "name": "完美通关 50 次",
-      "desc": "以 100% 首次正确率完成 50 轮练习"
-    },
-    "perfects-100": {
-      "name": "完美通关 100 次",
-      "desc": "以 100% 首次正确率完成 100 轮练习"
-    },
-    "perfects-200": {
-      "name": "完美通关 200 次",
-      "desc": "以 100% 首次正确率完成 200 轮练习"
-    },
-    "perfects-300": {
-      "name": "完美通关 300 次",
-      "desc": "以 100% 首次正确率完成 300 轮练习"
-    },
-    "firstTry-10": {
-      "name": "首次答对 10 题",
-      "desc": "一次作答就成功的题目达到 10 题"
-    },
-    "firstTry-50": {
-      "name": "首次答对 50 题",
-      "desc": "一次作答就成功的题目达到 50 题"
-    },
-    "firstTry-100": {
-      "name": "首次答对 100 题",
-      "desc": "一次作答就成功的题目达到 100 题"
-    },
-    "firstTry-300": {
-      "name": "首次答对 300 题",
-      "desc": "一次作答就成功的题目达到 300 题"
-    },
-    "firstTry-500": {
-      "name": "首次答对 500 题",
-      "desc": "一次作答就成功的题目达到 500 题"
-    },
-    "firstTry-1000": {
-      "name": "首次答对 1,000 题",
-      "desc": "一次作答就成功的题目达到 1,000 题"
-    },
-    "firstTry-3000": {
-      "name": "首次答对 3,000 题",
-      "desc": "一次作答就成功的题目达到 3,000 题"
-    },
-    "firstTry-5000": {
-      "name": "首次答对 5,000 题",
-      "desc": "一次作答就成功的题目达到 5,000 题"
-    },
-    "firstTry-10000": {
-      "name": "首次答对 1万 题",
-      "desc": "一次作答就成功的题目达到 1万 题"
-    },
-    "firstTry-30000": {
-      "name": "首次答对 3万 题",
-      "desc": "一次作答就成功的题目达到 3万 题"
-    },
-    "dopa-2": {
-      "name": "100 多帕",
-      "desc": "单局多帕能量突破 100"
-    },
-    "dopa-3": {
-      "name": "1000 多帕",
-      "desc": "单局多帕能量突破 1000"
-    },
-    "dopa-4": {
-      "name": "1万 多帕",
-      "desc": "单局多帕能量突破 1万"
-    },
-    "dopa-5": {
-      "name": "10万 多帕",
-      "desc": "单局多帕能量突破 10万"
-    },
-    "dopa-6": {
-      "name": "100万 多帕",
-      "desc": "单局多帕能量突破 100万"
-    },
-    "dopa-7": {
-      "name": "1000万 多帕",
-      "desc": "单局多帕能量突破 1000万"
-    },
-    "dopa-8": {
-      "name": "1亿 多帕",
-      "desc": "单局多帕能量突破 1亿"
-    },
-    "dopa-9": {
-      "name": "10亿 多帕",
-      "desc": "单局多帕能量突破 10亿"
-    },
-    "review-1": {
-      "name": "复习 1 题",
-      "desc": "重新攻克 1 道错题"
-    },
-    "review-5": {
-      "name": "复习 5 题",
-      "desc": "重新攻克 5 道错题"
-    },
-    "review-10": {
-      "name": "复习 10 题",
-      "desc": "重新攻克 10 道错题"
-    },
-    "review-30": {
-      "name": "复习 30 题",
-      "desc": "重新攻克 30 道错题"
-    },
-    "review-50": {
-      "name": "复习 50 题",
-      "desc": "重新攻克 50 道错题"
-    },
-    "review-100": {
-      "name": "复习 100 题",
-      "desc": "重新攻克 100 道错题"
-    },
-    "review-200": {
-      "name": "复习 200 题",
-      "desc": "重新攻克 200 道错题"
-    },
-    "review-300": {
-      "name": "复习 300 题",
-      "desc": "重新攻克 300 道错题"
-    },
-    "grade1-1": {
-      "name": "1 年级 1 轮",
-      "desc": "完成 1 年级模式练习 1 次"
-    },
-    "grade1-10": {
-      "name": "1 年级 10 轮",
-      "desc": "完成 1 年级模式练习 10 次"
-    },
-    "grade1-30": {
-      "name": "1 年级 30 轮",
-      "desc": "完成 1 年级模式练习 30 次"
-    },
-    "grade2-1": {
-      "name": "2 年级 1 轮",
-      "desc": "完成 2 年级模式练习 1 次"
-    },
-    "grade2-10": {
-      "name": "2 年级 10 轮",
-      "desc": "完成 2 年级模式练习 10 次"
-    },
-    "grade2-30": {
-      "name": "2 年级 30 轮",
-      "desc": "完成 2 年级模式练习 30 次"
-    },
-    "grade3-1": {
-      "name": "3 年级 1 轮",
-      "desc": "完成 3 年级模式练习 1 次"
-    },
-    "grade3-10": {
-      "name": "3 年级 10 轮",
-      "desc": "完成 3 年级模式练习 10 次"
-    },
-    "grade3-30": {
-      "name": "3 年级 30 轮",
-      "desc": "完成 3 年级模式练习 30 次"
-    },
-    "grade4-1": {
-      "name": "4 年级 1 轮",
-      "desc": "完成 4 年级模式练习 1 次"
-    },
-    "grade4-10": {
-      "name": "4 年级 10 轮",
-      "desc": "完成 4 年级模式练习 10 次"
-    },
-    "grade4-30": {
-      "name": "4 年级 30 轮",
-      "desc": "完成 4 年级模式练习 30 次"
-    },
-    "grade5-1": {
-      "name": "5 年级 1 轮",
-      "desc": "完成 5 年级模式练习 1 次"
-    },
-    "grade5-10": {
-      "name": "5 年级 10 轮",
-      "desc": "完成 5 年级模式练习 10 次"
-    },
-    "grade5-30": {
-      "name": "5 年级 30 轮",
-      "desc": "完成 5 年级模式练习 30 次"
-    },
-    "grade6-1": {
-      "name": "6 年级 1 轮",
-      "desc": "完成 6 年级模式练习 1 次"
-    },
-    "grade6-10": {
-      "name": "6 年级 10 轮",
-      "desc": "完成 6 年级模式练习 10 次"
-    },
-    "grade6-30": {
-      "name": "6 年级 30 轮",
-      "desc": "完成 6 年级模式练习 30 次"
-    },
     "secret-perfect14": {
       "name": "14题全对大满贯",
       "desc": "在14题模式中0失误完美过关"
@@ -1010,392 +90,164 @@
     "secret-allmodes": {
       "name": "全能小达人",
       "desc": "完整体验过我的等级、年级、专项练习与错题复习全部4种模式"
-    },
-    "questDays-1": {
-      "name": "全通关 1 天",
-      "desc": "完成当天全部每日任务达到 1 天"
-    },
-    "questDays-3": {
-      "name": "全通关 3 天",
-      "desc": "完成当天全部每日任务达到 3 天"
-    },
-    "questDays-7": {
-      "name": "全通关 7 天",
-      "desc": "完成当天全部每日任务达到 7 天"
-    },
-    "questDays-14": {
-      "name": "全通关 14 天",
-      "desc": "完成当天全部每日任务达到 14 天"
-    },
-    "questDays-30": {
-      "name": "全通关 30 天",
-      "desc": "完成当天全部每日任务达到 30 天"
-    },
-    "questDays-50": {
-      "name": "全通关 50 天",
-      "desc": "完成当天全部每日任务达到 50 天"
-    },
-    "questDays-100": {
-      "name": "全通关 100 天",
-      "desc": "完成当天全部每日任务达到 100 天"
-    },
-    "questDays-200": {
-      "name": "全通关 200 天",
-      "desc": "完成当天全部每日任务达到 200 天"
-    },
-    "questDays-365": {
-      "name": "全通关 365 天",
-      "desc": "完成当天全部每日任务达到 365 天"
-    },
-    "questRun-2": {
-      "name": "连续 2 天全清",
-      "desc": "连续 2 天完成全部每日任务"
-    },
-    "questRun-3": {
-      "name": "连续 3 天全清",
-      "desc": "连续 3 天完成全部每日任务"
-    },
-    "questRun-5": {
-      "name": "连续 5 天全清",
-      "desc": "连续 5 天完成全部每日任务"
-    },
-    "questRun-7": {
-      "name": "连续 7 天全清",
-      "desc": "连续 7 天完成全部每日任务"
-    },
-    "questRun-14": {
-      "name": "连续 14 天全清",
-      "desc": "连续 14 天完成全部每日任务"
-    },
-    "questRun-30": {
-      "name": "连续 30 天全清",
-      "desc": "连续 30 天完成全部每日任务"
-    },
-    "hammer-1": {
-      "name": "初次补签",
-      "desc": "使用打卡锤保住连续打卡 1 次"
-    },
-    "hammer-3": {
-      "name": "补签 3 次",
-      "desc": "使用打卡锤保住连续打卡 3 次"
-    },
-    "hammer-10": {
-      "name": "补签 10 次",
-      "desc": "使用打卡锤保住连续打卡 10 次"
-    },
-    "starsTotal-5": {
-      "name": "星星 5 颗",
-      "desc": "累计收集技能星星 5 颗"
-    },
-    "starsTotal-10": {
-      "name": "星星 10 颗",
-      "desc": "累计收集技能星星 10 颗"
-    },
-    "starsTotal-25": {
-      "name": "星星 25 颗",
-      "desc": "累计收集技能星星 25 颗"
-    },
-    "starsTotal-50": {
-      "name": "星星 50 颗",
-      "desc": "累计收集技能星星 50 颗"
-    },
-    "starsTotal-75": {
-      "name": "星星 75 颗",
-      "desc": "累计收集技能星星 75 颗"
-    },
-    "starsTotal-100": {
-      "name": "星星 100 颗",
-      "desc": "累计收集技能星星 100 颗"
-    },
-    "starsTotal-150": {
-      "name": "星星 150 颗",
-      "desc": "累计收集技能星星 150 颗"
-    },
-    "starsTotal-200": {
-      "name": "星星 200 颗",
-      "desc": "累计收集技能星星 200 颗"
-    },
-    "starsTotal-250": {
-      "name": "星星 250 颗",
-      "desc": "累计收集技能星星 250 颗"
-    },
-    "starsTotal-290": {
-      "name": "星星 290 颗",
-      "desc": "累计收集技能星星 290 颗"
-    },
-    "star5-1": {
-      "name": "☆5技能 1 个",
-      "desc": "将 1 个技能提升至 ☆5 满星"
-    },
-    "star5-3": {
-      "name": "☆5技能 3 个",
-      "desc": "将 3 个技能提升至 ☆5 满星"
-    },
-    "star5-5": {
-      "name": "☆5技能 5 个",
-      "desc": "将 5 个技能提升至 ☆5 满星"
-    },
-    "star5-10": {
-      "name": "☆5技能 10 个",
-      "desc": "将 10 个技能提升至 ☆5 满星"
-    },
-    "star5-20": {
-      "name": "☆5技能 20 个",
-      "desc": "将 20 个技能提升至 ☆5 满星"
-    },
-    "star5-30": {
-      "name": "☆5技能 30 个",
-      "desc": "将 30 个技能提升至 ☆5 满星"
-    },
-    "star5-58": {
-      "name": "☆5技能 58 个",
-      "desc": "将 58 个技能提升至 ☆5 满星"
-    },
-    "gradeStar3-1": {
-      "name": "1年级全员☆3",
-      "desc": "将 1 年级的所有技能都提升至 ☆3 以上"
-    },
-    "gradeStar3-2": {
-      "name": "2年级全员☆3",
-      "desc": "将 2 年级的所有技能都提升至 ☆3 以上"
-    },
-    "gradeStar3-3": {
-      "name": "3年级全员☆3",
-      "desc": "将 3 年级的所有技能都提升至 ☆3 以上"
-    },
-    "gradeStar3-4": {
-      "name": "4年级全员☆3",
-      "desc": "将 4 年级的所有技能都提升至 ☆3 以上"
-    },
-    "gradeStar3-5": {
-      "name": "5年级全员☆3",
-      "desc": "将 5 年级的所有技能都提升至 ☆3 以上"
-    },
-    "gradeStar3-6": {
-      "name": "6年级全员☆3",
-      "desc": "将 6 年级的所有技能都提升至 ☆3 以上"
-    },
-    "polished-1": {
-      "name": "重新点亮 1 次",
-      "desc": "复习变生疏的技能使其重新闪亮 1 次"
-    },
-    "polished-3": {
-      "name": "重新点亮 3 次",
-      "desc": "复习变生疏的技能使其重新闪亮 3 次"
-    },
-    "polished-5": {
-      "name": "重新点亮 5 次",
-      "desc": "复习变生疏的技能使其重新闪亮 5 次"
-    },
-    "polished-10": {
-      "name": "重新点亮 10 次",
-      "desc": "复习变生疏的技能使其重新闪亮 10 次"
-    },
-    "polished-30": {
-      "name": "重新点亮 30 次",
-      "desc": "复习变生疏的技能使其重新闪亮 30 次"
-    },
-    "polished-50": {
-      "name": "重新点亮 50 次",
-      "desc": "复习变生疏的技能使其重新闪亮 50 次"
-    },
-    "capsules-1": {
-      "name": "开启胶囊 1 次",
-      "desc": "开启 1 次挑战过去的时光胶囊"
-    },
-    "capsules-3": {
-      "name": "开启胶囊 3 次",
-      "desc": "开启 3 次挑战过去的时光胶囊"
-    },
-    "capsules-5": {
-      "name": "开启胶囊 5 次",
-      "desc": "开启 5 次挑战过去的时光胶囊"
-    },
-    "capsules-10": {
-      "name": "开启胶囊 10 次",
-      "desc": "开启 10 次挑战过去的时光胶囊"
-    },
-    "capsules-30": {
-      "name": "开启胶囊 30 次",
-      "desc": "开启 30 次挑战过去的时光胶囊"
-    },
-    "capsuleFaster-1": {
-      "name": "超越以往 1 次",
-      "desc": "在时光胶囊中比最初挑战时更快答完（1次）"
-    },
-    "capsuleFaster-5": {
-      "name": "超越以往 5 次",
-      "desc": "在时光胶囊中比最初挑战时更快答完（5次）"
-    },
-    "capsuleFaster-10": {
-      "name": "超越以往 10 次",
-      "desc": "在时光胶囊中比最初挑战时更快答完（10次）"
-    },
-    "grew-1": {
-      "name": "进步 1 次",
-      "desc": "在结算页面获得「你进步了！」评价 1 次"
-    },
-    "grew-5": {
-      "name": "进步 5 次",
-      "desc": "在结算页面获得「你进步了！」评价 5 次"
-    },
-    "grew-10": {
-      "name": "进步 10 次",
-      "desc": "在结算页面获得「你进步了！」评价 10 次"
-    },
-    "grew-30": {
-      "name": "进步 30 次",
-      "desc": "在结算页面获得「你进步了！」评价 30 次"
-    },
-    "grew-50": {
-      "name": "进步 50 次",
-      "desc": "在结算页面获得「你进步了！」评价 50 次"
-    },
-    "grew-100": {
-      "name": "进步 100 次",
-      "desc": "在结算页面获得「你进步了！」评价 100 次"
-    },
-    "items-10": {
-      "name": "收集 10 件",
-      "desc": "在收藏馆累计解锁 10 件特效物品"
-    },
-    "items-20": {
-      "name": "收集 20 件",
-      "desc": "在收藏馆累计解锁 20 件特效物品"
-    },
-    "items-30": {
-      "name": "收集 30 件",
-      "desc": "在收藏馆累计解锁 30 件特效物品"
-    },
-    "items-40": {
-      "name": "收集 40 件",
-      "desc": "在收藏馆累计解锁 40 件特效物品"
-    },
-    "items-47": {
-      "name": "收集 47 件",
-      "desc": "在收藏馆累计解锁 47 件特效物品"
-    },
-    "catComplete-1": {
-      "name": "集齐 1 个分类",
-      "desc": "将收藏馆中 1 个分类的物品全部集齐"
-    },
-    "catComplete-3": {
-      "name": "集齐 3 个分类",
-      "desc": "将收藏馆中 3 个分类的物品全部集齐"
-    },
-    "catComplete-5": {
-      "name": "集齐 5 个分类",
-      "desc": "将收藏馆中 5 个分类的物品全部集齐"
-    },
-    "catComplete-8": {
-      "name": "集齐 8 个分类",
-      "desc": "将收藏馆中 8 个分类的物品全部集齐"
     }
   },
   "series": {
     "streak": {
       "title": "连续练习天数",
-      "cat": "坚持打卡"
+      "cat": "坚持打卡",
+      "name": "连续 {n} 天",
+      "desc": "连续 {n} 天坚持练习"
     },
     "days": {
       "title": "累计打卡天数",
-      "cat": "坚持打卡"
+      "cat": "坚持打卡",
+      "name": "打卡 {n} 天",
+      "desc": "累计练习达到 {n} 天"
     },
     "stickers": {
       "title": "登录签到印章",
-      "cat": "坚持打卡"
+      "cat": "坚持打卡",
+      "name": "印章 {n} 枚",
+      "desc": "累计收集 {n} 枚登录签到印章"
     },
     "crowns": {
       "title": "皇冠印章",
-      "cat": "坚持打卡"
+      "cat": "坚持打卡",
+      "name": "皇冠 {n} 枚",
+      "desc": "累计获得第 7 天的皇冠印章 {n} 枚"
     },
     "problems": {
       "title": "做题总数",
-      "cat": "勤学苦练"
+      "cat": "勤学苦练",
+      "name": "做对 {n} 题",
+      "desc": "累计做对 {n} 道算术题"
     },
     "cells": {
       "title": "输入数字位数",
-      "cat": "勤学苦练"
+      "cat": "勤学苦练",
+      "name": "输入 {n} 位数",
+      "desc": "累计填入 {n} 位正确数字"
     },
     "plays": {
       "title": "练习轮数",
-      "cat": "勤学苦练"
+      "cat": "勤学苦练",
+      "name": "完成 {n} 轮",
+      "desc": "累计完成 {n} 轮练习"
     },
     "minutes": {
       "title": "累计专注时长",
-      "cat": "勤学苦练"
+      "cat": "勤学苦练",
+      "name": "累计 {time}",
+      "desc": "累计专注练习 {time}"
     },
     "unlocked": {
       "title": "解锁新技能",
-      "cat": "技能掌握"
+      "cat": "技能掌握",
+      "name": "解锁 {n} 项",
+      "desc": "在技能树中解锁 {n} 项技能"
     },
     "mastered": {
       "title": "精通掌握技能",
-      "cat": "技能掌握"
+      "cat": "技能掌握",
+      "name": "精通 {n} 项",
+      "desc": "掌握并精通 {n} 项数学技能"
     },
     "gradeDone": {
       "title": "通关整个年级",
-      "cat": "技能掌握"
+      "cat": "技能掌握",
+      "name": "{g}年级全部掌握",
+      "desc": "掌握 {g} 年级的所有计算技能"
     },
     "laneDone": {
       "title": "精通整个计算分支",
-      "cat": "技能掌握"
+      "cat": "技能掌握",
+      "name": "{l} 全部掌握",
+      "desc": "掌握「{l}」分支下的全部技能"
     },
     "extras": {
       "title": "进入加时赛",
-      "cat": "加分挑战"
+      "cat": "加分挑战",
+      "name": "加时赛 {n} 次",
+      "desc": "成功进入加时赛 {n} 次"
     },
     "extraBest": {
       "title": "单次加时赛最高纪录",
-      "cat": "加分挑战"
+      "cat": "加分挑战",
+      "name": "单次 {n} 题",
+      "desc": "在单次加时赛中答对 {n} 题"
     },
     "extraSolved": {
       "title": "加时赛答对总数",
-      "cat": "加分挑战"
+      "cat": "加分挑战",
+      "name": "加时赛答对 {n} 题",
+      "desc": "在加时赛中累计答对 {n} 题"
     },
     "combo": {
       "title": "连对纪录",
-      "cat": "连对连击"
+      "cat": "连对连击",
+      "name": "{n} 连对",
+      "desc": "达成 {n} 连对"
     },
     "perfects": {
       "title": "完美无失误完赛",
-      "cat": "准确率"
+      "cat": "准确率",
+      "name": "完美通关 {n} 次",
+      "desc": "以 100% 首次正确率完成 {n} 轮练习"
     },
     "firstTry": {
       "title": "首次即答对",
-      "cat": "准确率"
+      "cat": "准确率",
+      "name": "首次答对 {n} 题",
+      "desc": "一次作答就成功的题目达到 {n} 题"
     },
     "dopa": {
       "title": "多帕能量",
-      "cat": "多帕能量"
+      "cat": "多帕能量",
+      "name": "{n} 多帕",
+      "desc": "单局多帕能量突破 {n}"
     },
     "review": {
       "title": "错题复习",
-      "cat": "错题复习"
+      "cat": "错题复习",
+      "name": "复习 {n} 题",
+      "desc": "重新攻克 {n} 道错题"
     },
     "grade1": {
       "title": "练习1年级",
-      "cat": "年级通关"
+      "cat": "年级通关",
+      "name": "1 年级 {n} 轮",
+      "desc": "完成 1 年级模式练习 {n} 次"
     },
     "grade2": {
       "title": "练习2年级",
-      "cat": "年级通关"
+      "cat": "年级通关",
+      "name": "2 年级 {n} 轮",
+      "desc": "完成 2 年级模式练习 {n} 次"
     },
     "grade3": {
       "title": "练习3年级",
-      "cat": "年级通关"
+      "cat": "年级通关",
+      "name": "3 年级 {n} 轮",
+      "desc": "完成 3 年级模式练习 {n} 次"
     },
     "grade4": {
       "title": "练习4年级",
-      "cat": "年级通关"
+      "cat": "年级通关",
+      "name": "4 年级 {n} 轮",
+      "desc": "完成 4 年级模式练习 {n} 次"
     },
     "grade5": {
       "title": "练习5年级",
-      "cat": "年级通关"
+      "cat": "年级通关",
+      "name": "5 年级 {n} 轮",
+      "desc": "完成 5 年级模式练习 {n} 次"
     },
     "grade6": {
       "title": "练习6年级",
-      "cat": "年级通关"
+      "cat": "年级通关",
+      "name": "6 年级 {n} 轮",
+      "desc": "完成 6 年级模式练习 {n} 次"
     },
     "secret": {
       "title": "隐藏成就",
@@ -1403,51 +255,76 @@
     },
     "questDays": {
       "title": "每日任务全部达成",
-      "cat": "坚持打卡"
+      "cat": "坚持打卡",
+      "name": "全通关 {n} 天",
+      "desc": "完成当天全部每日任务达到 {n} 天"
     },
     "questRun": {
       "title": "连续完成每日任务",
-      "cat": "坚持打卡"
+      "cat": "坚持打卡",
+      "name": "连续 {n} 天全清",
+      "desc": "连续 {n} 天完成全部每日任务"
     },
     "hammer": {
       "title": "打卡补签锤",
-      "cat": "坚持打卡"
+      "cat": "坚持打卡",
+      "name": "补签 {n} 次",
+      "desc": "使用打卡锤保住连续打卡 {n} 次",
+      "first_name": "初次补签"
     },
     "starsTotal": {
       "title": "收集技能星星",
-      "cat": "技能掌握"
+      "cat": "技能掌握",
+      "name": "星星 {n} 颗",
+      "desc": "累计收集技能星星 {n} 颗"
     },
     "star5": {
       "title": "升至 ☆5 的技能",
-      "cat": "技能掌握"
+      "cat": "技能掌握",
+      "name": "☆5技能 {n} 个",
+      "desc": "将 {n} 个技能提升至 ☆5 满星"
     },
     "gradeStar3": {
       "title": "整个年级达到 ☆3",
-      "cat": "技能掌握"
+      "cat": "技能掌握",
+      "name": "{g}年级全员☆3",
+      "desc": "将 {g} 年级的所有技能都提升至 ☆3 以上"
     },
     "polished": {
       "title": "温故知新除锈",
-      "cat": "不断进步"
+      "cat": "不断进步",
+      "name": "重新点亮 {n} 次",
+      "desc": "复习变生疏的技能使其重新闪亮 {n} 次"
     },
     "capsules": {
       "title": "时光胶囊",
-      "cat": "不断进步"
+      "cat": "不断进步",
+      "name": "开启胶囊 {n} 次",
+      "desc": "开启 {n} 次挑战过去的时光胶囊"
     },
     "capsuleFaster": {
       "title": "超越过去的自己",
-      "cat": "不断进步"
+      "cat": "不断进步",
+      "name": "超越以往 {n} 次",
+      "desc": "在时光胶囊中比最初挑战时更快答完（{n}次）"
     },
     "grew": {
       "title": "你进步了！",
-      "cat": "不断进步"
+      "cat": "不断进步",
+      "name": "进步 {n} 次",
+      "desc": "在结算页面获得「你进步了！」评价 {n} 次"
     },
     "items": {
       "title": "图鉴收藏总数",
-      "cat": "图鉴收藏"
+      "cat": "图鉴收藏",
+      "name": "收集 {n} 件",
+      "desc": "在收藏馆累计解锁 {n} 件特效物品"
     },
     "catComplete": {
       "title": "集齐整个分类",
-      "cat": "图鉴收藏"
+      "cat": "图鉴收藏",
+      "name": "集齐 {n} 个分类",
+      "desc": "将收藏馆中 {n} 个分类的物品全部集齐"
     }
   },
   "trophy_cats": [
@@ -1594,7 +471,11 @@
       "recommend": "推荐",
       "skip": "跳过",
       "back": "上一步",
-      "next": "下一步"
+      "next": "下一步",
+      "lets_go": "开始！",
+      "page_of": "第 {0} / {1} 页",
+      "again_1": "点击问号 ",
+      "again_2": " 可以随时再次查看本说明"
     }
   },
   "quests": {
@@ -1608,7 +489,216 @@
     "combo20": "达成 20 连对",
     "play2": "练习 2 次",
     "grade1": "完成 1 次年级练习",
-    "learn10": "做 10 道正在学习的技能题"
+    "learn10": "做 10 道正在学习的技能题",
+    "polish": "擦亮「{0}」（3 题）"
   },
-  "scoring_code_snippet": "// Pure scoring and \"dopa\" curves (kept separate from the director for testing).\n\nexport const BASIC_SCORE = 100;\nexport const EXTRA_BASE = 10;\n\nexport const EXTRA_STEP = 5;\nexport const extraPoints = (k) => EXTRA_BASE + EXTRA_STEP * k;\nexport const extraTotal = (n) => EXTRA_BASE * n + EXTRA_STEP * (n * (n - 1)) / 2;\n\nexport const BASIC_DOPA_L = 2.3;\nexport function basicDopaL(frac) {\n  const f = Math.min(1, Math.max(0, frac));\n  return BASIC_DOPA_L * f ** 1.15;\n}\nconst EXTRA_SPAN = 3.0; const EXTRA_TAU = 10;\nexport const extraDopaL = (n) => BASIC_DOPA_L + EXTRA_SPAN * (1 - Math.exp(-n / EXTRA_TAU));\nexport const extraProblemGain = (k) => extraDopaL(k + 1) - extraDopaL(k);\nexport const DOPA_MAX_L = 9.08;\n\nexport const COMBO_DOPA = { max: 2, full: 20 };\nexport const comboMult = (combo) => 1 + (COMBO_DOPA.max - 1) * Math.min(1, Math.max(0, combo) / COMBO_DOPA.full);\nexport const comboMaxed = (combo) => combo >= COMBO_DOPA.full;\n\nexport function addDopa(L, base, combo) {\n  return Math.min(DOPA_MAX_L, L + Math.max(0.003, base) * comboMult(combo));\n}\n\nexport const COMBO_TIME = { base: 3000, perGrade: 600, read: 2500 };\nexport function comboWindowMs(grade = 3, first = false) {\n  const g = Math.min(6, Math.max(1, grade || 3));\n  return COMBO_TIME.base + COMBO_TIME.perGrade * (g - 1) + (first ? COMBO_TIME.read : 0);\n}\nexport const comboMilestone = (c) => [10, 20, 30, 50, 75].includes(c) || (c >= 100 && c % 50 === 0);\n\nconst UNITS = [[68, '无量大数'], [64, '不可思议'], [60, '那由他'], [56, '阿僧祇'], [52, '恒河沙'], [48, '极'], [44, '载'], [40, '正'], [36, '涧'], [32, '沟'], [28, '穰'], [24, '秭'], [20, '垓'], [16, '京'], [12, '兆'], [8, '亿'], [4, '万']];\nconst MILESTONES = [[3, '千'], [2, '百']];\n\nexport function fmtDopa(L) {\n  if (!Number.isFinite(L) || L >= 72) return '∞';\n  if (L < 4) return Math.round(10 ** L).toLocaleString('zh-CN');\n  const u = UNITS.find(([e]) => L >= e - 1e-9);\n  const m = 10 ** (L - u[0]);\n  return (m < 10 ? m.toFixed(1) : String(Math.floor(m))) + u[1];\n}\n\nexport function unitOf(L) {\n  if (L >= 72) return '∞';\n  if (L >= 4 && L < 8) return ['万', '十万', '百万', '千万'][Math.floor(L + 1e-9) - 4];\n  const u = UNITS.find(([e]) => L >= e - 1e-9) || MILESTONES.find(([e]) => L >= e - 1e-9);\n  return u ? u[1] : '';\n}\n\nconst LABELS = { '∞': '∞', 百: '100', 千: '1000', 十万: '10万', 百万: '100万', 千万: '1000万' };\nexport const unitLabel = (u) => LABELS[u] || `1${u}`;\n"
+  "i18n": {
+    "<b class=\"qdone\">Complete!</b>": "<b class=\"qdone\">达成！</b>",
+    "<b>All quests complete!</b>": "<b>任务全部达成！</b>",
+    "My Level": "我的等级",
+    "Last one!": "最后一题！",
+    "Dopa ×2 MAX": "多巴×2 MAX",
+    "+N pts": "+N分",
+    "100 pts": "100分",
+    "100 pts!": "100分！",
+    "{n} pts": "{n} 分",
+    "Review clear!": "复习通关！",
+    "Time's up!": "时间到！",
+    "Shine! Sparkle!": "金光闪闪！",
+    "You improved!": "有进步！",
+    "Over goal": "超出目标",
+    "<p class=\"si-text done\">☆5 reached! Amazing!</p>": "<p class=\"si-text done\">达成☆5！太棒了！</p>",
+    "A little rusty! One first-try answer makes it shine. ": "有点生疏了！一次答对即可重焕光芒。",
+    "No records to erase yet": "暂无记录可清除",
+    "Erase skill": "清除技能记录",
+    "Back to the title?": "返回主界面？",
+    "This play will end here.": "本次练习将在此结束。",
+    "You'll go back to the title screen.": "即将返回主界面。",
+    "<span class=\"nc\">SAVED</span>": "<span class=\"nc\">补签</span>",
+    "SAVED": "补签",
+    ", streak saved": "（已补签）",
+    "Today's bonus": "今日奖励",
+    "New trophy!": "新成就！",
+    "???": "？？？",
+    "<p class=\"tr-empty\">Nothing here yet</p>": "<p class=\"tr-empty\">这里空空如也</p>",
+    "Reset everything": "清除所有数据",
+    "This erases all records, skills, trophies, collection items, stickers and settings.": "这将清除所有打卡记录、技能树、成就奖杯、图鉴收藏、签到印章和设置。",
+    "Really erase everything?": "确定要彻底清除所有数据吗？",
+    "Erase all": "确认全部清除",
+    "Erase": "确认重置",
+    "Cancel": "取消",
+    "Once it's erased, it can't be brought back.": "数据一旦清除将无法找回，请再次确认。",
+    "Today's quests": "今日任务",
+    "Quest clear!": "任务达成！",
+    "All quests complete!": "所有任务全部达成！",
+    "Review": "复习",
+    "Practice": "练习",
+    "Drill": "专项练习",
+    "Unlocked!": "已解锁！",
+    "combo!": "连对！",
+    "Extra unlocked!": "加时挑战解锁！",
+    "Solved: {n}": "累计答对：{n}",
+    " · Fastest: {s}s": " · 最快纪录：{s}秒",
+    "+{n} more": "+{n} 项...",
+    "day": "",
+    "days": "",
+    "Streak<b>{n}</b>{unit}": "连续<b>{n}</b>天",
+    " (today makes {n})": "（今天达成{n}天）",
+    "Start a streak today!": "从今天开始连续打卡！",
+    "Best<b>{n}</b>days": "最高纪录<b>{n}</b>天",
+    "Stickers<b>{n}</b>": "贴纸<b>{n}</b>张",
+    "Streak Hammers: {n}": "补签锤：{n}支",
+    "Day {i}": "第 {i} 天",
+    "Locked. Earn the trophy \"{name}\" to get it": "未解锁。达成成就「{name}」即可获得",
+    "Trophy: {name}": "成就：{name}",
+    "Shuffle": "随机轮换",
+    "Changes every play": "每轮随机使用已解锁物品",
+    "\"Shuffle\" picks a different one you own every play": "「随机轮换」会在每轮练习时随机选用你已解锁的物品",
+    "Your pick is used every time": "每次练习都会使用你选中的物品",
+    "{month} {d}": "{m}月{d}日",
+    "You didn't play on {days}.<br>Stamp {pronoun} <b>SAVED</b>,<br>and your <b>{run}</b>-day streak goes on!": "{days}那天没有练习算术。<br>使用补签锤盖上<b>补签</b>印章，<br>即可延续连续 <b>{run}</b> 天的打卡纪录！",
+    "them": "它们",
+    "it": "它",
+    "Your hammers": "持有补签锤",
+    "Use {n} hammers": "使用 {n} 支补签锤",
+    "{run}-day streak saved!": "连续 {run} 天打卡纪录已保住！",
+    " · Extra {n}": " · 加时赛答对 {n} 题",
+    "Correct {ok} · Oops {ng}{extra} · {time}": "答对 {ok} · 失误 {ng}{extra} · {time}",
+    "Master {skills} to unlock this": "掌握 {skills} 即可解锁",
+    "Grade {n}": "{n}年级",
+    "Next: \"{skill}\"": "下一目标：「{skill}」",
+    "Next: ☆{n}": "下一阶段：☆{n}",
+    "Starts with a skill check": "从能力诊断开始",
+    "Go back": "返回",
+    "Keep playing": "继续挑战",
+    "Stay here": "留在当前",
+    "This erases your records for \"{skill}\".{deps}": "将重置「{skill}」的全部练习记录。{deps}",
+    "<br>The <b>{deps}</b> {word} on it will be erased and locked again too.": "<br>受其影响的 <b>{deps}</b> 个后续技能也将一并重置并重新锁定。",
+    "Erased {n} {unit}": "已重置 {n} 个技能",
+    "Redo {n} {unit}": "重做 {n} 道错题",
+    "skill": "个技能",
+    "skills": "个技能",
+    "missed problem": "道错题",
+    "missed problems": "道错题",
+    "Now ☆{n}! {skill}": "升至 ☆{n}！{skill}",
+    "Mastered! {skill}": "完全精通！ {skill}",
+    "Unlocked! {skill}": "解锁新技能！ {skill}",
+    "Polished! {skill}": "重焕光彩！ {skill}",
+    "Skill check done: {n} cleared": "能力诊断完成：已掌握 {n} 项技能",
+    "Get {pct}% or more right on the first try over your last {n} problems": "最近 {n} 题首次正确率达到 {pct}% 以上",
+    "Solve a problem in about {sec}s or less": "平均每题用时在约 {sec} 秒以内",
+    "{gap} days after ☆3, get {run} in a row right on the first try": "达成 ☆3 的 {gap} 天后，连续 {run} 题首次即答对",
+    "Get {pct}% or more right on the first try over your last {n} problems, within {sec}s each": "最近 {n} 题首次正确率达到 {pct}% 以上且每题在 {sec} 秒以内",
+    "Now: {n} problems · {pct}%": "当前：{n} 题 · {pct}%",
+    "Now: {n} problems": "当前：{n} 题",
+    "Now: {sec}s ({n}/{total} problems)": "当前：{sec}秒（{n}/{total} 题）",
+    "Wait {wait} more {unit}": "还需等待 {wait} 天",
+    "You can try it today!": "今天可以挑战！",
+    "Now: {pct}%{speed}": "当前：{pct}%{speed}",
+    "Goal {time}": "目标 {time}",
+    "Left": "剩余时间",
+    "Clear all:": "全部达成：",
+    "{year} {month}": "{year}年 {month}",
+    "Next: {name}": "下一目标：{name}",
+    "Now {val}": "当前 {val}",
+    "Now {n} min": "当前 {n} 分钟",
+    "Reward: {cat} \"{name}\"": "奖励：{cat}「{name}」",
+    "Secret trophy": "隐藏成就",
+    "Addition": "加法",
+    "Subtraction": "减法",
+    "Multiplication": "乘法",
+    "Division": "除法",
+    "Decimal addition": "小数加法",
+    "Decimal subtraction": "小数减法",
+    "Decimal multiplication": "小数乘法",
+    "Decimal division": "小数除法",
+    "Division with remainders": "有余数的除法",
+    "Add & subtract fractions": "分数加减法",
+    "Simplify fractions": "约分",
+    "Fractions & whole numbers": "分数与整数计算",
+    "Multiplying fractions": "分数乘法",
+    "Dividing fractions": "分数除法",
+    "Decimals & fractions": "小数与分数混合",
+    "Fractions": "分数",
+    "Percentages": "百分比",
+    "Ratios": "比与比例",
+    "Find x": "解未知数 x",
+    "Number bonds": "10的分成",
+    "Rounding": "四舍五入",
+    "Order of operations": "四则运算顺序",
+    "Greatest common factor": "最大公因数",
+    "Least common multiple": "最小公倍数",
+    "Three numbers": "三个数的计算",
+    "Denominator": "分母",
+    "Numerator": "分子",
+    "Whole number": "整数部分",
+    "Quotient": "商",
+    "Remainder": "余数",
+    "Answer": "答案",
+    "Subtract": "相减",
+    "Ones place": "个位",
+    "Tens place": "十位",
+    "Hundreds place": "百位",
+    "Thousands place": "千位",
+    "Ten thousands place": "万位",
+    "Hundred thousands place": "十万位",
+    "Tenths place": "十分位",
+    "Hundredths place": "百分位",
+    "Thousandths place": "千分位",
+    "Multiply by {factor}": "乘以 {factor}",
+    "Add the {place}": "相加{place}",
+    "Quotient: {place} place": "商：{place}",
+    "Hint": "提示",
+    "Yesterday": "昨天",
+    "Today": "今天",
+    "Per problem": "单题用时",
+    "First try": "首次正确率",
+    "First ({day})": "首次 ({day})",
+    "Time capsule": "时间胶囊",
+    "TIME CAPSULE": "时间胶囊",
+    "From {day}": "来自 {day}",
+    "A problem from when you first started!": "重温刚开始练习时做过的题目！",
+    "Solved it again!": "再次成功解出！",
+    "{day} {secFrom} → today {secTo}": "{day} {secFrom} → 今天 {secTo}",
+    "Oops: {day} {cntFrom} → today {cntTo}": "失误：{day} {cntFrom}次 → 今天 {cntTo}次",
+    "Solved the problem from {day} again": "再次解出了 {day} 的题目",
+    "Then": "往期",
+    "Oops {n}": "失误 {n}",
+    "LCM of": "求最小公倍数：",
+    "GCF of": "求最大公因数：",
+    "and": "与",
+    "of": "的",
+    "is": "分成",
+    "Round": "四舍五入",
+    "to the nearest {unit}": "精确到 {unit}",
+    "Multiples of {n}": "{n}的倍数",
+    "A number that divides both": "能同时整除两数的数",
+    "Split {total} into {parts} equal parts": "把 {total} 平均分成 {parts} 份",
+    "The denominator stays {d}": "分母保持为 {d}",
+    "Common denominator: {d}": "通分公分母：{d}",
+    "Multiply the numerator by {k}": "分子乘以 {k}",
+    "Multiply the denominator by {k}": "分母乘以 {k}",
+    "Multiply top × top and bottom × bottom": "分子乘分子，分母乘分母",
+    "Flip {frac} and multiply": "颠倒 {frac} 并相乘",
+    "Divide top and bottom by {k}": "分子分母同时除以 {k}",
+    "Both sides × {k}": "两边同时乘以 {k}",
+    "{a} and ? make {total}": "{a} 加几等于 {total}",
+    "You got a Streak Hammer!": "获得了一把补签锤！",
+    "Your hammers are full! Let's just celebrate.": "补签锤已满！尽情享受胜利吧！",
+    "rust": "生锈"
+  },
+  "months": [
+    "1月",
+    "2月",
+    "3月",
+    "4月",
+    "5月",
+    "6月",
+    "7月",
+    "8月",
+    "9月",
+    "10月",
+    "11月",
+    "12月"
+  ]
 }
