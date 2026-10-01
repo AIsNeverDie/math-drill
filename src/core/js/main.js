@@ -429,7 +429,7 @@ function startGame(kind = 'level', arg) {
   S.problems = [];
   S.wrongList = []; S.newUnlocks = []; S.newMastered = []; S.newStars = {}; S.sessionTimes = {}; S.capsuleNews = null; S.polished = [];
   planCapsule();
-  Object.assign(S, { endT: 0, qi: 0, firstTry: 0, solved: 0, misses: 0, combo: 0, comboPeak: 0, mode: 'basic', reach: false });
+  Object.assign(S, { endT: 0, qi: 0, firstTry: 0, solved: 0, misses: 0, combo: 0, comboPeak: 0, mode: 'basic', reach: false, timingOut: false });
   showCombo();
   S.dopa = { L: 0, shown: 0, unit: '' };
   S.extra = { score: 0, solved: 0, misses: 0, end: 0, over: false };
@@ -464,7 +464,10 @@ async function setupProblem() {
     E = 1 + Math.min(0.5, tier * 0.1);
     applyLevel(E, { key: 2 + Math.min(tier, 5), bpm: 134 + tier * 5 });
     if (S.plan.legacy) { const pool = EXTRA_TIERS[Math.min(tier, EXTRA_TIERS.length - 1)]; S.problem = generate(pool[S.extra.solved % pool.length], S.rng); }
-    else S.problem = sessionProblem(params.get('skill') || S.plan.extra(S.extra.solved));
+    else {
+      const skill = params.get('skill') || (typeof S.plan?.extra === 'function' ? S.plan.extra(S.extra.solved) : null) || 'g1-add-nc';
+      S.problem = sessionProblem(skill);
+    }
   } else {
     E = basicE(S.qi);
     applyLevel(E, { key: S.qi === S.N - 1 ? 2 : 0 });
@@ -485,11 +488,11 @@ async function setupProblem() {
   if (p.capsule) {
     card.style.opacity = 0;
     await capsuleIntro(p.capsule);
-    if (S.screen !== 'play' || run !== S.run) return;
+    if (S.screen !== 'play' || run !== S.run || S.timingOut) return;
     const st = store.load(); st.capsule = { ...(st.capsule || {}), lastDay: store.dayKey() }; store.save();
   } else if (E > 0.22 || extra) cutin(extra ? `EX ${S.extra.solved + 1}` : last ? t('Last one!') : `Q${S.qi + 1}`, E);
   await cardEnter(E);
-  if (S.screen !== 'play' || run !== S.run) return;
+  if (S.screen !== 'play' || run !== S.run || S.timingOut) return;
   S.ready = true;
   // Answer time counts only while input is open (id033).
   S.qStart = now(); S.qMisses = 0; S.qMs = 0;
@@ -672,8 +675,8 @@ function onWrong(cell, st) {
   if (S.reduced) return;
   tween(360, (k) => { cell.style.transform = `translateX(${Math.sin(k * 28) * 7 * (1 - k)}px)`; }).then(() => { cell.style.transform = ''; });
   const h = hero.headCenter;
-  const t = 0.3;
-  fx.add({ kind: 'text', x: c.x, y: c.y, vx: (h.x - c.x) / t, vy: (h.y - c.y) / t - 200, g: 1300, drag: 0, str: cell.textContent, color: '#ff4f6d', size: 34, life: t });
+  const tSec = 0.3;
+  fx.add({ kind: 'text', x: c.x, y: c.y, vx: (h.x - c.x) / tSec, vy: (h.y - c.y) / tSec - 200, g: 1300, drag: 0, str: cell.textContent, color: '#ff4f6d', size: 34, life: tSec });
   setTimeout(() => {
     fx.burst(h.x, h.y - 20, { count: 10, kinds: ['star'], speed: 220, up: 60 });
     fx.ring(h.x, h.y, { color: '#fff', radius: 60, width: 7 });
@@ -681,7 +684,7 @@ function onWrong(cell, st) {
     hero.hurt(E, c, { audio });
     if (E > 0.5) { S.shake = Math.max(S.shake, 8); S.flash = Math.max(S.flash, 0.12); }
     crowd.forEach((m) => { m.setFace('wide', 'o'); m.sq.kick(-3); setTimeout(() => m.resetFace(), 600); });
-  }, t * 1000);
+  }, tSec * 1000);
 }
 
 // Repeated slips on the same digit: 2nd highlights the digits to look at
@@ -792,7 +795,7 @@ async function clearProblem() {
   if (lastBasic) { if (capsuleShown) await wait(1600); await finale(); return; }
   const run = S.run;
   await wait((extra ? 520 : lerp(600, 1150, clamp(E))) + (wasReach ? 250 : 0) + (capsuleShown ? 1900 : 0));
-  if (S.screen !== 'play' || run !== S.run || (extra && S.extra.over)) return;
+  if (S.screen !== 'play' || run !== S.run || S.timingOut || (extra && S.extra.over)) return;
   if (!extra) S.qi += 1;
   setupProblem();
 }
@@ -825,7 +828,7 @@ function hanamaru(E, el = $('#stamp'), style = ul.variant(S.look && S.look.mark)
   const size = flower ? 150 : 110;
   const N = 11; const R = 58;
   let spiral = ''; const turns = flower ? 2.3 : 1.12;
-  for (let i = 0; i <= 90; i++) { const t = i / 90; const a = -1.9 + t * turns * Math.PI * 2; const r = flower ? 9 + t * 29 : 44 + t * 7 + Math.sin(t * 9) * 1.2; spiral += `${i ? 'L' : 'M'}${(Math.cos(a) * r).toFixed(1)} ${(Math.sin(a) * r).toFixed(1)}`; }
+  for (let i = 0; i <= 90; i++) { const k = i / 90; const a = -1.9 + k * turns * Math.PI * 2; const r = flower ? 9 + k * 29 : 44 + k * 7 + Math.sin(k * 9) * 1.2; spiral += `${i ? 'L' : 'M'}${(Math.cos(a) * r).toFixed(1)} ${(Math.sin(a) * r).toFixed(1)}`; }
   let petals = '';
   for (let i = 0; i < N; i++) {
     const a0 = (i / N) * Math.PI * 2; const a1 = ((i + 1) / N) * Math.PI * 2;
@@ -1134,9 +1137,30 @@ async function finale() {
   audio.finale();
   await wait(120);
   const style = ul.variant(S.look && S.look.finale);
-  if (!S.reduced) await (FINALES[style] || FINALES.classic)(W, H);
-  else await wait(800);
-  // The player (or a demo interruption) may have left the game meanwhile.
+  try {
+    if (!S.reduced) {
+      bigStamp(t('100 pts'));
+      (FINALES[style] || FINALES.classic)(W, H);
+    }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    await wait(500);
+    if (run === S.run) showResult();
+  }
+}
+
+async function endBasicTimeout() {
+  if (S.timingOut || S.screen !== 'play') return;
+  S.timingOut = true;
+  const run = S.run;
+  S.ready = false;
+  S.endT = now();
+  if (S.reach) endReach();
+  audio.gong();
+  bigStamp(t("Time's up!"));
+  S.flash = 0.6;
+  await wait(500);
   if (run === S.run) showResult();
 }
 
@@ -1254,37 +1278,51 @@ function bigStamp(text) {
 }
 
 function showResult() {
-  const rate = S.firstTry / S.N;
-  $('#r-score').textContent = String(BASIC_SCORE);
-  $('#r-ok').innerHTML = S.solved;
-  $('#r-ng').innerHTML = S.misses;
-  $('#r-rate').textContent = `${Math.round(rate * 100)}%`;
-  const t = S.endT - S.startT;
-  $('#r-time').textContent = fmtTime(t);
-  $('#r-dopa').textContent = fmtDopa(S.dopa.L);
-  const review = S.plan.mode === 'review';
-  const ok = rate >= 0.8 && !review;
-  if (S.plan.placement && !S.demo) { progress().placed = true; store.save(); }
-  S.record = S.demo ? null : store.addRecord({ mode: S.plan.mode, grade: S.plan.grade, skill: S.plan.skill, count: S.N, score: BASIC_SCORE, ok: S.solved, ng: S.misses, firstRate: rate, timeMs: Math.round(t), dopaL: S.dopa.L });
-  if (recording()) { growth.notePlay(stats(), { mode: S.plan.mode, day: store.dayKey(), timeMs: Math.round(t), dopaL: S.dopa.L, firstRate: rate }); store.save(); }
-  questNote({ type: 'play', mode: S.plan.mode });
-  $('#result-title').textContent = review ? t('Review clear!') : `${modeName(S.plan)} clear!`;
-  const un = $('#r-unlock');
-  un.textContent = review ? '' : ok ? t('Extra unlocked!') : 'A first-try rate of 80% or more unlocks Extra';
-  un.classList.toggle('yes', ok);
-  $('#go-extra').hidden = !ok;
-  $('#go-extra small').textContent = `${Math.round(EXTRA_MS / 1000)} seconds`;
-  $('#go-again').hidden = ok;
-  renderSkillNews($('#r-skills'));
-  renderGrowth($('#r-growth'));
-  renderQuestMini($('#r-quests'));
-  if (checkTrophies().length) { const run = S.run; setTimeout(() => { if (run === S.run && S.screen === 'result') openTrophies(); }, 2300); }
-  $('#go-tree').hidden = !(S.newUnlocks.length || S.newMastered.length || Object.keys(S.newStars).length || S.plan.placement);
-  setReviewButton($('#go-review'), ok ? 0 : S.wrongList.length);
-  audio.play('musicGain', audio.now(), { v: 0.55, ramp: 0.6 });
-  showScreen('result');
-  countUp($('#r-score'), BASIC_SCORE, 900);
-  demoAfterResult('result');
+  if (!S.endT) S.endT = now();
+  const rate = S.N > 0 ? S.firstTry / S.N : 0;
+  try {
+    $('#r-score').textContent = String(BASIC_SCORE);
+    $('#r-ok').innerHTML = S.solved;
+    $('#r-ng').innerHTML = S.misses;
+    $('#r-rate').textContent = `${Math.round(rate * 100)}%`;
+    const elapsedMs = S.endT - S.startT;
+    $('#r-time').textContent = fmtTime(elapsedMs);
+    $('#r-dopa').textContent = fmtDopa(S.dopa.L);
+    const review = S.plan.mode === 'review';
+    const remainingReview = review ? progress().review.length : 0;
+    const ok = rate >= 0.8 && !review && !S.timingOut;
+    if (S.plan.placement && !S.demo) { progress().placed = true; store.save(); }
+    S.record = S.demo ? null : store.addRecord({ mode: S.plan.mode, grade: S.plan.grade, skill: S.plan.skill, count: S.N, score: BASIC_SCORE, ok: S.solved, ng: S.misses, firstRate: rate, timeMs: Math.round(elapsedMs), dopaL: S.dopa.L });
+    if (recording()) { growth.notePlay(stats(), { mode: S.plan.mode, day: store.dayKey(), timeMs: Math.round(elapsedMs), dopaL: S.dopa.L, firstRate: rate }); store.save(); }
+    questNote({ type: 'play', mode: S.plan.mode });
+    if (review) {
+      $('#result-title').textContent = remainingReview === 0 ? t('Review clear!') : t("Time's up!");
+    } else if (S.timingOut) {
+      $('#result-title').textContent = t("Time's up!");
+    } else {
+      $('#result-title').textContent = `${modeName(S.plan)} clear!`;
+    }
+    const un = $('#r-unlock');
+    un.textContent = review ? '' : ok ? t('Extra unlocked!') : 'A first-try rate of 80% or more unlocks Extra';
+    un.classList.toggle('yes', ok);
+    $('#go-extra').hidden = !ok;
+    $('#go-extra small').textContent = `${Math.round(EXTRA_MS / 1000)} seconds`;
+    $('#go-again').hidden = ok;
+    renderSkillNews($('#r-skills'));
+    renderGrowth($('#r-growth'));
+    renderQuestMini($('#r-quests'));
+    if (checkTrophies().length) { const run = S.run; setTimeout(() => { if (run === S.run && S.screen === 'result') openTrophies(); }, 2300); }
+    $('#go-tree').hidden = !(S.newUnlocks.length || S.newMastered.length || Object.keys(S.newStars).length || S.plan.placement);
+    const reviewCount = review ? remainingReview : S.wrongList.length;
+    setReviewButton($('#go-review'), ok ? 0 : reviewCount);
+    audio.play('musicGain', audio.now(), { v: 0.55, ramp: 0.6 });
+  } catch (err) {
+    console.error(err);
+  } finally {
+    showScreen('result');
+    countUp($('#r-score'), BASIC_SCORE, 900);
+    demoAfterResult('result');
+  }
 }
 
 function countUp(el, to, dur, from = 0) {
@@ -1319,33 +1357,40 @@ async function endExtra() {
   const run = S.run;
   S.extra.over = true;
   S.ready = false;
+  if (!S.endT) S.endT = now();
   if (S.reach) endReach();
   audio.gong();
   bigStamp(t("Time's up!"));
   S.flash = 0.6;
-  await wait(1700);
+  await wait(500);
   if (run === S.run) showFinal();
 }
 
 function showFinal() {
+  if (!S.endT) S.endT = now();
   const total = BASIC_SCORE + S.extra.score;
-  if (S.record) store.updateRecord(S.record.id, { score: total, extraOk: S.extra.solved, extraNg: S.extra.misses, dopaL: S.dopa.L });
-  if (recording()) { growth.noteDopa(stats(), S.dopa.L); store.save(); }
-  $('#f-break').textContent = `Basic ${BASIC_SCORE} + Extra ${S.extra.score.toLocaleString('en-US')}`;
-  $('#f-ok').innerHTML = S.extra.solved;
-  $('#f-ng').innerHTML = S.extra.misses;
-  $('#f-bng').innerHTML = S.misses;
-  $('#f-time').textContent = fmtTime(S.endT - S.startT);
-  $('#f-dopa').textContent = fmtDopa(S.dopa.L);
-  renderSkillNews($('#f-skills'));
-  renderQuestMini($('#f-quests'));
-  if (checkTrophies().length) { const run = S.run; setTimeout(() => { if (run === S.run && S.screen === 'final') openTrophies(); }, 2600); }
-  $('#f-tree').hidden = !(S.newUnlocks.length || S.newMastered.length || Object.keys(S.newStars).length || S.plan.placement);
-  setReviewButton($('#f-review'), S.wrongList.length);
-  audio.play('musicGain', audio.now(), { v: 0.55, ramp: 0.6 });
-  showScreen('final');
-  demoAfterResult('final');
-  countUp($('#f-score'), total, 1300 + Math.min(1400, S.extra.solved * 160));
+  try {
+    if (S.record) store.updateRecord(S.record.id, { score: total, extraOk: S.extra.solved, extraNg: S.extra.misses, dopaL: S.dopa.L });
+    if (recording()) { growth.noteDopa(stats(), S.dopa.L); store.save(); }
+    $('#f-break').textContent = `Basic ${BASIC_SCORE} + Extra ${S.extra.score.toLocaleString('en-US')}`;
+    $('#f-ok').innerHTML = S.extra.solved;
+    $('#f-ng').innerHTML = S.extra.misses;
+    $('#f-bng').innerHTML = S.misses;
+    $('#f-time').textContent = fmtTime(S.endT - S.startT);
+    $('#f-dopa').textContent = fmtDopa(S.dopa.L);
+    renderSkillNews($('#f-skills'));
+    renderQuestMini($('#f-quests'));
+    if (checkTrophies().length) { const run = S.run; setTimeout(() => { if (run === S.run && S.screen === 'final') openTrophies(); }, 2600); }
+    $('#f-tree').hidden = !(S.newUnlocks.length || S.newMastered.length || Object.keys(S.newStars).length || S.plan.placement);
+    setReviewButton($('#f-review'), S.wrongList.length);
+    audio.play('musicGain', audio.now(), { v: 0.55, ramp: 0.6 });
+  } catch (err) {
+    console.error(err);
+  } finally {
+    showScreen('final');
+    demoAfterResult('final');
+    countUp($('#f-score'), total, 1300 + Math.min(1400, S.extra.solved * 160));
+  }
 }
 
 // ---------------------------------------------------------------- demo play
@@ -1571,10 +1616,10 @@ function toTitle() {
 
 // ---------------------------------------------------------------- frame loop
 let lastClockText = '';
-onFrame((dt, t) => {
+onFrame((dt, frameT) => {
   audio.update();
-  demoTick(t);
-  tickCombo(t);
+  demoTick(frameT);
+  tickCombo(frameT);
   const pulse = audio.pulse();
   const targetKick = audio.playing ? pulse.kick * (S.level >= 1 ? 1 : 0.2) : 0;
   S.kick = S.reduced ? 0 : targetKick;
@@ -1593,7 +1638,7 @@ onFrame((dt, t) => {
   if (S.screen === 'play' && !S.confirm) {
     let txt;
     if (S.mode === 'extra') {
-      const left = Math.max(0, S.extra.end - t);
+      const left = Math.max(0, S.extra.end - frameT);
       txt = fmtTime(left + 999);
       $('.clock').classList.toggle('hurry', left < 10000);
       if (left < 5500 && left > 0) {
@@ -1602,16 +1647,25 @@ onFrame((dt, t) => {
       }
       if (left <= 0 && !S.extra.over) endExtra();
     } else {
-      const el = (S.endT || t) - S.startT;
+      const el = (S.endT || frameT) - S.startT;
       txt = fmtTime(el);
-      $('.clock').classList.toggle('over', el > S.targetMs);
-      if (el > S.targetMs) $('#clock-label').textContent = t('Over goal');
+      if (S.timingOut) {
+        $('.clock').classList.add('over');
+        $('#clock-label').textContent = t("Time's up!");
+      } else if (el >= S.targetMs && S.endT === 0) {
+        $('.clock').classList.add('over');
+        $('#clock-label').textContent = t("Time's up!");
+        endBasicTimeout();
+      } else {
+        $('.clock').classList.toggle('over', el > S.targetMs);
+        if (el > S.targetMs) $('#clock-label').textContent = t('Over goal');
+      }
     }
     if (txt !== lastClockText) { $('#clock').textContent = txt; lastClockText = txt; }
 
     // Hero wanders around the stage between actions.
-    if (!S.reduced && S.motion >= 0.35 && S.E > 0.3 && t > S.idleAt && t > S.busyUntil && !S.reach && !hero.hands.some((h) => h.job)) {
-      S.idleAt = t + rand(2200, 4200) / (0.6 + S.E);
+    if (!S.reduced && S.motion >= 0.35 && S.E > 0.3 && frameT > S.idleAt && frameT > S.busyUntil && !S.reach && !hero.hands.some((h) => h.job)) {
+      S.idleAt = frameT + rand(2200, 4200) / (0.6 + S.E);
       const r = stage.getBoundingClientRect();
       const x = clamp(r.left + r.width / 2 + rand(-0.28, 0.28) * r.width, r.left + 50, r.right - 50);
       hero.hop(20 + 40 * S.E, 420, { to: { x, y: hero.home.y }, spin: S.E > 0.6 && chance(0.3) ? 360 : 0 }).then((ok) => { if (ok) hero.x = x; });
@@ -1643,7 +1697,7 @@ onFrame((dt, t) => {
   const hc = hero.headCenter;
   st.cx = lerp(st.cx || hc.x, S.screen === 'play' ? stage.getBoundingClientRect().left + stage.clientWidth / 2 : innerWidth / 2, Math.min(1, dt * 3));
   st.cy = lerp(st.cy || hc.y, S.screen === 'play' ? stage.getBoundingClientRect().top + stage.clientHeight * 0.55 : innerHeight * 0.4, Math.min(1, dt * 3));
-  bg.render(t);
+  bg.render(frameT);
   fx.update(dt);
   fx.draw();
   fxBack.update(dt);
@@ -1653,15 +1707,15 @@ onFrame((dt, t) => {
   const ctx = { beat: S.kick };
   for (const a of actors) {
     if (a === hero && S.guideOpen && S.reduced) a.update(0, 0);
-    else a.update(dt, t, ctx);
+    else a.update(dt, frameT, ctx);
   }
 });
 
 // Title screen idle performance.
-onFrame((dt, t) => {
+onFrame((dt, frameT) => {
   if (S.screen !== 'title' || S.guideOpen || S.reduced || S.settingsOpen || S.confirm || S.bonusOpen || S.hammerOpen || S.trophyOpen || S.scene) return;
-  if (t > S.idleAt && t > S.busyUntil) {
-    S.idleAt = t + rand(1600, 2800);
+  if (frameT > S.idleAt && frameT > S.busyUntil) {
+    S.idleAt = frameT + rand(1600, 2800);
     const r = $('#title-stage').getBoundingClientRect();
     const x = r.left + r.width / 2 + rand(-0.25, 0.25) * r.width;
     const roll = Math.random();
@@ -1723,14 +1777,14 @@ const NODE_H = 58; const ROW_H = 80;
 const GAP = 14;
 const TRACKS = [0, -4, 4];
 function treeLinks(pos, colW, nodeW) {
-  const bez = (t, p0, p1, p2, p3) => (1 - t) ** 3 * p0 + 3 * (1 - t) ** 2 * t * p1 + 3 * (1 - t) * t ** 2 * p2 + t ** 3 * p3;
+  const bez = (k, p0, p1, p2, p3) => (1 - k) ** 3 * p0 + 3 * (1 - k) ** 2 * k * p1 + 3 * (1 - k) * k ** 2 * p2 + k ** 3 * p3;
   const out = []; const detours = [];
   for (const sk of SKILLS) for (const q of sk.req) {
     const a = pos[q]; const b = pos[sk.id];
     const x1 = a.x + nodeW / 2; const y1 = a.y + NODE_H; const x2 = b.x + nodeW / 2; const y2 = b.y;
     const hits = (x, y) => SKILLS.some((o) => o.id !== q && o.id !== sk.id && x > pos[o.id].x - 2 && x < pos[o.id].x + nodeW + 2 && y > pos[o.id].y - 2 && y < pos[o.id].y + NODE_H + 2);
     let blocked = false;
-    for (let i = 1; i < 40 && !blocked; i++) { const t = i / 40; blocked = hits(bez(t, x1, x1, x2, x2), bez(t, y1, y1 + 34, y2 - 34, y2)); }
+    for (let i = 1; i < 40 && !blocked; i++) { const k = i / 40; blocked = hits(bez(k, x1, x1, x2, x2), bez(k, y1, y1 + 34, y2 - 34, y2)); }
     const link = { from: q, to: sk.id, x1, y1, x2, y2 };
     if (blocked) {
       // Gap on the side facing the target (right side for the same column unless it is the last one).
@@ -1994,10 +2048,10 @@ function askToTitle() {
 
 let toastTimer = 0;
 function toast(msg) {
-  const t = $('#toast');
-  t.textContent = msg; t.hidden = false;
+  const el = $('#toast');
+  el.textContent = msg; el.hidden = false;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.hidden = true; }, 2200);
+  toastTimer = setTimeout(() => { el.hidden = true; }, 2200);
 }
 
 // ---------------------------------------------------------------- calendar
@@ -2626,10 +2680,10 @@ function askReset() {
 // throws particles, Dopakichi reacts, and the pitch climbs with the value.
 let lastSliderFx = 0;
 function motionSliderFx(v) {
-  const t = now();
+  const nowT = now();
   S.previewE = 0.04 + 0.9 * v;
-  if (t - lastSliderFx < 70) return;
-  lastSliderFx = t;
+  if (nowT - lastSliderFx < 70) return;
+  lastSliderFx = nowT;
   const sl = $('#motion').getBoundingClientRect();
   const x = sl.left + 16 + (sl.width - 32) * v; const y = sl.top + sl.height / 2;
   audio.play('blip', audio.now(), { m: 60 + Math.round(v * 24), v: 0.05 + 0.08 * v });

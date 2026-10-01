@@ -328,7 +328,13 @@ export function placementPlan(prog, N) {
 }
 
 export function reviewPlan(items) {
-  return { mode: 'review', basic: items.map((it) => it.skill || null), items };
+  const skills = items.map((it) => it.skill).filter(Boolean);
+  return {
+    mode: 'review',
+    basic: items.map((it) => it.skill || null),
+    items,
+    extra: (k) => (skills.length ? skills[k % skills.length] : 'g1-add-nc'),
+  };
 }
 
 // Problem factory honouring per-skill recent signatures.
